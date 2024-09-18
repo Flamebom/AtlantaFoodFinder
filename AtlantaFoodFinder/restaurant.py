@@ -35,4 +35,4 @@ class Restaurant:
             }
         except googlemaps.exceptions.ApiError as e:
             print(f"Error calculating distance: {e}")
-            return None
+            return None}
