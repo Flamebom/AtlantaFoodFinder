@@ -1,0 +1,679 @@
+.listing-screen {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.listing-screen .div {
+  background-color: #ffffff;
+  width: 1366px;
+  height: 1024px;
+  position: relative;
+}
+
+.listing-screen .header {
+  display: flex;
+  width: 1366px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 30px #0000000f;
+}
+
+.listing-screen .frame {
+  display: flex;
+  width: 736px;
+  align-items: center;
+  gap: 26px;
+  position: relative;
+}
+
+.listing-screen .group {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  background-color: #5e81f4;
+  border-radius: 23px;
+  transform: rotate(180deg);
+}
+
+.listing-screen .union {
+  position: absolute;
+  width: 26px;
+  height: 20px;
+  top: 13px;
+  left: 10px;
+  transform: rotate(-180deg);
+}
+
+.listing-screen .search-selected {
+  position: relative;
+  width: 626px;
+  height: 62px;
+  border-radius: 8px;
+}
+
+.listing-screen .overlap {
+  position: relative;
+  height: 62px;
+}
+
+.listing-screen .fields {
+  position: absolute;
+  width: 567px;
+  height: 62px;
+  top: 0;
+  left: 0;
+}
+
+.listing-screen .overlap-group {
+  position: relative;
+  width: 626px;
+  height: 62px;
+}
+
+.listing-screen .scope-box {
+  position: absolute;
+  width: 83px;
+  height: 62px;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  border-radius: 8px 0px 0px 8px;
+  border: 1px solid;
+  border-color: #d3d3d3;
+}
+
+.listing-screen .label {
+  position: absolute;
+  width: 32px;
+  height: 20px;
+  top: 22px;
+  left: 12px;
+}
+
+.listing-screen .text-wrapper {
+  position: absolute;
+  width: 41px;
+  top: -1px;
+  left: 0;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
+  color: #3e4958;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+.listing-screen .input {
+  position: absolute;
+  width: 544px;
+  height: 62px;
+  top: 0;
+  left: 82px;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #d3d3d3;
+}
+
+.listing-screen .icon {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 27px;
+  left: 56px;
+}
+
+.listing-screen .button {
+  position: absolute;
+  width: 62px;
+  height: 62px;
+  top: 0;
+  left: 564px;
+  background-color: #5e81f4;
+}
+
+.listing-screen .search {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 19px;
+  left: 18px;
+}
+
+.listing-screen .account {
+  position: relative;
+  width: 225px;
+  height: 86px;
+}
+
+.listing-screen .overlap-2 {
+  position: absolute;
+  width: 710px;
+  height: 858px;
+  top: 136px;
+  left: 626px;
+}
+
+.listing-screen .map-view {
+  position: absolute;
+  width: 710px;
+  height: 858px;
+  top: 0;
+  left: 0;
+  background-image: url(./img/rectangle-8.png);
+  background-size: 100% 100%;
+}
+
+.listing-screen .map-zoom {
+  position: relative;
+  width: 34px;
+  height: 73px;
+  top: 93px;
+  left: 616px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  border: 1px solid;
+  border-color: #d3d3d3;
+  box-shadow: var(--box-shadow);
+}
+
+.listing-screen .plus {
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  top: 5px;
+  left: 4px;
+}
+
+.listing-screen .minus {
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  top: 44px;
+  left: 4px;
+}
+
+.listing-screen .seperator {
+  position: absolute;
+  width: 34px;
+  height: 1px;
+  top: 36px;
+  left: -1px;
+  background-color: #d3d3d3;
+}
+
+.listing-screen .ellipse {
+  position: absolute;
+  width: 403px;
+  height: 403px;
+  top: 218px;
+  left: 154px;
+  background-color: #5e81f41a;
+  border-radius: 201.5px;
+  border: 3px dashed;
+  border-color: #5e81f4;
+}
+
+.listing-screen .frame-wrapper {
+  position: relative;
+  width: 184px;
+  height: 283px;
+  top: -11px;
+  left: -15px;
+  background-image: url(./img/union-1.svg);
+  background-size: 100% 100%;
+}
+
+.listing-screen .frame-2 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  top: 18px;
+  left: 22px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 2px 20px #00000012;
+}
+
+.listing-screen .image-header {
+  position: relative;
+  background-color: #d3d3d3;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 134px;
+  height: 143px;
+}
+
+.listing-screen .overlap-group-2 {
+  position: relative;
+  height: 143px;
+}
+
+.listing-screen .badge-primary-wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  position: absolute;
+  top: 9px;
+  left: 47px;
+}
+
+.listing-screen .badge-primary {
+  position: relative;
+  width: 79px;
+  height: 24px;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+.listing-screen .best-price {
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 10px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.listing-screen .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 134px;
+  height: 143px;
+}
+
+.listing-screen .div-wrapper {
+  position: relative;
+  width: 134px;
+  height: 54px;
+}
+
+.listing-screen .text-wrapper-2 {
+  position: absolute;
+  top: 26px;
+  left: 38px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
+  color: #3e4958;
+  font-size: 10px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.listing-screen .map-pin {
+  position: absolute;
+  width: 52px;
+  height: 37px;
+  top: 531px;
+  left: 252px;
+}
+
+.listing-screen .default {
+  width: 54px;
+  height: 36px;
+}
+
+.listing-screen .element-wrapper {
+  position: relative;
+  width: 56px;
+  height: 41px;
+  left: -2px;
+  background-image: url(./img/shape-2.svg);
+  background-size: 100% 100%;
+}
+
+.listing-screen .element {
+  position: absolute;
+  height: 14px;
+  top: 9px;
+  left: 6px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 800;
+  color: #3e4958;
+  font-size: 10px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 13.6px;
+  white-space: nowrap;
+}
+
+.listing-screen .map-pin-2 {
+  position: absolute;
+  width: 52px;
+  height: 37px;
+  top: 437px;
+  left: 465px;
+}
+
+.listing-screen .element-k-wrapper {
+  position: relative;
+  width: 56px;
+  height: 41px;
+  left: -2px;
+  background-image: url(./img/shape-3.svg);
+  background-size: 100% 100%;
+}
+
+.listing-screen .text-wrapper-3 {
+  position: absolute;
+  top: 166px;
+  left: 30px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 400;
+  color: #3e4958;
+  font-size: 36px;
+  letter-spacing: 0.2px;
+  line-height: 28px;
+  white-space: nowrap;
+}
+
+.listing-screen .element-stays {
+  position: absolute;
+  top: 135px;
+  left: 30px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
+  color: #3e4958;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.listing-screen .free-cancellation {
+  display: flex;
+  width: 244px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 30px;
+  position: absolute;
+  top: 225px;
+  left: 30px;
+  background-color: #dbdbfd80;
+  border-radius: 30px;
+}
+
+.listing-screen .text-wrapper-4 {
+  position: relative;
+  width: fit-content;
+  margin-top: -0.5px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 800;
+  color: #3e4958;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.listing-screen .price {
+  display: flex;
+  width: 204px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  position: absolute;
+  top: 225px;
+  left: 290px;
+  border-radius: 30px;
+  border: 0.5px solid;
+  border-color: #3e4958;
+}
+
+.listing-screen .text-wrapper-5 {
+  position: relative;
+  width: fit-content;
+  margin-top: -0.5px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
+  color: #3e4958;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.listing-screen .filter-icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 235px;
+  left: 552px;
+}
+
+
+
+.listing-screen .rectangle {
+  position: relative;
+  width: 263px;
+  height: 195px;
+  object-fit: cover;
+}
+
+.listing-screen .frame-3 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.listing-screen .driver-name {
+  position: relative;
+  width: 247px;
+  height: 21px;
+  margin-top: -1px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 800;
+  color: #3e4958;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 24.5px;
+  white-space: nowrap;
+}
+
+.listing-screen .frame-4 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.listing-screen .frame-5 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.listing-screen .star-wrapper {
+  position: relative;
+  width: 17.05px;
+  height: 17.05px;
+}
+
+.listing-screen .star {
+  position: absolute;
+  width: 14px;
+  height: 13px;
+  top: 1px;
+  left: 2px;
+}
+
+.listing-screen .text {
+  position: relative;
+  width: 26px;
+  height: 16px;
+  margin-top: -1px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
+  color: #3e4958;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 20.4px;
+  white-space: nowrap;
+}
+
+.listing-screen .text-2 {
+  width: 137px;
+  height: 16px;
+  position: relative;
+  margin-top: -1px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
+  color: #3e4958;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 20.4px;
+  white-space: nowrap;
+}
+
+.listing-screen .frame-6 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.listing-screen .text-3 {
+  width: fit-content;
+  position: relative;
+  margin-top: -1px;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
+  color: #3e4958;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 20.4px;
+  white-space: nowrap;
+}
+
+.listing-screen .frame-7 {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.listing-screen .group-wrapper {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  background-color: #5e81f4;
+  border-radius: 14px;
+}
+
+.listing-screen .group-2 {
+  position: relative;
+  width: 18px;
+  height: 22px;
+  top: 3px;
+  left: 5px;
+  background-image: url(./img/vector-2.svg);
+  background-size: 100% 100%;
+}
+
+.listing-screen .ellipse-2 {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  top: 9px;
+  left: 5px;
+  background-color: #ffffff;
+  border-radius: 1px;
+}
+
+.listing-screen .ellipse-3 {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  top: 9px;
+  left: 11px;
+  background-color: #ffffff;
+  border-radius: 1px;
+}
+
+.listing-screen .p {
+  position: relative;
+  width: fit-content;
+  font-family: "Open Sans", Helvetica;
+  font-weight: 300;
+  color: #3e4958;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 20.4px;
+  white-space: nowrap;
+}
+
+
+
+
+
+.listing-screen .property-card {
+  position: absolute;
+  width: 154px;
+  height: 253px;
+  top: 110px;
+  left: 174px;
+}
+
+
+
+/* Scrollable section for restaurant cards */
+.listing-screen .restaurant-card-section {
+  position: absolute;
+  top: 858px;
+  left: 0;
+  right: 0;
+  width: 40vw;
+  height: 200px;
+  overflow-y: auto;
+  background-color: #f8f8f8;
+  background-size: 100% 100%;
+  padding: 10px;
+}
+
+/* Uniform style for restaurant cards, removing absolute positioning */
+.listing-screen .restaurant-card-section .restaurant-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 4px 15px #00000026;
+  margin-bottom: 10px;
+  /* Ensures spacing between cards */
+  width: calc(100% - 72px);
+  /* Adjust width according to available space */
+  left: 0;
+  /* No absolute positioning */
+}
