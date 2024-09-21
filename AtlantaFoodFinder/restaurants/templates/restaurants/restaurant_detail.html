@@ -1,0 +1,19 @@
+<div id="map" style="height: 400px; width: 100%;"></div>
+
+<script>
+  function initMap() {
+    var restaurantLocation = {lat: {{ restaurant.latitude }}, lng: {{ restaurant.longitude }}};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 14,
+      center: restaurantLocation
+    });
+    var marker = new google.maps.Marker({
+      position: restaurantLocation,
+      map: map
+    });
+  }
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap">
+</script>

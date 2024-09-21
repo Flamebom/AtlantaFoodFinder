@@ -1,0 +1,23 @@
+<script>
+    var restaurants = JSON.parse('{{ restaurants|escapejs }}');
+</script>
+
+<h2>Restaurant Search</h2>
+
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+<h3>Results</h3>
+
+<ul>
+    {% for restaurant in restaurants %}
+        <li>
+            <strong>{{ restaurant.name }}</strong> - {{ restaurant.cuisine_type }}<br>
+            Rating: {{ restaurant.rating }} | Location: {{ restaurant.location }} | Distance: {{ restaurant.distance }} km
+        </li>
+    {% empty %}
+        <p>No results found</p>
+    {% endfor %}
+</ul>
