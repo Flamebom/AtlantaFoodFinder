@@ -1,23 +1,22 @@
-<script>
-    var restaurants = JSON.parse('{{ restaurants|escapejs }}');
-</script>
-
-<h2>Restaurant Search</h2>
+<h1>Restaurant Search</h1>
 
 <form method="get">
     {{ form.as_p }}
     <button type="submit">Search</button>
 </form>
 
-<h3>Results</h3>
-
+<h2>Search Results:</h2>
 <ul>
     {% for restaurant in restaurants %}
-        <li>
-            <strong>{{ restaurant.name }}</strong> - {{ restaurant.cuisine_type }}<br>
-            Rating: {{ restaurant.rating }} | Location: {{ restaurant.location }} | Distance: {{ restaurant.distance }} km
-        </li>
+        <li>{{ restaurant.name }} - {{ restaurant.cuisine_type }} - {{ restaurant.location }} - Rating: {{ restaurant.rating }}</li>
     {% empty %}
-        <p>No results found</p>
+        <p>No restaurants found.</p>
     {% endfor %}
 </ul>
+
+<!-- Example of embedding Google Maps if needed -->
+<script>
+    // Example of using the restaurant_data_json if need it for maps or JavaScript
+    var restaurantData = JSON.parse('{{ restaurant_data_json|escapejs }}');
+    console.log(restaurantData);
+</script>

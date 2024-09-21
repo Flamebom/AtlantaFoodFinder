@@ -1,6 +1,7 @@
+//modify this later
 // Initialize the Google Map with default center (can be overridden by user's location if geolocation is enabled)
 function initMap() {
-    // Default map center (you can adjust this as needed)
+    // Default map center
     var defaultCenter = {lat: 37.7749, lng: -122.4194};  // San Francisco example
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,

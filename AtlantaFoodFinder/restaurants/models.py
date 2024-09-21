@@ -7,7 +7,7 @@ class Restaurant(models.Model):
     latitude = models.FloatField()  # Latitude of the restaurant
     longitude = models.FloatField()  # Longitude of the restaurant
     rating = models.FloatField()  # Rating out of 5
-    distance = models.FloatField()  # Distance in kilometers (if you're calculating this)
+    distance = models.FloatField()  # Distance in kilometers
 
     def __str__(self):
         return self.name

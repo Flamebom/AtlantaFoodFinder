@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views  # Import views from the current app
+from . import views
 
 urlpatterns = [
-    path('search/', views.search_restaurants, name='search_restaurants'),  # This is the search URL
+    path('search/', views.search_restaurants, name='search_restaurants'),  # URL for searching restaurants
 ]
