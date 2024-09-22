@@ -4,21 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f99a2b08-fe62-4301-9526-35522142e6d8" name="Changes" comment="add new folder structure">
+    <list default="true" id="f99a2b08-fe62-4301-9526-35522142e6d8" name="Changes" comment="constructed new folder structure and filter of restaurants by cuisine_type, distance and rating; some django issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/google_maps_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurant.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/static/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/static/js/scripts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/templates/restaurants/restaurant_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/templates/restaurants/restaurant_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/templates/restaurants/search_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/templates/restaurants/search_results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +115,7 @@
       <option name="presentableId" value="Default" />
       <updated>1725645695910</updated>
       <workItem from="1725645697258" duration="28000" />
-      <workItem from="1726941325279" duration="18297000" />
+      <workItem from="1726941325279" duration="19544000" />
     </task>
     <task id="LOCAL-00001" summary="create restaurant and googlemapapi class">
       <option name="closed" value="true" />
@@ -145,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726944315609</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="constructed new folder structure and filter of restaurants by cuisine_type, distance and rating; some django issues">
+      <option name="closed" value="true" />
+      <created>1726963181753</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1726963181753</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +161,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create restaurant and googlemapapi class" />
     <MESSAGE value="add new folder structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new folder structure" />
+    <MESSAGE value="constructed new folder structure and filter of restaurants by cuisine_type, distance and rating; some django issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="constructed new folder structure and filter of restaurants by cuisine_type, distance and rating; some django issues" />
   </component>
 </project>

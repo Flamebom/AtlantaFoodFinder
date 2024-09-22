@@ -18,6 +18,8 @@ def search_restaurants(request):
         if form.cleaned_data['rating']:
             restaurants = restaurants.filter(rating__gte=form.cleaned_data['rating'])
 
+    restaurants = restaurants.order_by('distance', '-rating')
+
     # Need JSON for JavaScript:
     restaurant_data = [
         {
