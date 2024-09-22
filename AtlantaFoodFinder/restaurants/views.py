@@ -3,9 +3,21 @@ from django.shortcuts import render
 from .models import Restaurant
 from .forms import RestaurantSearchForm  # Import the search form if you're using it
 from AtlantaFoodFinder import settings
+from math import radians, sin, cos, sqrt, atan2
 
+def haversine_distance(lat1, lon1, lat2, lon2):
+    R = 6371.0  # Radius of the Earth in kilometers
+    dlat = radians(lat2 - lat1)
+    dlon = radians(lon2 - lon1)
+    a = sin(dlat / 2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    distance = R * c
+    return distance
 def search_restaurants(request):
     form = RestaurantSearchForm(request.GET or None)
+    user_latitude = request.GET.get('latitude')
+    user_longitude = request.GET.get('longitude')
+
     restaurants = Restaurant.objects.all()
 
     if form.is_valid():  # Check if form data is valid
@@ -18,7 +30,14 @@ def search_restaurants(request):
         if form.cleaned_data['rating']:
             restaurants = restaurants.filter(rating__gte=form.cleaned_data['rating'])
 
-    restaurants = restaurants.order_by('distance', '-rating')
+
+    for restaurant in restaurants:
+        restaurant.distance = haversine_distance(
+            float(user_latitude), float(user_longitude),
+            restaurant.latitude, restaurant.longitude
+        )
+
+    restaurants = sorted(restaurants, key=lambda x: (x.distance, -x.rating))
 
     # Need JSON for JavaScript:
     restaurant_data = [
