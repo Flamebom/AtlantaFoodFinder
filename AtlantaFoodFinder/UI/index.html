@@ -1,15 +1,39 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="globals.css" />
   <link rel="stylesheet" href="styleguide.css" />
   <link rel="stylesheet" href="style.css" />
+    <title></title>
 </head>
+
+<style>
+    #iframe
+    {
+        border: #000 3px solid;
+        overflow : hidden;
+        width: 534px;
+    }
+    #contentframe
+    {
+        position : fixed;
+        width    : 500px;
+        height   : 600px;
+        top: 225px;
+        left: 1000px;
+        z-index: 9999;
+    }
+</style>
 
 <body>
   <div class="main-page">
+<div id="iframe" style="object-position: right 300px bottom 10px;">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d191079.47550131936!2d-84.56725246914523!3d33.76603304913176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5045d6993098d%3A0x66fede2f990b630b!2sAtlanta%2C%20GA!5e0!3m2!1sen!2sus!4v1727039817854!5m2!1sen!2sus" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="contentframe"></iframe>
+</div>
+  <div class="listing-screen">
     <div class="div">
       <header class="header">
         <div class="frame">
