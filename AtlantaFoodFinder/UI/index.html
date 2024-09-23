@@ -1,21 +1,42 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="globals.css" />
   <link rel="stylesheet" href="styleguide.css" />
   <link rel="stylesheet" href="style.css" />
+    <title></title>
 </head>
 
-
+<style>
+    #iframe
+    {
+        border: #000 3px solid;
+        overflow : hidden;
+        width: 534px;
+    }
+    #contentframe
+    {
+        position : fixed;
+        width    : 500px;
+        height   : 600px;
+        top: 225px;
+        left: 1000px;
+        z-index: 9999;
+    }
+</style>
 
 <body>
+<div id="iframe" style="object-position: right 300px bottom 10px;">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d191079.47550131936!2d-84.56725246914523!3d33.76603304913176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f5045d6993098d%3A0x66fede2f990b630b!2sAtlanta%2C%20GA!5e0!3m2!1sen!2sus!4v1727039817854!5m2!1sen!2sus" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="contentframe"></iframe>
+</div>
   <div class="listing-screen">
     <div class="div">
       <header class="header">
         <div class="frame">
-          <div class="group"><img class="union" src="img/union.svg" /></div>
+          <div class="group"><img class="union" src="img/union.svg"  alt=""/></div>
           <div class="search-selected">
             <div class="overlap">
               <div class="fields">
@@ -25,20 +46,20 @@
                     <div class="text-wrapper">Rent</div>
                   </div>
                   <div class="input"></div>
-                  <img class="icon" src="img/icon.svg" />
+                  <img class="icon" src="img/icon.svg"  alt=""/>
                 </div>
               </div>
-              <div class="button"><img class="search" src="img/search-1.svg" /></div>
+              <div class="button"><img class="search" src="img/search-1.svg"  alt=""/></div>
             </div>
           </div>
         </div>
-        <img class="account" src="img/account.png" />
+        <img class="account" src="img/account.png"  alt=""/>
       </header>
       <div class="overlap-2">
         <div class="map-view">
           <div class="map-zoom">
-            <img class="plus" src="img/plus-1.svg" />
-            <img class="minus" src="img/minus-1.svg" />
+            <img class="plus" src="img/plus-1.svg"  alt=""/>
+            <img class="minus" src="img/minus-1.svg"  alt=""/>
             <div class="seperator"></div>
           </div>
         </div>
@@ -53,7 +74,7 @@
                       <div class="best-price">BEST PRICE</div>
                     </div>
                   </div>
-                  <img class="image" src="img/image-2.png" />
+                  <img class="image" src="img/image-2.png"  alt=""/>
                 </div>
               </div>
               <div class="div-wrapper">
@@ -85,7 +106,7 @@
       <div class="price">
         <div class="text-wrapper-5">Highest Ratings</div>
       </div>
-      <img class="filter-icon" src="img/filter-icon.svg" />
+      <img class="filter-icon" src="img/filter-icon.svg"  alt=""/>
 
 
 
@@ -95,12 +116,12 @@
 
 
         <div class="restaurant-card">
-          <img class="rectangle" src="img/rectangle-12-2.png" />
+          <img class="rectangle" src="img/rectangle-12-2.png"  alt=""/>
           <div class="frame-3">
-            <div class="driver-name">Clasic Studio Apartment</div>
+            <div class="driver-name">Classic Studio Apartment</div>
             <div class="frame-4">
               <div class="frame-5">
-                <div class="star-wrapper"><img class="star" src="img/star-2.svg" /></div>
+                <div class="star-wrapper"><img class="star" src="img/star-2.svg"  alt=""/></div>
                 <div class="text">4.0</div>
               </div>
               <div class="text-2">2.3 miles away</div>
@@ -122,12 +143,12 @@
 
 
         <div class="restaurant-card">
-          <img class="rectangle" src="img/rectangle-12-2.png" />
+          <img class="rectangle" src="img/rectangle-12-2.png"  alt=""/>
           <div class="frame-3">
             <div class="driver-name">Xi&#39;an Gourmet</div>
             <div class="frame-4">
               <div class="frame-5">
-                <div class="star-wrapper"><img class="star" src="img/star-2.svg" /></div>
+                <div class="star-wrapper"><img class="star" src="img/star-2.svg"  alt=""/></div>
                 <div class="text">4.0</div>
               </div>
               <div class="text-2">2.3 miles away</div>
@@ -148,12 +169,12 @@
         </div>
 
         <div class="restaurant-card">
-          <img class="rectangle" src="img/rectangle-12-2.png" />
+          <img class="rectangle" src="img/rectangle-12-2.png"  alt=""/>
           <div class="frame-3">
-            <div class="driver-name">Saltwood Charcuteri</div>
+            <div class="driver-name">Saltwood Charcuterie</div>
             <div class="frame-4">
               <div class="frame-5">
-                <div class="star-wrapper"><img class="star" src="img/star-2.svg" /></div>
+                <div class="star-wrapper"><img class="star" src="img/star-2.svg"  alt=""/></div>
                 <div class="text">4.0</div>
               </div>
               <div class="text-2">2.3 miles away</div>
