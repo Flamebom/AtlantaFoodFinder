@@ -79,7 +79,6 @@ updateAccountStatus();
 
 
 
-
 function createPropertyCard(imageSrc, restaurantName, rating, distance, priceRange, restaurantType, status, address) {
   // Remove the 'No restaurants found' message if it exists
   const message = document.getElementById('no-restaurants-message');
