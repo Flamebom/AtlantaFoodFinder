@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f99a2b08-fe62-4301-9526-35522142e6d8" name="Changes" comment="api key hidden">
+    <list default="true" id="f99a2b08-fe62-4301-9526-35522142e6d8" name="Changes" comment="Restaurants sorted by rating and distance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/GoogleRequest.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/GoogleRequest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/GoogleRequestExamples.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/GoogleRequestExamples.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/Restaurant.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/Restaurant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +119,7 @@
       <updated>1725645695910</updated>
       <workItem from="1725645697258" duration="28000" />
       <workItem from="1726941325279" duration="30848000" />
-      <workItem from="1727284416452" duration="2791000" />
+      <workItem from="1727284416452" duration="6077000" />
     </task>
     <task id="LOCAL-00001" summary="create restaurant and googlemapapi class">
       <option name="closed" value="true" />
@@ -176,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727281148385</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Restaurants sorted by rating and distance">
+      <option name="closed" value="true" />
+      <created>1727287354084</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727287354084</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +240,7 @@
     <MESSAGE value="constructed new folder structure and filter of restaurants by cuisine_type, distance and rating; some django issues" />
     <MESSAGE value="distance and rating sort" />
     <MESSAGE value="api key hidden" />
-    <option name="LAST_COMMIT_MESSAGE" value="api key hidden" />
+    <MESSAGE value="Restaurants sorted by rating and distance" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restaurants sorted by rating and distance" />
   </component>
 </project>
