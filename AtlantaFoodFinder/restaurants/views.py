@@ -1,12 +1,12 @@
 import json
 from django.shortcuts import render
 from .models import Restaurant
-from .forms import RestaurantSearchForm  # Import the search form if you're using it
+from .forms import RestaurantSearchForm
 from AtlantaFoodFinder import settings
 from math import radians, sin, cos, sqrt, atan2
 
 def haversine_distance(lat1, lon1, lat2, lon2):
-    R = 6371.0  # Radius of the Earth in kilometers
+    R = 6371.0
     dlat = radians(lat2 - lat1)
     dlon = radians(lon2 - lon1)
     a = sin(dlat / 2)**2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlon / 2)**2
@@ -20,7 +20,7 @@ def search_restaurants(request):
 
     restaurants = Restaurant.objects.all()
 
-    if form.is_valid():  # Check if form data is valid
+    if form.is_valid():
         if form.cleaned_data['name']:
             restaurants = restaurants.filter(name__icontains=form.cleaned_data['name'])
         if form.cleaned_data['cuisine_type']:
@@ -53,10 +53,10 @@ def search_restaurants(request):
     ]
 
     context = {
-        'form': form,  # Pass the form for search criteria
-        'restaurants': restaurants,  # Pass the queryset directly for the template
-        'restaurant_data_json': json.dumps(restaurant_data),  # Only if needed for JavaScript
-        'GOOGLE_MAPS_API_KEY': settings.GOOGLE_MAPS_API_KEY  # For embedding Google Maps
+        'form': form,
+        'restaurants': restaurants,
+        'restaurant_data_json': json.dumps(restaurant_data),
+        'GOOGLE_MAPS_API_KEY': settings.GOOGLE_MAPS_API_KEY
     }
 
     return render(request, 'restaurants/search_results.html', context)

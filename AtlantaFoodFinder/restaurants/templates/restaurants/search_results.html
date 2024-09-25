@@ -14,9 +14,8 @@
     {% endfor %}
 </ul>
 
-<!-- Example of embedding Google Maps if needed -->
 <script>
-    // Example of using the restaurant_data_json if need it for maps or JavaScript
+    // Example of using the restaurant_data_json
     var restaurantData = JSON.parse('{{ restaurant_data_json|escapejs }}');
     console.log(restaurantData);
 </script>

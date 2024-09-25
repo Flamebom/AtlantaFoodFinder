@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f99a2b08-fe62-4301-9526-35522142e6d8" name="Changes" comment="distance and rating sort">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/templates/restaurants/search_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/templates/restaurants/search_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,18 +27,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Xyrro"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Xyrro&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Flamebom/AtlantaFoodFinder.git",
-    "accountId": "bbc63f23-1cc8-442c-a351-bdc1d7666c10"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Flamebom/AtlantaFoodFinder.git&quot;,
+    &quot;accountId&quot;: &quot;bbc63f23-1cc8-442c-a351-bdc1d7666c10&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -48,22 +51,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Django Server.AtlantaFoodFinder.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
-    "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "#1 on part-b",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Django Server.AtlantaFoodFinder.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#1 on part-b&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Xytai\PycharmProjects\AtlantaFoodFinder" />
@@ -115,7 +118,7 @@
       <option name="presentableId" value="Default" />
       <updated>1725645695910</updated>
       <workItem from="1725645697258" duration="28000" />
-      <workItem from="1726941325279" duration="20953000" />
+      <workItem from="1726941325279" duration="27299000" />
     </task>
     <task id="LOCAL-00001" summary="create restaurant and googlemapapi class">
       <option name="closed" value="true" />
@@ -149,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726964131065</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="distance and rating sort">
+      <option name="closed" value="true" />
+      <created>1726965537951</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726965537952</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
