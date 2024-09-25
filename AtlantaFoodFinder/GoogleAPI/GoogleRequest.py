@@ -6,7 +6,7 @@ Google request class allows for the get_google_restaurants to return a list of t
 It scans nearby for a 500 meter radius for nearby things and returns it in the list.
 """
 __URL = "https://places.googleapis.com/v1/places:searchNearby"
-__API_KEY = 'AIzaSyAn2GEz9YyAxynT77ezXbhIF9Ua9iy2ABk'
+__API_KEY = ''
 
 
 def get_google_restaurants(latitude, longitude):
@@ -32,8 +32,13 @@ def get_google_restaurants(latitude, longitude):
     }
     response = requests.request("POST", __URL, headers=headers, data=payload)
     rawdata = json.loads(response.text)
-    list_restaurants =  (rawdata["places"])
+    list_restaurants = rawdata.get("places", [])
+
     restaurant_output = []
-    for i in range(len(list_restaurants)):
-            restaurant_output.append(Restaurant.Restaurant(list_restaurants[i]))
-    return restaurant_output
+    for restaurant_data in list_restaurants:
+        restaurant_output.append(Restaurant.Restaurant(restaurant_data, latitude, longitude))
+
+    # Sort by rating (highest first) and distance (lowest first)
+    sorted_restaurants = sorted(restaurant_output, key=lambda r: (-r.rating, r.distance))
+
+    return sorted_restaurants

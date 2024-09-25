@@ -11,3 +11,7 @@ print(outputlist[0].name)
 #rating of fourth restaurant
 print("rating of fourth restaurant")
 print(outputlist[3].rating)
+
+
+for restaurant in outputlist:
+    print(restaurant)

@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f99a2b08-fe62-4301-9526-35522142e6d8" name="Changes" comment="api key hidden">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/templates/restaurants/restaurant_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/restaurants/templates/restaurants/restaurant_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/GoogleRequest.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/GoogleRequest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/GoogleRequestExamples.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/GoogleRequestExamples.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/Restaurant.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/GoogleAPI/Restaurant.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +117,8 @@
       <option name="presentableId" value="Default" />
       <updated>1725645695910</updated>
       <workItem from="1725645697258" duration="28000" />
-      <workItem from="1726941325279" duration="28160000" />
+      <workItem from="1726941325279" duration="30848000" />
+      <workItem from="1727284416452" duration="2791000" />
     </task>
     <task id="LOCAL-00001" summary="create restaurant and googlemapapi class">
       <option name="closed" value="true" />
@@ -166,18 +168,58 @@
       <option name="project" value="LOCAL" />
       <updated>1727280327664</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="api key hidden">
+      <option name="closed" value="true" />
+      <created>1727281148385</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727281148385</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="part-b" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/googleAPIStart" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
