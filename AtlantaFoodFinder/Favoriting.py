@@ -3,7 +3,6 @@ from django.http import JsonResponse
 from .Favorite import Favorite
 from django.contrib.auth.decorators import login_required
 
-
 @login_required
 def add_favorite(request):
     if request.method == 'POST':
@@ -21,7 +20,6 @@ def add_favorite(request):
                                 restaurant_address=restaurant_address)
         return JsonResponse({'message': restaurant_name+ ' has been added to favorites'}, status=201)
 
-
 @login_required
 def remove_favorite(request):
     if request.method == 'POST':
@@ -30,8 +28,7 @@ def remove_favorite(request):
         favorite = get_object_or_404(Favorite, user=request.user, restaurant_name=restaurant_name)
         favorite.delete()
         return JsonResponse({'message': restaurant_name + ' has been removed from favorites'}, status=200)
-
-
+@login_required
 def list_favorites(request):
     favorites = Favorite.objects.filter(user=request.user)
     favorite_list = [{'restaurant_name': fav.restaurant_name, 'restaurant_address': fav.restaurant_address} for fav in
