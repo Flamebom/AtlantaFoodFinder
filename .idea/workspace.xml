@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f99a2b08-fe62-4301-9526-35522142e6d8" name="Changes" comment="done part A and also part E">
-      <change afterPath="$PROJECT_DIR$/AtlantaFoodFinder/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AtlantaFoodFinder/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AtlantaFoodFinder/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/Favorite.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/Favoriting.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="f99a2b08-fe62-4301-9526-35522142e6d8" name="Changes" comment="done part A and also part E" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +18,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="UI" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -118,7 +121,7 @@
       <workItem from="1727458138292" duration="599000" />
       <workItem from="1727471017232" duration="299000" />
       <workItem from="1727476209801" duration="598000" />
-      <workItem from="1727479534991" duration="5226000" />
+      <workItem from="1727479534991" duration="5536000" />
     </task>
     <task id="LOCAL-00001" summary="create restaurant and googlemapapi class">
       <option name="closed" value="true" />
@@ -152,7 +155,23 @@
       <option name="project" value="LOCAL" />
       <updated>1727580067251</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="done part A and also part E">
+      <option name="closed" value="true" />
+      <created>1727644989983</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727644989983</updated>
+    </task>
+    <task id="LOCAL-00006" summary="done part A and also part E">
+      <option name="closed" value="true" />
+      <created>1727645039704</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727645039704</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
