@@ -1,16 +1,41 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
+from .forms import CustomUserCreationForm  # The form we defined earlier
+from django.contrib.auth import views as auth_views
 
 
+# User registration view
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)  # Automatically log in the user after registration
-            return redirect('home')  # Replace 'home' with your desired landing page after signup
+            user = form.save()  # Save the user
+            login(request, user)  # Automatically log the user in
+            return redirect('home')  # Redirect to homepage or another page
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
-    return render(request, 'accounts/signup.html', {'form': form})
+def login_view(request):
+    return auth_views.LoginView.as_view(template_name='login.html')(request)
+
+from django.shortcuts import render, redirect
+from .models import CustomUser, Favorite
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def favorite_restaurant(request, restaurant_name, restaurant_address):
+    user = CustomUser.objects.get(pk=request.user.pk)  # Explicitly get CustomUser instance
+    favorite, message = user.add_favorite(restaurant_name, restaurant_address)
+    return redirect('restaurant_list')
+
+@login_required
+def remove_favorite_restaurant(request, restaurant_name):
+    user = CustomUser.objects.get(pk=request.user.pk)  # Explicitly get CustomUser instance
+    message = user.remove_favorite(restaurant_name)
+    return redirect('favorite_list')
+
+@login_required
+def favorite_list(request):
+    user = CustomUser.objects.get(pk=request.user.pk)  # Explicitly get CustomUser instance
+    favorites = user.get_favorites()
+    return render(request, 'favorite_list.html', {'favorites': favorites})
