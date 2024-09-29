@@ -46,4 +46,25 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         handleLogin();
     });
+
+
+
+    // JavaScript to handle redirection
+
+    // Event listener for "Create an Account"
+    document.querySelector('.already-have-an').addEventListener('click', function (event) {
+        if (event.target.textContent.includes('Create an Account')) {
+            // Redirect to the account creation page
+            window.location.href = 'create-account.html';  // Adjust the URL to your actual account creation page
+        }
+    });
+
+    // Event listener for "Forgot your Password"
+    document.querySelectorAll('.already-have-an')[1].addEventListener('click', function () {
+        // Redirect to the password reset page
+        window.location.href = 'passwordreset.html';  // Adjust the URL to your actual password reset page
+    });
+
+
+
 });

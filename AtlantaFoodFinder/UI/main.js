@@ -61,7 +61,7 @@ function updateAccountStatus() {
     accountElement.href = "/personal-account.html";  // Redirect to personal account page
   } else {
     accountElement.textContent = "Login";
-    accountElement.href = "/login.html";  // Redirect to login page
+    accountElement.href = "login.html";  // Redirect to login page
   }
 }
 
