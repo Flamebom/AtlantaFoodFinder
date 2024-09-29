@@ -131,194 +131,195 @@ function createPropertyCard(imageSrc, restaurantName, rating, distance, priceRan
 
     console.log('Container display after:', container.style.display);
     // Create and display the description card
-    createDescriptionCard(propertyDetails, reviews);
+    createBigCard(propertyDetails, reviews);
   });
 
   // Append the property card to the container
   document.querySelector('.property-card-container').appendChild(propertyCard);
 }
 
+function createBigCard(propertyDetails, reviews) {
+  // Create the main container for the big card
+  const bigCardMain = document.createElement('div');
+  bigCardMain.classList.add('BigCard-main');
 
-function createDescriptionCard(propertyDetails, reviews) {
-  // Remove any existing description cards
-  const existingCard = document.querySelector('.big-card');
-  if (existingCard) {
-    existingCard.remove();
-  }
-
-  // Create the main card container
-  const card = document.createElement('div');
-  card.classList.add('big-card');
-
-  // The div that wraps around the main content
-  const mainDiv = document.createElement('div');
-  mainDiv.classList.add('div');
-  card.appendChild(mainDiv);
-
-  // Frame for the images
+  // Frame container for the images
   const frame = document.createElement('div');
-  frame.classList.add('frame');
+  frame.classList.add('BigCard-frame');
+
   const img1 = document.createElement('img');
-  img1.classList.add('rectangle');
+  img1.classList.add('BigCard-rectangle');
   img1.src = propertyDetails.image1;
+
   const img2 = document.createElement('img');
-  img2.classList.add('rectangle');
+  img2.classList.add('BigCard-rectangle');
   img2.src = propertyDetails.image2;
+
   frame.appendChild(img1);
   frame.appendChild(img2);
-  mainDiv.appendChild(frame);
+  bigCardMain.appendChild(frame);
 
-  // Overlap group containing rating and address
+  // Overlap group for rating and address
   const overlapGroup = document.createElement('div');
-  overlapGroup.classList.add('overlap-group');
+  overlapGroup.classList.add('BigCard-overlap-group');
+
   const iconHeart = document.createElement('div');
-  iconHeart.classList.add('icon-heart');
-  const skyBlue = document.createElement('img');
-  skyBlue.classList.add('sky-blue');
-  skyBlue.src = propertyDetails.heartIcon1;
-  const vector = document.createElement('img');
-  vector.classList.add('vector');
-  vector.src = propertyDetails.heartIcon2;
-  iconHeart.appendChild(skyBlue);
-  iconHeart.appendChild(vector);
+  iconHeart.classList.add('BigCard-icon-heart');
+
+  const heartImg1 = document.createElement('img');
+  heartImg1.classList.add('BigCard-sky-blue');
+  heartImg1.src = propertyDetails.heartIcon1;
+
+  const heartImg2 = document.createElement('img');
+  heartImg2.classList.add('BigCard-vector');
+  heartImg2.src = propertyDetails.heartIcon2;
+
+  iconHeart.appendChild(heartImg1);
+  iconHeart.appendChild(heartImg2);
   overlapGroup.appendChild(iconHeart);
 
-  // Information about the property
   const frame2 = document.createElement('div');
-  frame2.classList.add('frame-2');
-  const driverName = document.createElement('div');
-  driverName.classList.add('driver-name');
-  driverName.innerText = propertyDetails.name;
-  const frame3 = document.createElement('div');
-  frame3.classList.add('frame-3');
+  frame2.classList.add('BigCard-frame-2');
 
-  // Star rating and location
+  const driverName = document.createElement('div');
+  driverName.classList.add('BigCard-driver-name');
+  driverName.innerText = propertyDetails.name;
+
+  const frame3 = document.createElement('div');
+  frame3.classList.add('BigCard-frame-3');
+
   const frame4 = document.createElement('div');
-  frame4.classList.add('frame-4');
+  frame4.classList.add('BigCard-frame-4');
+
   const starGroup = document.createElement('div');
-  starGroup.classList.add('group');
+  starGroup.classList.add('BigCard-group');
+
   const starImg = document.createElement('img');
-  starImg.classList.add('star');
+  starImg.classList.add('BigCard-star');
   starImg.src = propertyDetails.starImage;
+
   const ratingText = document.createElement('div');
-  ratingText.classList.add('text');
+  ratingText.classList.add('BigCard-text');
   ratingText.innerText = propertyDetails.rating;
+
   starGroup.appendChild(starImg);
   frame4.appendChild(starGroup);
   frame4.appendChild(ratingText);
   frame3.appendChild(frame4);
 
-  // Address and other info
   const milesAway = document.createElement('div');
-  milesAway.classList.add('text-wrapper');
+  milesAway.classList.add('BigCard-text-wrapper');
   milesAway.innerText = propertyDetails.distance;
+
   const address = document.createElement('p');
-  address.classList.add('text-wrapper-2');
+  address.classList.add('BigCard-text-wrapper-2');
   address.innerText = propertyDetails.address;
+
   frame3.appendChild(milesAway);
   frame3.appendChild(address);
   frame2.appendChild(driverName);
   frame2.appendChild(frame3);
 
   const divWrapper = document.createElement('div');
-  divWrapper.classList.add('div-wrapper');
+  divWrapper.classList.add('BigCard-div-wrapper');
   const restaurantInfo = document.createElement('div');
-  restaurantInfo.classList.add('text-wrapper-2');
+  restaurantInfo.classList.add('BigCard-text-wrapper-2');
   restaurantInfo.innerText = propertyDetails.info;
   divWrapper.appendChild(restaurantInfo);
   frame2.appendChild(divWrapper);
 
-  const phoneNumberWrapper = document.createElement('div');
-  phoneNumberWrapper.classList.add('frame-5');
+  const frame5 = document.createElement('div');
+  frame5.classList.add('BigCard-frame-5');
   const phoneNumber = document.createElement('div');
-  phoneNumber.classList.add('text-wrapper-2');
+  phoneNumber.classList.add('BigCard-text-wrapper-2');
   phoneNumber.innerText = propertyDetails.phoneNumber;
-  phoneNumberWrapper.appendChild(phoneNumber);
-  frame2.appendChild(phoneNumberWrapper);
+  frame5.appendChild(phoneNumber);
+  frame2.appendChild(frame5);
 
   overlapGroup.appendChild(frame2);
 
   const lineImg = document.createElement('img');
-  lineImg.classList.add('line');
+  lineImg.classList.add('BigCard-line');
   lineImg.src = 'img/line1.svg';
   overlapGroup.appendChild(lineImg);
 
-  mainDiv.appendChild(overlapGroup);
+  bigCardMain.appendChild(overlapGroup);
 
-  // Create the frame for the reviews
+  // Create the reviews section
   const frame666 = document.createElement('div');
-  frame666.classList.add('frame-666');
+  frame666.classList.add('BigCard-frame-666');
 
-  // Dynamically create each review based on the input reviews array
   reviews.forEach(review => {
     const reviewCard = document.createElement('div');
-    reviewCard.classList.add('property-card-big');
-    const reviewFrame7 = document.createElement('div');
-    reviewFrame7.classList.add('frame-7');
+    reviewCard.classList.add('BigCard-property-card-big');
 
-    // Review title and star rating
+    const reviewFrame7 = document.createElement('div');
+    reviewFrame7.classList.add('BigCard-frame-7');
+
     const reviewTitle = document.createElement('div');
-    reviewTitle.classList.add('driver-name-2');
+    reviewTitle.classList.add('BigCard-driver-name-2');
     reviewTitle.innerText = review.title;
+
     const reviewFrame8 = document.createElement('div');
-    reviewFrame8.classList.add('frame-8');
+    reviewFrame8.classList.add('BigCard-frame-8');
+
+    const reviewFrame4 = document.createElement('div');
+    reviewFrame4.classList.add('BigCard-frame-4');
+
     const reviewStarWrapper = document.createElement('div');
-    reviewStarWrapper.classList.add('frame-4');
-    const reviewStar = document.createElement('div');
-    reviewStar.classList.add('star-wrapper');
+    reviewStarWrapper.classList.add('BigCard-star-wrapper');
+
     const reviewStarImg = document.createElement('img');
-    reviewStarImg.classList.add('img');
+    reviewStarImg.classList.add('BigCard-img');
     reviewStarImg.src = review.starImage;
-    reviewStar.appendChild(reviewStarImg);
+
     const reviewRating = document.createElement('div');
-    reviewRating.classList.add('text-2');
+    reviewRating.classList.add('BigCard-text-2');
     reviewRating.innerText = review.rating;
-    reviewStarWrapper.appendChild(reviewStar);
-    reviewStarWrapper.appendChild(reviewRating);
+
+    reviewStarWrapper.appendChild(reviewStarImg);
+    reviewFrame4.appendChild(reviewStarWrapper);
+    reviewFrame4.appendChild(reviewRating);
+
     const reviewDate = document.createElement('div');
-    reviewDate.classList.add('text-3');
+    reviewDate.classList.add('BigCard-text-3');
     reviewDate.innerText = `Posted on: ${review.date}`;
-    reviewFrame8.appendChild(reviewStarWrapper);
+
+    reviewFrame8.appendChild(reviewFrame4);
     reviewFrame8.appendChild(reviewDate);
+
     reviewFrame7.appendChild(reviewTitle);
     reviewFrame7.appendChild(reviewFrame8);
 
-    // Review text
     const reviewText = document.createElement('div');
-    reviewText.classList.add('driver-name-3');
+    reviewText.classList.add('BigCard-driver-name-3');
     reviewText.innerHTML = `Review:<br>${review.text}`;
-    reviewFrame7.appendChild(reviewText);
 
+    reviewFrame7.appendChild(reviewText);
     reviewCard.appendChild(reviewFrame7);
+
     frame666.appendChild(reviewCard);
   });
 
-  mainDiv.appendChild(frame666);
+  bigCardMain.appendChild(frame666);
 
-  // Finally, append the card to the document
-  document.body.appendChild(card);
-  console.log('Appended description card to body:', card); // Log the card to ensure it's appended
+  // Append to the 'main-page' element
+  const list = document.querySelector('.div');
+  if (list) {
+    list.appendChild(bigCardMain);
+  } else {
+    console.error('Error: Main page container not found!');
+  }
 
-  // Add a click event listener to hide the description card when clicking outside of it
   document.addEventListener('click', function (event) {
     const isClickInside = card.contains(event.target);
     if (!isClickInside) {
       // Hide the description card and show property cards again
-      card.remove();
+      bigCardMain.remove();
       document.querySelector('.property-card-container').style.display = 'block';
     }
   }, { once: true }); // Event listener will run only once
 }
-
-
-
-
-
-
-
-
-
-
 
 
 // Example of usage

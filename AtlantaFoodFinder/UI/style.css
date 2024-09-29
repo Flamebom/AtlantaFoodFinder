@@ -877,32 +877,17 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-.big-card {
-  position: absolute;
-  left: 116px;
-  top: 292px;
-  z-index: 9999;
-}
-
-.big-card .div {
+.BigCard-main {
   background-color: #ffffff;
   overflow-x: hidden;
   width: 541px;
   height: 673px;
-  position: relative;
+  position: absolute;
+  left: 116px;
+  top: 292px;
 }
 
-.big-card .frame {
+.BigCard-main .BigCard-frame {
   position: absolute;
   width: 500px;
   height: 273px;
@@ -911,12 +896,11 @@
   background-size: cover;
   background-position: 50% 50%;
   overflow-x: auto;
-  /* Allows horizontal scrolling */
   display: flex;
   flex-direction: row;
 }
 
-.big-card .rectangle {
+.BigCard-main .BigCard-rectangle {
   position: relative;
   width: 368px;
   height: 273px;
@@ -925,7 +909,7 @@
   object-fit: cover;
 }
 
-.big-card .overlap-group {
+.BigCard-main .BigCard-overlap-group {
   position: absolute;
   width: 514px;
   height: 149px;
@@ -933,7 +917,7 @@
   left: 8px;
 }
 
-.big-card .icon-heart {
+.BigCard-main .BigCard-icon-heart {
   position: absolute;
   width: 73px;
   height: 26px;
@@ -941,7 +925,7 @@
   left: 440px;
 }
 
-.big-card .sky-blue {
+.BigCard-main .BigCard-sky-blue {
   position: absolute;
   width: 32px;
   height: 23px;
@@ -949,7 +933,7 @@
   left: 0;
 }
 
-.big-card .vector {
+.BigCard-main .BigCard-vector {
   position: absolute;
   width: 29px;
   height: 26px;
@@ -957,27 +941,22 @@
   left: 44px;
 }
 
-.big-card .frame-2 {
+.BigCard-main .BigCard-frame-2 {
   display: flex;
   flex-direction: column;
-  /* Change to column to stack items vertically */
   flex-wrap: wrap;
-  /* Allows items to wrap if needed */
   width: 450px;
   height: auto;
-  /* Adjust height to auto to allow vertical growth */
   align-items: flex-start;
   justify-content: flex-start;
   gap: 14px;
-  /* Only one value for gap when in column layout */
   padding: 10px 20px;
   position: absolute;
   top: 0;
   left: 0;
 }
 
-
-.big-card .driver-name {
+.BigCard-main .BigCard-driver-name {
   margin-top: -1px;
   font-family: "Open Sans-ExtraBold", Helvetica;
   font-weight: 800;
@@ -991,7 +970,7 @@
   letter-spacing: 0;
 }
 
-.big-card .frame-3 {
+.BigCard-main .BigCard-frame-3 {
   display: inline-flex;
   align-items: flex-start;
   gap: 20px;
@@ -999,7 +978,7 @@
   flex: 0 0 auto;
 }
 
-.big-card .frame-4 {
+.BigCard-main .BigCard-frame-4 {
   display: inline-flex;
   align-items: flex-start;
   gap: 4px;
@@ -1007,13 +986,13 @@
   flex: 0 0 auto;
 }
 
-.big-card .group {
+.BigCard-main .BigCard-group {
   position: relative;
   width: 17.05px;
   height: 17.05px;
 }
 
-.big-card .star {
+.BigCard-main .BigCard-star {
   width: 14px;
   height: 13px;
   position: absolute;
@@ -1021,7 +1000,7 @@
   left: 2px;
 }
 
-.big-card .text {
+.BigCard-main .BigCard-text {
   width: 26px;
   height: 16px;
   font-size: 15px;
@@ -1035,7 +1014,7 @@
   white-space: nowrap;
 }
 
-.big-card .text-wrapper {
+.BigCard-main .BigCard-text-wrapper {
   width: 103px;
   height: 16px;
   font-size: 15px;
@@ -1049,7 +1028,7 @@
   white-space: nowrap;
 }
 
-.big-card .text-wrapper-2 {
+.BigCard-main .BigCard-text-wrapper-2 {
   position: relative;
   width: fit-content;
   margin-top: -1px;
@@ -1062,7 +1041,7 @@
   white-space: nowrap;
 }
 
-.big-card .div-wrapper {
+.BigCard-main .BigCard-div-wrapper {
   display: flex;
   width: 429px;
   align-items: flex-start;
@@ -1071,7 +1050,7 @@
   margin-right: -19px;
 }
 
-.big-card .frame-5 {
+.BigCard-main .BigCard-frame-5 {
   display: inline-flex;
   align-items: flex-start;
   gap: 10px;
@@ -1079,7 +1058,7 @@
   flex: 0 0 auto;
 }
 
-.big-card .line {
+.BigCard-main .BigCard-line {
   position: absolute;
   width: 503px;
   height: 1px;
@@ -1088,7 +1067,7 @@
   object-fit: cover;
 }
 
-.big-card .property-card-big {
+.BigCard-main .BigCard-property-card-big {
   position: relative;
   left: 18px;
   display: inline-flex;
@@ -1102,7 +1081,7 @@
   margin-right: -300px;
 }
 
-.big-card .frame-7 {
+.BigCard-main .BigCard-frame-7 {
   display: inline-flex;
   flex-direction: column;
   height: 168px;
@@ -1113,7 +1092,7 @@
   flex: 0 0 auto;
 }
 
-.big-card .driver-name-2 {
+.BigCard-main .BigCard-driver-name-2 {
   margin-top: -1px;
   font-family: "Open Sans-ExtraBold", Helvetica;
   font-weight: 800;
@@ -1127,7 +1106,7 @@
   letter-spacing: 0;
 }
 
-.big-card .frame-8 {
+.BigCard-main .BigCard-frame-8 {
   display: inline-flex;
   align-items: flex-start;
   gap: 20px;
@@ -1135,13 +1114,13 @@
   flex: 0 0 auto;
 }
 
-.big-card .star-wrapper {
+.BigCard-main .BigCard-star-wrapper {
   position: relative;
   width: 16px;
   height: 16px;
 }
 
-.big-card .img {
+.BigCard-main .BigCard-img {
   width: 13px;
   height: 12px;
   position: absolute;
@@ -1149,7 +1128,7 @@
   left: 2px;
 }
 
-.big-card .text-2 {
+.BigCard-main .BigCard-text-2 {
   width: 26px;
   height: 16px;
   font-size: 12px;
@@ -1163,7 +1142,7 @@
   white-space: nowrap;
 }
 
-.big-card .text-3 {
+.BigCard-main .BigCard-text-3 {
   width: 137px;
   height: 16px;
   font-size: 12px;
@@ -1177,7 +1156,7 @@
   white-space: nowrap;
 }
 
-.big-card .driver-name-3 {
+.BigCard-main .BigCard-driver-name-3 {
   font-family: "Open Sans-Light", Helvetica;
   font-weight: 300;
   font-size: 10px;
@@ -1189,7 +1168,7 @@
   letter-spacing: 0;
 }
 
-.big-card .frame-wrapper {
+.BigCard-main .BigCard-frame-wrapper {
   left: 314px;
   display: inline-flex;
   align-items: center;
@@ -1202,19 +1181,17 @@
   box-shadow: 0px 4px 15px #00000026;
 }
 
-.big-card .frame-666 {
+.BigCard-main .BigCard-frame-666 {
   display: flex;
   flex-direction: row;
-  /* Horizontal alignment */
   overflow-x: auto;
-  /* Enables horizontal scrolling */
   width: 100%;
-  /* Full width to occupy space */
   height: 188px;
-  /* Adjust height to auto */
   gap: 20px;
-  /* Add space between cards */
   padding: 10px;
-  /* Add some padding for aesthetics */
   margin-top: 475px;
+  position: absolute;
+  width: 500px;
+  background-size: cover;
+  background-position: 50% 50%;
 }

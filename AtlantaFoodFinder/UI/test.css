@@ -1,20 +1,14 @@
-.big-card {
-    background-color: blue;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-}
-
-.big-card .div {
+.big-card-main {
     background-color: #ffffff;
     overflow-x: hidden;
     width: 541px;
     height: 673px;
-    position: relative;
+    position: absolute;
+    left: 116px;
+    top: 292px;
 }
 
-.big-card .frame {
+.big-card-main .frame {
     position: absolute;
     width: 500px;
     height: 273px;
@@ -28,7 +22,7 @@
     flex-direction: row;
 }
 
-.big-card .rectangle {
+.big-card-main .rectangle {
     position: relative;
     width: 368px;
     height: 273px;
@@ -37,7 +31,7 @@
     object-fit: cover;
 }
 
-.big-card .overlap-group {
+.big-card-main .overlap-group {
     position: absolute;
     width: 514px;
     height: 149px;
@@ -45,7 +39,7 @@
     left: 8px;
 }
 
-.big-card .icon-heart {
+.big-card-main .icon-heart {
     position: absolute;
     width: 73px;
     height: 26px;
@@ -53,7 +47,7 @@
     left: 440px;
 }
 
-.big-card .sky-blue {
+.big-card-main .sky-blue {
     position: absolute;
     width: 32px;
     height: 23px;
@@ -61,7 +55,7 @@
     left: 0;
 }
 
-.big-card .vector {
+.big-card-main .vector {
     position: absolute;
     width: 29px;
     height: 26px;
@@ -69,7 +63,7 @@
     left: 44px;
 }
 
-.big-card .frame-2 {
+.big-card-main .frame-2 {
     display: flex;
     flex-direction: column;
     /* Change to column to stack items vertically */
@@ -89,7 +83,7 @@
 }
 
 
-.big-card .driver-name {
+.big-card-main .driver-name {
     margin-top: -1px;
     font-family: "Open Sans-ExtraBold", Helvetica;
     font-weight: 800;
@@ -103,7 +97,7 @@
     letter-spacing: 0;
 }
 
-.big-card .frame-3 {
+.big-card-main .frame-3 {
     display: inline-flex;
     align-items: flex-start;
     gap: 20px;
@@ -111,7 +105,7 @@
     flex: 0 0 auto;
 }
 
-.big-card .frame-4 {
+.big-card-main .frame-4 {
     display: inline-flex;
     align-items: flex-start;
     gap: 4px;
@@ -119,13 +113,13 @@
     flex: 0 0 auto;
 }
 
-.big-card .group {
+.big-card-main .group {
     position: relative;
     width: 17.05px;
     height: 17.05px;
 }
 
-.big-card .star {
+.big-card-main .star {
     width: 14px;
     height: 13px;
     position: absolute;
@@ -133,7 +127,7 @@
     left: 2px;
 }
 
-.big-card .text {
+.big-card-main .text {
     width: 26px;
     height: 16px;
     font-size: 15px;
@@ -147,7 +141,7 @@
     white-space: nowrap;
 }
 
-.big-card .text-wrapper {
+.big-card-main .text-wrapper {
     width: 103px;
     height: 16px;
     font-size: 15px;
@@ -161,7 +155,7 @@
     white-space: nowrap;
 }
 
-.big-card .text-wrapper-2 {
+.big-card-main .text-wrapper-2 {
     position: relative;
     width: fit-content;
     margin-top: -1px;
@@ -174,7 +168,7 @@
     white-space: nowrap;
 }
 
-.big-card .div-wrapper {
+.big-card-main .div-wrapper {
     display: flex;
     width: 429px;
     align-items: flex-start;
@@ -183,7 +177,7 @@
     margin-right: -19px;
 }
 
-.big-card .frame-5 {
+.big-card-main .frame-5 {
     display: inline-flex;
     align-items: flex-start;
     gap: 10px;
@@ -191,7 +185,7 @@
     flex: 0 0 auto;
 }
 
-.big-card .line {
+.big-card-main .line {
     position: absolute;
     width: 503px;
     height: 1px;
@@ -200,7 +194,7 @@
     object-fit: cover;
 }
 
-.big-card .property-card-big {
+.big-card-main .property-card-big {
     position: relative;
     left: 18px;
     display: inline-flex;
@@ -214,7 +208,7 @@
     margin-right: -300px;
 }
 
-.big-card .frame-7 {
+.big-card-main .frame-7 {
     display: inline-flex;
     flex-direction: column;
     height: 168px;
@@ -225,7 +219,7 @@
     flex: 0 0 auto;
 }
 
-.big-card .driver-name-2 {
+.big-card-main .driver-name-2 {
     margin-top: -1px;
     font-family: "Open Sans-ExtraBold", Helvetica;
     font-weight: 800;
@@ -239,7 +233,7 @@
     letter-spacing: 0;
 }
 
-.big-card .frame-8 {
+.big-card-main .frame-8 {
     display: inline-flex;
     align-items: flex-start;
     gap: 20px;
@@ -247,13 +241,13 @@
     flex: 0 0 auto;
 }
 
-.big-card .star-wrapper {
+.big-card-main .star-wrapper {
     position: relative;
     width: 16px;
     height: 16px;
 }
 
-.big-card .img {
+.big-card-main .img {
     width: 13px;
     height: 12px;
     position: absolute;
@@ -261,7 +255,7 @@
     left: 2px;
 }
 
-.big-card .text-2 {
+.big-card-main .text-2 {
     width: 26px;
     height: 16px;
     font-size: 12px;
@@ -275,7 +269,7 @@
     white-space: nowrap;
 }
 
-.big-card .text-3 {
+.big-card-main .text-3 {
     width: 137px;
     height: 16px;
     font-size: 12px;
@@ -289,7 +283,7 @@
     white-space: nowrap;
 }
 
-.big-card .driver-name-3 {
+.big-card-main .driver-name-3 {
     font-family: "Open Sans-Light", Helvetica;
     font-weight: 300;
     font-size: 10px;
@@ -301,7 +295,7 @@
     letter-spacing: 0;
 }
 
-.big-card .frame-wrapper {
+.big-card-main .frame-wrapper {
     left: 314px;
     display: inline-flex;
     align-items: center;
@@ -314,7 +308,7 @@
     box-shadow: 0px 4px 15px #00000026;
 }
 
-.big-card .frame-666 {
+.big-card-main .frame-666 {
     display: flex;
     flex-direction: row;
     /* Horizontal alignment */
