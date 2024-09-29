@@ -121,7 +121,7 @@
       <workItem from="1727458138292" duration="599000" />
       <workItem from="1727471017232" duration="299000" />
       <workItem from="1727476209801" duration="598000" />
-      <workItem from="1727479534991" duration="5536000" />
+      <workItem from="1727479534991" duration="6072000" />
     </task>
     <task id="LOCAL-00001" summary="create restaurant and googlemapapi class">
       <option name="closed" value="true" />
@@ -171,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727645039704</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="done part A and also part E">
+      <option name="closed" value="true" />
+      <created>1727645098222</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727645098222</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

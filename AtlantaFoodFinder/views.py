@@ -14,9 +14,10 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
-
+    #registration interface is signup.html
 def login_view(request):
     return auth_views.LoginView.as_view(template_name='login.html')(request)
+    #login.html is the interface for logging in
 
 from django.shortcuts import render, redirect
 from .models import CustomUser, Favorite
@@ -39,3 +40,4 @@ def favorite_list(request):
     user = CustomUser.objects.get(pk=request.user.pk)  # Explicitly get CustomUser instance
     favorites = user.get_favorites()
     return render(request, 'favorite_list.html', {'favorites': favorites})
+    #favorite_list.html is the temp. name for frontend with all the favorites displayed
