@@ -2,43 +2,37 @@ import requests
 import json
 import Restaurant
 """
+Google requests by name uses google smart search to try searching a value by name or cuisine also inputs into restaurant class. 
 Google request class allows for the get_google_restaurants to return a list of the object Restaurant. It has two inputs, latitude and longitude.
 It scans nearby for a 500 meter radius for nearby things and returns it in the list.
 """
 __URL = "https://places.googleapis.com/v1/places:searchNearby"
 __API_KEY = ''
-
-
-def get_google_restaurants(latitude, longitude):
+__URLNAME = "https://places.googleapis.com/v1/places:searchText"
+def get_google_restaurants(latitude,longitude,name_or_cuisine='restaurants',distance = 10000,min_rating =0.0):
     payload = json.dumps({
-        "includedTypes": [
-            "restaurant"
-        ],
-        "maxResultCount": 10,
-        "locationRestriction": {
+        "textQuery": name_or_cuisine,
+        "maxResultCount": 15,
+        "locationBias": {
             "circle": {
                 "center": {
                     "latitude": latitude,
                     "longitude": longitude
                 },
-                "radius": 500
+                "radius": distance
             }
-        }
+        },
+        "minRating": min_rating,
+        "rankPreference": "DISTANCE"
     })
     headers = {
         'X-Goog-Api-Key': __API_KEY,
         'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.primaryType,places.location,places.rating,places.nationalPhoneNumber,places.websiteUri,places.reviews',
         'Content-Type': 'application/json'
     }
-    response = requests.request("POST", __URL, headers=headers, data=payload)
+    response = requests.request("POST", __URLNAME, headers=headers, data=payload)
+    return format_results(response)
+def format_results(response):
     rawdata = json.loads(response.text)
     list_restaurants = rawdata.get("places", [])
-
     restaurant_output = []
-    for restaurant_data in list_restaurants:
-        restaurant_output.append(Restaurant.Restaurant(restaurant_data, latitude, longitude))
-
-    # Sort by rating (highest first) and distance (lowest first)
-    sorted_restaurants = sorted(restaurant_output, key=lambda r: (-r.rating, r.distance))
-
-    return sorted_restaurants

@@ -5,12 +5,12 @@ Class Restaurant contains all the information required for this project, names a
 class Restaurant:
     def __init__(self, restaurant_dictionary,user_latitude, user_longitude):
         #print(restaurant_dictionary)
-        self.phone_number =restaurant_dictionary['nationalPhoneNumber']
-        self.address = restaurant_dictionary['formattedAddress']
+        self.phone_number =restaurant_dictionary.get('nationalPhoneNumber',None)
+        self.address = restaurant_dictionary.get('formattedAddress',None)
         self.latitude = restaurant_dictionary['location']['latitude']
         self.longitude = restaurant_dictionary['location']['longitude']
-        self.rating = restaurant_dictionary['rating']
-        self.website_url = restaurant_dictionary['websiteUri']
+        self.rating = restaurant_dictionary.get('rating',None)
+        self.website_url = restaurant_dictionary.get('websiteUri',None)
         self.name = restaurant_dictionary['displayName']['text']
         self.cuisine = restaurant_dictionary['primaryType']
         self.reviews = restaurant_dictionary['reviews']
