@@ -2,11 +2,12 @@ import requests
 import json
 import Restaurant
 """
+Google requests by name uses google smart search to try searching a value by name or cuisine also inputs into restaurant class. 
 Google request class allows for the get_google_restaurants to return a list of the object Restaurant. It has two inputs, latitude and longitude.
 It scans nearby for a 500 meter radius for nearby things and returns it in the list.
 """
 __URL = "https://places.googleapis.com/v1/places:searchNearby"
-__API_KEY = ''
+__API_KEY = 'AIzaSyAcEWriqd7xRqv4BbS6RmP8sFUqlqqGwDU'
 __URLNAME = "https://places.googleapis.com/v1/places:searchText"
 def get_google_restaurants_name(name_or_cuisine):
     payload = json.dumps({
