@@ -9,22 +9,21 @@ It scans nearby for a 500 meter radius for nearby things and returns it in the l
 __URL = "https://places.googleapis.com/v1/places:searchNearby"
 __API_KEY = ''
 __URLNAME = "https://places.googleapis.com/v1/places:searchText"
-def get_google_restaurants_name(name_or_cuisine):
+def get_google_restaurants(latitude,longitude,name_or_cuisine='restaurants',distance = 10000,min_rating =0.0):
     payload = json.dumps({
         "textQuery": name_or_cuisine,
-        "maxResultCount": 10,
+        "maxResultCount": 15,
         "locationBias": {
-            "rectangle": {
-                "low": {
-                    "latitude": 33.50457675495219,
-                    "longitude": -84.63554645925697
+            "circle": {
+                "center": {
+                    "latitude": latitude,
+                    "longitude": longitude
                 },
-                "high": {
-                    "latitude": 34.217961053179856,
-                    "longitude": -83.76726126632337
-                }
+                "radius": distance
             }
-        }
+        },
+        "minRating": min_rating,
+        "rankPreference": "DISTANCE"
     })
     headers = {
         'X-Goog-Api-Key': __API_KEY,
@@ -32,29 +31,6 @@ def get_google_restaurants_name(name_or_cuisine):
         'Content-Type': 'application/json'
     }
     response = requests.request("POST", __URLNAME, headers=headers, data=payload)
-    return format_results(response)
-def get_google_restaurants(latitude, longitude):
-    payload = json.dumps({
-        "includedTypes": [
-            "restaurant"
-        ],
-        "maxResultCount": 10,
-        "locationRestriction": {
-            "circle": {
-                "center": {
-                    "latitude": latitude,
-                    "longitude": longitude
-                },
-                "radius": 500
-            }
-        }
-    })
-    headers = {
-        'X-Goog-Api-Key': __API_KEY,
-        'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.primaryType,places.location,places.rating,places.nationalPhoneNumber,places.websiteUri,places.reviews',
-        'Content-Type': 'application/json'
-    }
-    response = requests.request("POST", __URL, headers=headers, data=payload)
     return format_results(response)
 def format_results(response):
     rawdata = json.loads(response.text)
