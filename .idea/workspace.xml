@@ -7,6 +7,9 @@
     <list default="true" id="f99a2b08-fe62-4301-9526-35522142e6d8" name="Changes" comment="done part A and also part E">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +127,7 @@
       <workItem from="1727458138292" duration="599000" />
       <workItem from="1727471017232" duration="299000" />
       <workItem from="1727476209801" duration="598000" />
-      <workItem from="1727479534991" duration="10956000" />
+      <workItem from="1727479534991" duration="12205000" />
     </task>
     <task id="LOCAL-00001" summary="create restaurant and googlemapapi class">
       <option name="closed" value="true" />
@@ -206,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727726041670</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="done part A and also part E">
+      <option name="closed" value="true" />
+      <created>1727726472544</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727726472544</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

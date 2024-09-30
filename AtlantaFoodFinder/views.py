@@ -1,6 +1,9 @@
 from django.contrib.auth import login, authenticate
 from .forms import CustomUserCreationForm  # The form we defined earlier
 from django.contrib.auth import views as auth_views
+from django.shortcuts import render, redirect
+from .models import CustomUser, Favorite
+from django.contrib.auth.decorators import login_required
 
 
 # User registration view
@@ -18,11 +21,8 @@ def signup(request):
 def login_view(request):
     return auth_views.LoginView.as_view(template_name='login.html')(request)
     #login.html is the interface for logging in
-
-from django.shortcuts import render, redirect
-from .models import CustomUser, Favorite
-from django.contrib.auth.decorators import login_required
-
+def reset_password_view(request):
+    pass
 @login_required
 def favorite_restaurant(request, restaurant_name, restaurant_address):
     user = CustomUser.objects.get(pk=request.user.pk)  # Explicitly get CustomUser instance
