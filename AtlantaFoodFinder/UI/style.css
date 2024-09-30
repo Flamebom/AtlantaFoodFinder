@@ -192,10 +192,11 @@
   cursor: pointer;
   /* Underlines the text */
   position: absolute;
-  width: 225px;
+  width: 125px;
   height: 85px;
   top: 20px;
   left: 18px;
+  margin-left: 100px;
 }
 
 .main-page .account:hover {
