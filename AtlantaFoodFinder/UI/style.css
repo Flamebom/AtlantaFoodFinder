@@ -1193,3 +1193,121 @@
   background-size: cover;
   background-position: 50% 50%;
 }
+
+
+
+
+.selection-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 11px;
+  padding: 20px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.selection-card .new-select {
+  position: relative;
+  width: 247px;
+  height: 21px;
+  margin-top: -1px;
+  font-family: "Open Sans-ExtraBold", Helvetica;
+  font-weight: 800;
+  color: #3e4958;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 24.5px;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.selection-card .favoriteframe {
+  position: relative;
+  width: 393px;
+  height: 36.96px;
+}
+
+.selection-card .type {
+  left: 39px;
+  color: #3e4958;
+  position: absolute;
+  width: 137px;
+  top: -1px;
+  font-family: "Open Sans-Light", Helvetica;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 21.8px;
+  white-space: nowrap;
+}
+
+.selection-card .generalline {
+  top: 34px;
+  left: 0;
+  position: absolute;
+  width: 393px;
+  height: 3px;
+  object-fit: cover;
+}
+
+.selection-card .vector {
+  position: absolute;
+  width: 29px;
+  height: 26px;
+  top: 0;
+  left: 0;
+}
+
+.selection-card .div {
+  position: relative;
+  width: 394px;
+  height: 38.96px;
+}
+
+.selection-card .text-wrapper {
+  position: absolute;
+  width: 137px;
+  top: -1px;
+  left: 41px;
+  font-family: "Open Sans-Light", Helvetica;
+  font-weight: 300;
+  color: #3e4958;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 21.8px;
+  white-space: nowrap;
+}
+
+.selection-card .type-2 {
+  left: 258px;
+  color: #afb4bb;
+  text-align: right;
+  position: absolute;
+  width: 137px;
+  top: -1px;
+  font-family: "Open Sans-Light", Helvetica;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 21.8px;
+  white-space: nowrap;
+}
+
+.selection-card .img {
+  top: 36px;
+  left: 1px;
+  position: absolute;
+  width: 393px;
+  height: 3px;
+  object-fit: cover;
+}
+
+.selection-card .sky-blue {
+  position: absolute;
+  width: 32px;
+  height: 23px;
+  top: 0;
+  left: 0;
+}

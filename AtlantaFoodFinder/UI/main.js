@@ -9,6 +9,17 @@ document.querySelector('.ellipse').addEventListener('click', function () {
   // Toggle the 'active' class on click
   this.classList.toggle('active');
 
+
+
+
+
+
+
+
+
+
+
+
   // Select the slider element and toggle its visibility
   const slider = document.querySelector('.secondary-menu'); // Assuming secondary-menu contains the sliders
   if (this.classList.contains('active')) {

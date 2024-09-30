@@ -7,131 +7,133 @@
   <link rel="stylesheet" href="globals.css" />
   <link rel="stylesheet" href="styleguide.css" />
   <link rel="stylesheet" href="style.css" />
-    <title></title>
+  <title></title>
 </head>
 
 <style>
-    #iframe
-    {
-        overflow : hidden;
-    }
-    #contentframe
-    {
-        position : fixed;
-        width    : 600px;
-        height   : 600px;
-        top: 200px;
-        left: 750px;
-        z-index: 9999;
-    }
+  #iframe {
+    overflow: hidden;
+  }
+
+  #contentframe {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    top: 200px;
+    left: 750px;
+    z-index: 9999;
+  }
 </style>
 
 <body>
   <div class="main-page">
-<div id="iframe" style="object-position: right 300px bottom 10px;">
-    <iframe src="https://www.google.com/maps/embed/v1/search?key=YOUR_API_KEY&q=restaurants+in+Atlanta" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="contentframe"></iframe>
-</div>
-  <div class="listing-screen">
-    <div class="div">
-      <header class="header">
-        <div class="frame">
-          <div class="group"><img class="union" src="img/union.svg" /></div>
-          <div class="search-selected">
-            <div class="overlap">
-              <div class="fields">
-                <div class="overlap-group">
-                  <div class="scope-box"></div>
-                  <div class="label">
-                    <div class="text-wrapper">Search</div>
-                  </div>
-                  <div class="input">
-                    <input type="text" class="search-input" placeholder="Type your search..." />
-                  </div>
-                </div>
-              </div>
-              <div class="button"><img class="search" src="img/search-1.svg" /> <a class="account"></a>
-                <!-- The account element --></div>
-            </div>
-          </div>
-      </header>
-      <div class="overlap-2">
-        <div class="property-card">
-          <div class="frame-wrapper">
-            <div class="frame-2">
-              <div class="image-header">
-                <div class="overlap-group-2">
-                  <div class="badge-primary-wrapper">
-                    <div class="badge-primary">
-                      <div class="best-price">BEST PRICE</div>
+    <div id="iframe" style="object-position: right 300px bottom 10px;">
+      <iframe src="https://www.google.com/maps/embed/v1/search?key=YOUR_API_KEY&q=restaurants+in+Atlanta"
+        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        id="contentframe"></iframe>
+    </div>
+    <div class="listing-screen">
+      <div class="div">
+        <header class="header">
+          <div class="frame">
+            <div class="group"><img class="union" src="img/union.svg" /></div>
+            <div class="search-selected">
+              <div class="overlap">
+                <div class="fields">
+                  <div class="overlap-group">
+                    <div class="scope-box"></div>
+                    <div class="label">
+                      <div class="text-wrapper">Search</div>
                     </div>
-                  </div> <img class="image" src="img/image-2.png" />
+                    <div class="input">
+                      <input type="text" class="search-input" placeholder="Type your search..." />
+                    </div>
+                  </div>
+                </div>
+                <div class="button"><img class="search" src="img/search-1.svg" /> <a class="account"></a>
+                  <!-- The account element --></div>
+              </div>
+            </div>
+        </header>
+        <div class="overlap-2">
+          <div class="property-card">
+            <div class="frame-wrapper">
+              <div class="frame-2">
+                <div class="image-header">
+                  <div class="overlap-group-2">
+                    <div class="badge-primary-wrapper">
+                      <div class="badge-primary">
+                        <div class="best-price">BEST PRICE</div>
+                      </div>
+                    </div> <img class="image" src="img/image-2.png" />
+                  </div>
+                </div>
+                <div class="frame-3">
+                  <div class="text-wrapper-2">2 Miles Away</div>
+                  <div class="text-wrapper-3">Clasic Studio Apartment</div>
                 </div>
               </div>
-              <div class="frame-3">
-                <div class="text-wrapper-2">2 Miles Away</div>
-                <div class="text-wrapper-3">Clasic Studio Apartment</div>
+            </div>
+          </div>
+          <div class="map-pin">
+            <div class="default">
+              <div class="element-wrapper">
+                <div class="element">2.7 miles</div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="map-pin">
-          <div class="default">
-            <div class="element-wrapper">
-              <div class="element">2.7 miles</div>
+          <div class="map-pin-2">
+            <div class="default">
+              <div class="element-k-wrapper">
+                <div class="element">2.7 miles</div>
+              </div>
+            </div>
+          </div>
+          <div class="secondary-menu">
+            <!-- Distance Slider -->
+
+            <div class="ratings-text">Distance</div>
+            <div class="slider">
+              <input id="distance-slider" type="range" min="0" max="10" value="1.8" step="0.1" class="slider-range" />
+              <div class="text-wrapper-4" id="distance-value">1.8 Miles</div>
+            </div>
+
+            <!-- Ratings Slider -->
+            <div class="ratings-text-2">Ratings</div>
+            <div class="slider">
+              <input id="rating-slider" type="range" min="0" max="5" value="2" step="0.5" class="slider-range" />
+              <div class="text-wrapper-4" id="rating-value">2 Stars</div>
             </div>
           </div>
         </div>
-        <div class="map-pin-2">
-          <div class="default">
-            <div class="element-k-wrapper">
-              <div class="element">2.7 miles</div>
-            </div>
-          </div>
+        <div class="text-wrapper-5">Food Near _________</div>
+        <div class="element-stays">430 + restaurants</div>
+        <div class="free-cancellation">
+          <div class="text-wrapper-6">Closest Distance</div>
         </div>
-        <div class="secondary-menu">
-          <!-- Distance Slider -->
-          <div class="ratings-text">Distance</div>
-          <div class="slider">
-            <input id="distance-slider" type="range" min="0" max="10" value="1.8" step="0.1" class="slider-range" />
-            <div class="text-wrapper-4" id="distance-value">1.8 Miles</div>
-          </div>
-
-          <!-- Ratings Slider -->
-          <div class="ratings-text-2">Ratings</div>
-          <div class="slider">
-            <input id="rating-slider" type="range" min="0" max="5" value="2" step="0.5" class="slider-range" />
-            <div class="text-wrapper-4" id="rating-value">2 Stars</div>
-          </div>
+        <div class="price">
+          <div class="text-wrapper-7">Highest Ratings</div>
         </div>
+        <div class="overlap-3">
+          <div class="ellipse"></div>
+          <img class="filter-icon" src="img/filter-icon.svg" />
+        </div>
+
+
+        <div class="property-card-container">
+          <p id="no-restaurants-message">No restaurants found</p>
+        </div>
+
+
+
+
+
+
       </div>
-      <div class="text-wrapper-5">Food Near _________</div>
-      <div class="element-stays">430 + restaurants</div>
-      <div class="free-cancellation">
-        <div class="text-wrapper-6">Closest Distance</div>
+      <div class="map-zoom"> <img class="plus" src="img/plus-1.svg" /> <img class="minus" src="img/minus-1.svg" />
+        <div class="seperator"></div>
       </div>
-      <div class="price">
-        <div class="text-wrapper-7">Highest Ratings</div>
-      </div>
-      <div class="overlap-3">
-        <div class="ellipse"></div>
-        <img class="filter-icon" src="img/filter-icon.svg" />
-      </div>
-
-
-      <div class="property-card-container">
-        <p id="no-restaurants-message">No restaurants found</p>
-      </div>
-
-
-
-
-
-
     </div>
-    <div class="map-zoom"> <img class="plus" src="img/plus-1.svg" /> <img class="minus" src="img/minus-1.svg" />
-      <div class="seperator"></div>
-    </div>
-  </div>
   </div>
 </body>
 <script src="main.js"></script>
