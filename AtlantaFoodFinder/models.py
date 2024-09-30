@@ -1,11 +1,11 @@
-from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 from django.conf import settings  # Import settings to reference AUTH_USER_MODEL
 
 # Extends existing user model to add new fields for favorites specifically associated to the account
 class CustomUser(AbstractUser):
     favorite_restaurant = models.CharField(max_length=255, blank=True, null=True)
+    # creates table for favorite_restaurants associated with "CustomUser" object
 
     def add_favorite(self, restaurant_name, restaurant_address):
         favorite, created = Favorite.objects.get_or_create(

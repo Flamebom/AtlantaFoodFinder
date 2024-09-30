@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f99a2b08-fe62-4301-9526-35522142e6d8" name="Changes" comment="done part A and also part E">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AtlantaFoodFinder/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AtlantaFoodFinder/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +124,7 @@
       <workItem from="1727458138292" duration="599000" />
       <workItem from="1727471017232" duration="299000" />
       <workItem from="1727476209801" duration="598000" />
-      <workItem from="1727479534991" duration="9880000" />
+      <workItem from="1727479534991" duration="10503000" />
     </task>
     <task id="LOCAL-00001" summary="create restaurant and googlemapapi class">
       <option name="closed" value="true" />
@@ -190,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727648460697</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="done part A and also part E">
+      <option name="closed" value="true" />
+      <created>1727725250488</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727725250488</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
