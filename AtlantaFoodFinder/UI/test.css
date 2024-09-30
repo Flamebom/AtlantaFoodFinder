@@ -1,53 +1,111 @@
-.big-card-main {
-    background-color: #ffffff;
-    overflow-x: hidden;
-    width: 541px;
-    height: 673px;
-    position: absolute;
-    left: 116px;
-    top: 292px;
-}
-
-.big-card-main .frame {
-    position: absolute;
-    width: 500px;
-    height: 273px;
-    top: 20px;
-    left: 20px;
-    background-size: cover;
-    background-position: 50% 50%;
-    overflow-x: auto;
-    /* Allows horizontal scrolling */
+.selection-card {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 11px;
+    padding: 20px;
+    position: relative;
+    background-color: #ffffff;
 }
 
-.big-card-main .rectangle {
+.selection-card .new-select {
     position: relative;
-    width: 368px;
-    height: 273px;
+    width: 247px;
+    height: 21px;
+    margin-top: -1px;
+    font-family: "Open Sans-ExtraBold", Helvetica;
+    font-weight: 800;
+    color: #3e4958;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: 24.5px;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.selection-card .favoriteframe {
+    position: relative;
+    width: 393px;
+    height: 36.96px;
+}
+
+.selection-card .type {
+    left: 39px;
+    color: #3e4958;
+    position: absolute;
+    width: 137px;
     top: -1px;
-    margin-right: 5px;
+    font-family: "Open Sans-Light", Helvetica;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 21.8px;
+    white-space: nowrap;
+}
+
+.selection-card .generalline {
+    top: 34px;
+    left: 0;
+    position: absolute;
+    width: 393px;
+    height: 3px;
     object-fit: cover;
 }
 
-.big-card-main .overlap-group {
+.selection-card .vector {
     position: absolute;
-    width: 514px;
-    height: 149px;
-    top: 302px;
-    left: 8px;
-}
-
-.big-card-main .icon-heart {
-    position: absolute;
-    width: 73px;
+    width: 29px;
     height: 26px;
-    top: 8px;
-    left: 440px;
+    top: 0;
+    left: 0;
 }
 
-.big-card-main .sky-blue {
+.selection-card .div {
+    position: relative;
+    width: 394px;
+    height: 38.96px;
+}
+
+.selection-card .text-wrapper {
+    position: absolute;
+    width: 137px;
+    top: -1px;
+    left: 41px;
+    font-family: "Open Sans-Light", Helvetica;
+    font-weight: 300;
+    color: #3e4958;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 21.8px;
+    white-space: nowrap;
+}
+
+.selection-card .type-2 {
+    left: 258px;
+    color: #afb4bb;
+    text-align: right;
+    position: absolute;
+    width: 137px;
+    top: -1px;
+    font-family: "Open Sans-Light", Helvetica;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 21.8px;
+    white-space: nowrap;
+}
+
+.selection-card .img {
+    top: 36px;
+    left: 1px;
+    position: absolute;
+    width: 393px;
+    height: 3px;
+    object-fit: cover;
+}
+
+.selection-card .sky-blue {
     position: absolute;
     width: 32px;
     height: 23px;
@@ -55,282 +113,7 @@
     left: 0;
 }
 
-.big-card-main .vector {
-    position: absolute;
-    width: 29px;
-    height: 26px;
-    top: 0;
-    left: 44px;
-}
-
-.big-card-main .frame-2 {
-    display: flex;
-    flex-direction: column;
-    /* Change to column to stack items vertically */
-    flex-wrap: wrap;
-    /* Allows items to wrap if needed */
-    width: 450px;
-    height: auto;
-    /* Adjust height to auto to allow vertical growth */
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 14px;
-    /* Only one value for gap when in column layout */
-    padding: 10px 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-
-.big-card-main .driver-name {
-    margin-top: -1px;
-    font-family: "Open Sans-ExtraBold", Helvetica;
-    font-weight: 800;
-    font-size: 18px;
-    line-height: 24.5px;
-    white-space: nowrap;
-    position: relative;
-    width: 247px;
-    height: 21px;
-    color: #3e4958;
-    letter-spacing: 0;
-}
-
-.big-card-main .frame-3 {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: 20px;
-    position: relative;
-    flex: 0 0 auto;
-}
-
-.big-card-main .frame-4 {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: 4px;
-    position: relative;
-    flex: 0 0 auto;
-}
-
-.big-card-main .group {
-    position: relative;
-    width: 17.05px;
-    height: 17.05px;
-}
-
-.big-card-main .star {
-    width: 14px;
-    height: 13px;
-    position: absolute;
-    top: 1px;
-    left: 2px;
-}
-
-.big-card-main .text {
-    width: 26px;
-    height: 16px;
-    font-size: 15px;
-    line-height: 20.4px;
-    position: relative;
-    margin-top: -1px;
-    font-family: "Open Sans-Light", Helvetica;
-    font-weight: 300;
-    color: #3e4958;
-    letter-spacing: 0;
-    white-space: nowrap;
-}
-
-.big-card-main .text-wrapper {
-    width: 103px;
-    height: 16px;
-    font-size: 15px;
-    line-height: 20.4px;
-    position: relative;
-    margin-top: -1px;
-    font-family: "Open Sans-Light", Helvetica;
-    font-weight: 300;
-    color: #3e4958;
-    letter-spacing: 0;
-    white-space: nowrap;
-}
-
-.big-card-main .text-wrapper-2 {
-    position: relative;
-    width: fit-content;
-    margin-top: -1px;
-    font-family: "Open Sans-Light", Helvetica;
-    font-weight: 300;
-    color: #3e4958;
-    font-size: 15px;
-    letter-spacing: 0;
-    line-height: 20.4px;
-    white-space: nowrap;
-}
-
-.big-card-main .div-wrapper {
-    display: flex;
-    width: 429px;
-    align-items: flex-start;
-    gap: 10px;
-    position: relative;
-    margin-right: -19px;
-}
-
-.big-card-main .frame-5 {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: 10px;
-    position: relative;
-    flex: 0 0 auto;
-}
-
-.big-card-main .line {
-    position: absolute;
-    width: 503px;
-    height: 1px;
-    top: 148px;
-    left: 11px;
-    object-fit: cover;
-}
-
-.big-card-main .property-card-big {
-    position: relative;
-    left: 18px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 11px;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0px 4px 15px #00000026;
-    margin-right: -300px;
-}
-
-
-
-
-.big-card-main .frame-7 {
-    display: inline-flex;
-    flex-direction: column;
-    height: 168px;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 10px;
-    position: relative;
-    flex: 0 0 auto;
-    object-fit: cover;
-}
-
-
-
-
-
-
-
-.big-card-main .driver-name-2 {
-    margin-top: -1px;
-    font-family: "Open Sans-ExtraBold", Helvetica;
-    font-weight: 800;
-    font-size: 14px;
-    line-height: 19px;
-    white-space: nowrap;
-    position: relative;
-    width: 247px;
-    height: 21px;
-    color: #3e4958;
-    letter-spacing: 0;
-}
-
-.big-card-main .frame-8 {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: 20px;
-    position: relative;
-    flex: 0 0 auto;
-}
-
-.big-card-main .star-wrapper {
-    position: relative;
-    width: 16px;
-    height: 16px;
-}
-
-.big-card-main .img {
-    width: 13px;
-    height: 12px;
-    position: absolute;
-    top: 1px;
-    left: 2px;
-}
-
-.big-card-main .text-2 {
-    width: 26px;
-    height: 16px;
-    font-size: 12px;
-    line-height: 16.3px;
-    position: relative;
-    margin-top: -1px;
-    font-family: "Open Sans-Light", Helvetica;
-    font-weight: 300;
-    color: #3e4958;
-    letter-spacing: 0;
-    white-space: nowrap;
-}
-
-.big-card-main .text-3 {
-    width: 137px;
-    height: 16px;
-    font-size: 12px;
-    line-height: 16.3px;
-    position: relative;
-    margin-top: -1px;
-    font-family: "Open Sans-Light", Helvetica;
-    font-weight: 300;
-    color: #3e4958;
-    letter-spacing: 0;
-    white-space: nowrap;
-}
-
-.big-card-main .driver-name-3 {
-    font-family: "Open Sans-Light", Helvetica;
-    font-weight: 300;
-    font-size: 10px;
-    line-height: 13.6px;
-    position: relative;
-    width: 247px;
-    height: 21px;
-    color: #3e4958;
-    letter-spacing: 0;
-}
-
-.big-card-main .frame-wrapper {
-    left: 314px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 11px;
-    padding: 10px;
-    position: relative;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0px 4px 15px #00000026;
-}
-
-.big-card-main .frame-666 {
-    display: flex;
-    flex-direction: row;
-    /* Horizontal alignment */
-    overflow-x: auto;
-    /* Enables horizontal scrolling */
-    width: 100%;
-    /* Full width to occupy space */
-    height: 188px;
-    /* Adjust height to auto */
-    gap: 20px;
-    /* Add space between cards */
-    padding: 10px;
-    /* Add some padding for aesthetics */
-    margin-top: 475px;
+.selection-card .new-folder-input {
+    margin-left: 40px;
+    width: 200px;
 }

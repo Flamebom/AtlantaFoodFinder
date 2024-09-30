@@ -42,9 +42,11 @@
                 <div class="fields">
                   <div class="overlap-group">
                     <div class="scope-box"></div>
-                    <div class="label">
-                      <div class="text-wrapper">Search</div>
-                    </div>
+                    <select class="label" id="search-category">
+                      <option value="restaurant-name">Name</option>
+                      <option value="cuisine-type">Type</option>
+                      <option value="other">Other</option>
+                    </select>
                     <div class="input">
                       <input type="text" class="search-input" placeholder="Type your search..." />
                     </div>
@@ -90,6 +92,33 @@
             </div>
           </div>
           <div class="secondary-menu">
+            <div class="selection-card">
+              <div class="new-select">Select From:</div>
+
+              <!-- Favorite Frame - cannot be deleted -->
+              <div class="favoriteframe">
+                <div class="type">Favorite</div>
+                <img class="generalline" src="img/generalline.svg" />
+                <img class="vector" src="img/vector.svg" />
+              </div>
+
+              <!-- Folder 1 (initially present) -->
+              <div class="folder-item" data-folder="Folder 1">
+                <div class="div">
+                  <div class="text-wrapper2">Folder 1</div>
+                  <div class="type-2 delete-folder">Delete</div>
+                  <img class="img" src="img/generalline-2.svg" />
+                  <img class="sky-blue" src="img/sky-blue.svg" />
+                </div>
+              </div>
+
+              <!-- New Folder Creation Input -->
+              <div class="div create-folder-section">
+                <input type="text" class="new-folder-input" placeholder="New Folder" />
+                <img class="img" src="img/image.svg" />
+                <img class="sky-blue" src="img/sky-blue.svg" />
+              </div>
+            </div>
             <!-- Distance Slider -->
 
             <div class="ratings-text">Distance</div>
@@ -106,7 +135,7 @@
             </div>
           </div>
         </div>
-        <div class="text-wrapper-5">Food Near _________</div>
+        <div class="text-wrapper-5">Food Near You</div>
         <div class="element-stays">430 + restaurants</div>
         <div class="free-cancellation">
           <div class="text-wrapper-6">Closest Distance</div>
