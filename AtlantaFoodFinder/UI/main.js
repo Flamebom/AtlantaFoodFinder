@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function () {
   const searchInput = document.querySelector('.search-input');
   const searchCategory = document.getElementById('search-category');
@@ -19,32 +17,80 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
 document.addEventListener("DOMContentLoaded", function () {
   const folderList = [{ name: 'Favorite', deletable: false }, { name: 'Folder 1', deletable: true }];
   const folderContainer = document.querySelector('.selection-card');
+  const folderContainer2 = document.querySelector('.selection-card2');
   const createFolderInput = document.querySelector('.new-folder-input');
+  const folderIcon = document.querySelector('.BigCard-sky-blue');  // Folder icon in the Big Card
+  let currentBigCardData = null;  // Store the current opened big card data here
 
-  // Function to render the folders
+  // Fix: Prevent "null" from appearing by ensuring valid folder names
+  const addFolder = (name) => {
+    if (!name || name.trim() === '') {
+      console.error('Invalid folder name.'); // Ensure folder name is valid
+      return;
+    }
+    folderList.push({ name, deletable: true });
+    renderFolders();
+  };
+
+
+  // Add event listener to folder icon to toggle selection-card2 visibility
+  if (folderIcon) {
+    folderIcon.addEventListener('click', function () {
+      toggleSelectionCard2();  // Toggle visibility
+    });
+  }
+
+  // Render folders for both selection-card and selection-card2
   function renderFolders() {
-    // Remove all current folder items except for the favorite and create new folder input
+    // Clear all folder items except the Favorite and input section
     document.querySelectorAll('.folder-item').forEach(item => item.remove());
 
+    // Render "Favorite" folder only once
+    if (!document.querySelector('.favoriteframe-rendered')) {
+      const favoriteFolderHTML = `
+        <div class="favoriteframe favoriteframe-rendered" data-folder="Favorite">
+          <div class="type">Favorite</div>
+          <img class="generalline" src="img/generalline.svg" />
+          <img class="vector" src="img/vector.svg" />
+        </div>
+      `;
+
+      // Insert Favorite into selection-card and selection-card2, but only once
+      folderContainer.insertAdjacentHTML('afterbegin', favoriteFolderHTML);
+      folderContainer2.insertAdjacentHTML('afterbegin', favoriteFolderHTML);
+
+      // Handle "Favorite" folder clicks for both containers
+      document.querySelectorAll('.favoriteframe').forEach(favorite => {
+        favorite.addEventListener('click', function () {
+          const folderName = favorite.getAttribute('data-folder');
+          loadFolderData(folderName);  // Handle loading data for "Favorite"
+          addBigCardToFolder(folderName, currentBigCardData);  // Handle adding to folder
+        });
+      });
+    }
+
+    // Render all deletable folders in selection-card and selection-card2
     folderList.forEach(folder => {
       if (folder.deletable) {
+        // Render in selection-card
         const folderItem = document.createElement('div');
         folderItem.classList.add('folder-item');
         folderItem.setAttribute('data-folder', folder.name);
 
         folderItem.innerHTML = `
-                  <div class="div">
-                      <div class="text-wrapper">${folder.name}</div>
-                      <div class="type-2 delete-folder">Delete</div>
-                      <img class="img" src="img/generalline-2.svg" />
-                      <img class="sky-blue" src="img/sky-blue.svg" />
-                  </div>
-              `;
+          <div class="div">
+            <div class="text-wrapper">${folder.name}</div>
+            <div class="type-2 delete-folder">Delete</div>
+            <img class="img" src="img/generalline-2.svg" />
+            <img class="sky-blue" src="img/sky-blue.svg" />
+          </div>
+        `;
 
-        // Add delete functionality
+        // Add delete functionality for deletable folders
         folderItem.querySelector('.delete-folder').addEventListener('click', function () {
           const folderName = folderItem.getAttribute('data-folder');
           deleteFolder(folderName);
@@ -53,31 +99,54 @@ document.addEventListener("DOMContentLoaded", function () {
         // Add click functionality to load folder data
         folderItem.addEventListener('click', function () {
           const folderName = folderItem.getAttribute('data-folder');
-          loadFolderData(folderName);  // Function to handle folder loading
+          loadFolderData(folderName);
         });
 
-        // Insert before the create folder section
+        // Insert the folder into selection-card
         folderContainer.insertBefore(folderItem, document.querySelector('.create-folder-section'));
+
+        // Clone the folder for selection-card2 and remove delete button
+        const folderItem2 = folderItem.cloneNode(true);
+        folderItem2.querySelector('.delete-folder').remove();
+        folderItem2.addEventListener('click', function () {
+          const folderName = folderItem2.getAttribute('data-folder');
+          addBigCardToFolder(folderName, currentBigCardData);
+        });
+
+        // Insert into selection-card2
+        folderContainer2.appendChild(folderItem2);
       }
     });
   }
 
-  // Function to add a new folder
-  function addFolder(name) {
-    folderList.push({ name, deletable: true });
-    renderFolders();
-  }
-
-  // Function to delete a folder
+  // Function to delete folder if the name is valid
   function deleteFolder(name) {
     const index = folderList.findIndex(folder => folder.name === name);
     if (index !== -1) {
       folderList.splice(index, 1);
-      renderFolders();
+      renderFolders(); // Re-render folders after deletion
     }
   }
 
-  // Event listener to handle new folder creation on Enter key
+  // Function to add a Big Card to a folder
+  function addBigCardToFolder(folderName, bigCardData) {
+    if (!bigCardData) {
+      console.error('No big card data available.');
+      return;
+    }
+    console.log(`Adding big card to folder: ${folderName}`);
+    console.log(`Big card data:`, bigCardData);
+
+    // Implement your logic here to save the Big Card data to the selected folder
+  }
+
+  // Function to load folder data
+  function loadFolderData(folderName) {
+    console.log(`Loading data for folder: ${folderName}`);
+    // Add logic for loading folder data here
+  }
+
+  // Event listener to handle folder creation on pressing Enter key
   createFolderInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter' && createFolderInput.value.trim() !== '') {
       addFolder(createFolderInput.value.trim());
@@ -85,20 +154,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-
-
-
-
-
-
-  // Function to load folder data (you can replace this with actual loading logic)
-  function loadFolderData(folderName) {
-    console.log(`Loading data for folder: ${folderName}`);
-    // Here you can add the actual logic for loading folder data based on folderName
-  }
-
   // Initial render
   renderFolders();
+
+  // Expose current Big Card data setter globally
+  window.setCurrentBigCardData = function (bigCardData) {
+    currentBigCardData = bigCardData;
+  };
 });
 
 
@@ -241,10 +303,19 @@ function createPropertyCard(imageSrc, restaurantName, rating, distance, priceRan
   document.querySelector('.property-card-container').appendChild(propertyCard);
 }
 
+
+
+
 function createBigCard(propertyDetails, reviews) {
   // Create the main container for the big card
   const bigCardMain = document.createElement('div');
   bigCardMain.classList.add('BigCard-main');
+
+  // Add "Go Back" button at the top left
+  const goBackBtn = document.createElement('div');
+  goBackBtn.classList.add('BigCard-go-back');
+  goBackBtn.innerText = "Go Back";
+  bigCardMain.appendChild(goBackBtn);
 
   // Frame container for the images
   const frame = document.createElement('div');
@@ -348,7 +419,6 @@ function createBigCard(propertyDetails, reviews) {
 
   bigCardMain.appendChild(overlapGroup);
 
-
   // Create the reviews section
   const frame666 = document.createElement('div');
   frame666.classList.add('BigCard-frame-666');
@@ -415,15 +485,39 @@ function createBigCard(propertyDetails, reviews) {
     console.error('Error: Main page container not found!');
   }
 
-  document.addEventListener('click', function (event) {
-    const isClickInside = card.contains(event.target);
-    if (!isClickInside) {
-      // Hide the description card and show property cards again
-      bigCardMain.remove();
-      document.querySelector('.property-card-container').style.display = 'block';
+  // Add event listener to "Go Back" button to hide the BigCard
+  goBackBtn.addEventListener('click', function () {
+    // Hide the BigCard when "Go Back" is clicked
+    bigCardMain.style.display = 'none';
+
+    // Bring back the property-card-container by setting visibility to visible
+    const container = document.querySelector('.property-card-container');
+    container.style.visibility = 'visible'; // Set visibility back to visible
+    console.log('Container visibility restored:', container.style.visibility);
+  });
+
+  let folderactive = false;
+
+  heartImg1.addEventListener('click', function () {
+    if (!folderactive) {  // When folder is not active
+      console.log('folder clicked: ' + folderactive);
+      document.querySelector('.selection-card2').style.display = 'flex'; // Show the selection card
+      folderactive = true;  // Set folderactive to true
+    } else {  // When folder is active
+      console.log('folder clicked: ' + folderactive);
+      document.querySelector('.selection-card2').style.display = 'none';  // Hide the selection card
+      folderactive = false;  // Set folderactive to false
     }
-  }, { once: true }); // Event listener will run only once
+  });
 }
+
+
+
+
+
+
+
+
 
 
 // Example of usage

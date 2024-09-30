@@ -1,4 +1,4 @@
-.selection-card {
+.selection-card2 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -6,10 +6,14 @@
     gap: 11px;
     padding: 20px;
     position: relative;
+    height: auto;
+    width: auto;
+    z-index: 9999;
     background-color: #ffffff;
+    border-radius: 10px;
 }
 
-.selection-card .new-select {
+.selection-card2 .new-select {
     position: relative;
     width: 247px;
     height: 21px;
@@ -24,13 +28,13 @@
     white-space: nowrap;
 }
 
-.selection-card .favoriteframe {
+.selection-card2 .favoriteframe {
     position: relative;
     width: 393px;
     height: 36.96px;
 }
 
-.selection-card .type {
+.selection-card2 .type {
     left: 39px;
     color: #3e4958;
     position: absolute;
@@ -44,7 +48,7 @@
     white-space: nowrap;
 }
 
-.selection-card .generalline {
+.selection-card2 .generalline {
     top: 34px;
     left: 0;
     position: absolute;
@@ -53,7 +57,7 @@
     object-fit: cover;
 }
 
-.selection-card .vector {
+.selection-card2 .vector {
     position: absolute;
     width: 29px;
     height: 26px;
@@ -61,17 +65,30 @@
     left: 0;
 }
 
-.selection-card .div {
+.selection-card2 .div {
     position: relative;
     width: 394px;
     height: 38.96px;
 }
 
-.selection-card .text-wrapper {
+.selection-card2 .text-wrapper {
     position: absolute;
     width: 137px;
     top: -1px;
+    font-family: "Open Sans-Light", Helvetica;
+    font-weight: 300;
+    color: #3e4958;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 21.8px;
+    white-space: nowrap;
     left: 41px;
+}
+
+.selection-card2 .text-wrapper2 {
+    position: absolute;
+    width: 137px;
+    top: -1px;
     font-family: "Open Sans-Light", Helvetica;
     font-weight: 300;
     color: #3e4958;
@@ -81,7 +98,7 @@
     white-space: nowrap;
 }
 
-.selection-card .type-2 {
+.selection-card2 .type-2 {
     left: 258px;
     color: #afb4bb;
     text-align: right;
@@ -96,7 +113,7 @@
     white-space: nowrap;
 }
 
-.selection-card .img {
+.selection-card2 .img {
     top: 36px;
     left: 1px;
     position: absolute;
@@ -105,7 +122,7 @@
     object-fit: cover;
 }
 
-.selection-card .sky-blue {
+.selection-card2 .sky-blue {
     position: absolute;
     width: 32px;
     height: 23px;
@@ -113,7 +130,7 @@
     left: 0;
 }
 
-.selection-card .new-folder-input {
+.selection-card2 .new-folder-input {
     margin-left: 40px;
     width: 200px;
 }
