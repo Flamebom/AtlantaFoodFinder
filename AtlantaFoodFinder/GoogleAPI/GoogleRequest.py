@@ -7,7 +7,7 @@ Google request class allows for the get_google_restaurants to return a list of t
 It scans nearby for a 500 meter radius for nearby things and returns it in the list.
 """
 __URL = "https://places.googleapis.com/v1/places:searchNearby"
-__API_KEY = 'AIzaSyAcEWriqd7xRqv4BbS6RmP8sFUqlqqGwDU'
+__API_KEY = ''
 __URLNAME = "https://places.googleapis.com/v1/places:searchText"
 def get_google_restaurants_name(name_or_cuisine):
     payload = json.dumps({
