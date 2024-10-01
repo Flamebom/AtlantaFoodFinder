@@ -14,6 +14,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add search logic here...
 
+    function parseRestaurantStr(restaurantStr) {
+      const result = {};
+
+      const reviewsIndex = restaurantStr.indexOf('reviews :');
+      let dataPart;
+      let reviewsPart;
+
+      if (reviewsIndex !== -1) {
+        dataPart = restaurantStr.substring(0, reviewsIndex).trim();
+        reviewsPart = restaurantStr.substring(reviewsIndex + 'reviews :'.length).trim();
+      } else {
+        dataPart = restaurantStr.trim();
+      }
+
+      // Parse the dataPart line by line
+      const lines = dataPart.split('\n');
+      for (const line of lines) {
+        const colonIndex = line.indexOf(':');
+        if (colonIndex !== -1) {
+          const key = line.substring(0, colonIndex).trim();
+          const value = line.substring(colonIndex + 1).trim();
+          result[key] = value;
+        }
+      }
+
+      // Set the reviews field
+      if (reviewsPart) {
+        result['reviews'] = reviewsPart;
+      }
+
+      return result;
+    }
 
     fetch('http://127.0.0.1:5000/search-restaurants', {
       method: 'POST',
@@ -21,55 +53,102 @@ document.addEventListener("DOMContentLoaded", function () {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        latitude: 33.749, // Example latitude (replace with actual data)
-        longitude: -84.388, // Example longitude (replace with actual data)
+        latitude: 33.749, // Replace with actual data
+        longitude: -84.388, // Replace with actual data
         name_or_cuisine: searchTerm // Use the search term
       })
     })
       .then(response => response.json())
       .then(data => {
         console.log('Response from Flask:', data);
+
         if (data) {
-          // Process the returned data (restaurants)
-          data.forEach(restaurant => {
-            console.log(restaurant);
-            // Call your createPropertyCard function here
+          Object.keys(data).forEach(key => {
+            const restaurantStr = data[key];
+            console.log('Restaurant String:', restaurantStr);
+
+            // Parse the restaurant string to extract information
+            const restaurant = parseRestaurantStr(restaurantStr);
+
+            // Handle the restaurant image (if available)
+            let restaurantImage = 'img/placeholder.png'; // Default placeholder image
+            if (restaurant.photoUri) {
+              restaurantImage = restaurant.photoUri;
+            }
+
+            // Construct propertyDetails object
+            const propertyDetails = {
+              image1: restaurantImage,
+              image2: restaurantImage,
+              heartIcon1: 'img/sky-blue.svg',
+              heartIcon2: 'img/Vector.svg',
+              name: restaurant.name || 'Unknown',
+              rating: restaurant.rating || 'N/A',
+              starImage: 'img/star-2.svg',
+              distance: '2.3 miles away', // Placeholder distance
+              address: restaurant.address || 'Address not available',
+              info: `${restaurant.cuisine || 'Restaurant'} | Open`,
+              phoneNumber: restaurant['phone number'] || 'Not Available'
+            };
+
+            // Parse the reviews
+            var reviews = [];
+            if (restaurant.reviews) {
+              try {
+                // Prepare the reviews string
+                let reviewsStr = restaurant.reviews.trim();
+
+                // Replace Python None, True, False with JavaScript null, true, false
+                reviewsStr = reviewsStr.replace(/\bNone\b/g, 'null')
+                  .replace(/\bTrue\b/g, 'true')
+                  .replace(/\bFalse\b/g, 'false');
+
+                // Replace single quotes with double quotes, but carefully
+                reviewsStr = reviewsStr.replace(/'/g, '"');
+
+                // Now, we can attempt to parse it as JSON
+                const reviewsData = JSON.parse(reviewsStr);
+
+                reviews = reviewsData.map(review => ({
+                  title: review.authorAttribution.displayName || 'Anonymous',
+                  rating: review.rating.toString(),
+                  date: new Date(review.publishTime).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  }),
+                  text: review.text?.text || 'No review text available.',
+                  starImage: 'img/star-2.svg',
+                  reviewerImage: review.authorAttribution.photoUri || 'img/default-user.png'
+                }));
+              } catch (e) {
+                console.error('Failed to parse reviews for restaurant:', restaurant.name);
+                console.error('Reviews String:', restaurant.reviews);
+                console.error('Parsing Error:', e);
+              }
+            }
+
+            // Call the createPropertyCard function
+            createPropertyCard(
+              restaurantImage,                             // Image source for the restaurant
+              restaurant.name || 'Unknown',                // Restaurant name
+              restaurant.rating || 'N/A',                  // Rating
+              '2.3 miles away',                            // Distance (placeholder)
+              '',                                    // Price range (placeholder)
+              restaurant.cuisine || 'Restaurant',          // Restaurant type
+              'Open',                                      // Status (adjust if available)
+              restaurant.address || 'Address not available', // Address
+              propertyDetails,                             // Property details for description card
+              reviews                                      // Reviews for description card
+            );
           });
         }
       })
-      .catch(error => console.error('Error:', error));
+      .catch(error => {
+        console.error('Error fetching or processing data:', error);
+      });
+
   });
-
-  // Example call to dynamically add a new property card DELETE THIS IN ACTUAL IMPLEMENTATION
-  createPropertyCard(
-    'img/image-2.png',       // Image source
-    'Saltwood Charcuteri',  // Restaurant name
-    '4.0',                 // Rating
-    '2.3 miles away',       // Distance
-    '$30-50',              // Price range
-    'Spanish restaurant',   // Restaurant type
-    'Open',                // Status
-    '60 11th St NE, Atlanta, GA', // Address
-    propertyDetails,        // Property details for description card
-    reviews                 // Reviews for description card
-  );
-
-  // Example call to dynamically add a new property card
-  createPropertyCard(
-    'img/image-2.png',       // Image source
-    'Saltwood Charcuteri',  // Restaurant name
-    '4.0',                 // Rating
-    '2.3 miles away',       // Distance
-    '$30-50',              // Price range
-    'Spanish restaurant',   // Restaurant type
-    'Open',                // Status
-    '60 11th St NE, Atlanta, GA', // Address
-    propertyDetails,        // Property details for description card
-    reviews                 // Reviews for description card
-  );
-
-
-
 
 });
 

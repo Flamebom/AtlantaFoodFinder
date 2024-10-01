@@ -629,7 +629,7 @@
 
 .main-page .driver-name {
   position: relative;
-  width: 247px;
+  max-width: 247px;
   height: 21px;
   margin-top: -1px;
   font-family: "Open Sans-ExtraBold", Helvetica;
@@ -638,7 +638,8 @@
   font-size: 18px;
   letter-spacing: 0;
   line-height: 24.5px;
-  white-space: nowrap;
+  white-space: wrap;
+  margin-bottom: 10px;
 }
 
 .main-page .frame-5 {
@@ -771,10 +772,11 @@
   font-family: "Open Sans-Light", Helvetica;
   font-weight: 300;
   color: #3e4958;
-  font-size: 15px;
+  font-size: 13px;
   letter-spacing: 0;
   line-height: 20.4px;
-  white-space: nowrap;
+  white-space: wrap;
+  max-width: 160px;
 }
 
 
@@ -909,7 +911,7 @@
   position: absolute;
   left: 116px;
   top: 292px;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 .BigCard-main .BigCard-frame {

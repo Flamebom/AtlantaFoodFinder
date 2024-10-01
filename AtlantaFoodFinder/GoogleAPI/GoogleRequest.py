@@ -1,6 +1,7 @@
 import requests
 import json
-import Restaurant
+from . import Restaurant
+# import Restaurant
 """
 Google requests by name uses google smart search to try searching a value by name or cuisine also inputs into restaurant class. 
 Google request class allows for the get_google_restaurants to return a list of the object Restaurant. It has two inputs, latitude and longitude.
@@ -32,6 +33,7 @@ def get_google_restaurants(latitude,longitude,name_or_cuisine='restaurants',dist
     }
     response = requests.request("POST", __URLNAME, headers=headers, data=payload)
     return format_results(response)
+
 def format_results(response):
     rawdata = json.loads(response.text)
     list_restaurants = rawdata.get("places", [])
