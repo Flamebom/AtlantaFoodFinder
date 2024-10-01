@@ -4,6 +4,9 @@ from django.contrib.auth import views as auth_views
 from django.shortcuts import render, redirect
 from .models import CustomUser, Favorite
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 # User registration view
@@ -21,8 +24,15 @@ def signup(request):
 def login_view(request):
     return auth_views.LoginView.as_view(template_name='login.html')(request)
     #login.html is the interface for logging in
-def reset_password_view(request):
-    pass
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'password_reset.html' #html page for resetting password
+    email_template_name = 'password_reset_email.html'
+    subject_template_name = 'password_reset_subject.txt'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('users-home')
 @login_required
 def favorite_restaurant(request, restaurant_name, restaurant_address):
     user = CustomUser.objects.get(pk=request.user.pk)  # Explicitly get CustomUser instance
