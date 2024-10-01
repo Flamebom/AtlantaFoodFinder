@@ -15,74 +15,62 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add search logic here...
 
 
-
-
-
-
-
-
-    // Example call to dynamically add a new property card DELETE THIS IN ACTUAL IMPLEMENTATION
-    createPropertyCard(
-      'img/image-2.png',       // Image source
-      'Saltwood Charcuteri',  // Restaurant name
-      '4.0',                 // Rating
-      '2.3 miles away',       // Distance
-      '$30-50',              // Price range
-      'Spanish restaurant',   // Restaurant type
-      'Open',                // Status
-      '60 11th St NE, Atlanta, GA', // Address
-      propertyDetails,        // Property details for description card
-      reviews                 // Reviews for description card
-    );
-
-    // Example call to dynamically add a new property card
-    createPropertyCard(
-      'img/image-2.png',       // Image source
-      'Saltwood Charcuteri',  // Restaurant name
-      '4.0',                 // Rating
-      '2.3 miles away',       // Distance
-      '$30-50',              // Price range
-      'Spanish restaurant',   // Restaurant type
-      'Open',                // Status
-      '60 11th St NE, Atlanta, GA', // Address
-      propertyDetails,        // Property details for description card
-      reviews                 // Reviews for description card
-    );
-    // Example call to dynamically add a new property card
-    createPropertyCard(
-      'img/image-2.png',       // Image source
-      'Saltwood Charcuteri',  // Restaurant name
-      '4.0',                 // Rating
-      '2.3 miles away',       // Distance
-      '$30-50',              // Price range
-      'Spanish restaurant',   // Restaurant type
-      'Open',                // Status
-      '60 11th St NE, Atlanta, GA', // Address
-      propertyDetails,        // Property details for description card
-      reviews                 // Reviews for description card
-    );
-    // Example call to dynamically add a new property card
-    createPropertyCard(
-      'img/image-2.png',       // Image source
-      'Saltwood Charcuteri',  // Restaurant name
-      '4.0',                 // Rating
-      '2.3 miles away',       // Distance
-      '$30-50',              // Price range
-      'Spanish restaurant',   // Restaurant type
-      'Open',                // Status
-      '60 11th St NE, Atlanta, GA', // Address
-      propertyDetails,        // Property details for description card
-      reviews                 // Reviews for description card
-    );
-
-
-
-
-
-
-
-
+    fetch('http://127.0.0.1:5000/search-restaurants', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        latitude: 33.749, // Example latitude (replace with actual data)
+        longitude: -84.388, // Example longitude (replace with actual data)
+        name_or_cuisine: searchTerm // Use the search term
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Response from Flask:', data);
+        if (data) {
+          // Process the returned data (restaurants)
+          data.forEach(restaurant => {
+            console.log(restaurant);
+            // Call your createPropertyCard function here
+          });
+        }
+      })
+      .catch(error => console.error('Error:', error));
   });
+
+  // Example call to dynamically add a new property card DELETE THIS IN ACTUAL IMPLEMENTATION
+  createPropertyCard(
+    'img/image-2.png',       // Image source
+    'Saltwood Charcuteri',  // Restaurant name
+    '4.0',                 // Rating
+    '2.3 miles away',       // Distance
+    '$30-50',              // Price range
+    'Spanish restaurant',   // Restaurant type
+    'Open',                // Status
+    '60 11th St NE, Atlanta, GA', // Address
+    propertyDetails,        // Property details for description card
+    reviews                 // Reviews for description card
+  );
+
+  // Example call to dynamically add a new property card
+  createPropertyCard(
+    'img/image-2.png',       // Image source
+    'Saltwood Charcuteri',  // Restaurant name
+    '4.0',                 // Rating
+    '2.3 miles away',       // Distance
+    '$30-50',              // Price range
+    'Spanish restaurant',   // Restaurant type
+    'Open',                // Status
+    '60 11th St NE, Atlanta, GA', // Address
+    propertyDetails,        // Property details for description card
+    reviews                 // Reviews for description card
+  );
+
+
+
+
 });
 
 
