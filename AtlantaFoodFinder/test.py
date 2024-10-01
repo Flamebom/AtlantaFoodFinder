@@ -20,7 +20,7 @@ class CustomUserTestCase(TestCase):
         self.assertTrue(login_successful)
 
     def test_signup(self):
-        # Test signing up a new user
+        # Test signing up a new userf
         response = self.client.post(reverse('signup'), {
             'username': 'newuser',
             'password1': 'newpassword123',
