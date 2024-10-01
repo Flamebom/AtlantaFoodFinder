@@ -36,3 +36,6 @@ def format_results(response):
     rawdata = json.loads(response.text)
     list_restaurants = rawdata.get("places", [])
     restaurant_output = []
+    for i in range(len(list_restaurants)):
+        restaurant_output.append(Restaurant.Restaurant(list_restaurants[i]))
+    return restaurant_output

@@ -3,7 +3,7 @@ import math
 Class Restaurant contains all the information required for this project, names are self explanatory.
 """
 class Restaurant:
-    def __init__(self, restaurant_dictionary,user_latitude, user_longitude):
+    def __init__(self, restaurant_dictionary):
         #print(restaurant_dictionary)
         self.phone_number =restaurant_dictionary.get('nationalPhoneNumber',None)
         self.address = restaurant_dictionary.get('formattedAddress',None)
@@ -14,7 +14,7 @@ class Restaurant:
         self.name = restaurant_dictionary['displayName']['text']
         self.cuisine = restaurant_dictionary['primaryType']
         self.reviews = restaurant_dictionary['reviews']
-        self.distance = self.calculate_distance(user_latitude, user_longitude)
+       # self.distance = self.calculate_distance(user_latitude, user_longitude)
 
 
     def calculate_distance(self, user_latitude, user_longitude):
