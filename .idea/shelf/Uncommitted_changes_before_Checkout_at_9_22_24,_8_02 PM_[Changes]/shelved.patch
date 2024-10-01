@@ -1,0 +1,17 @@
+Index: AtlantaFoodFinder/google_maps_api.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import googlemaps\nfrom restaurant import Restaurant\n\nclass GoogleMapsAPI:\n    def __init__(self, api_key):\n        self.gmaps = googlemaps.Client(key=api_key)\n\n    def get_nearby_restaurants(self, location, radius=1500):\n        try:\n            places_result = self.gmaps.places_nearby(location=location, radius=radius, type='restaurant')\n            restaurants = []\n\n            for place in places_result['results']:\n                name = place['name']\n                rating = place.get('rating')\n                address = place.get('vicinity')\n                place_id = place['place_id']\n\n                lat = place['geometry']['location']['lat']\n                lng = place['geometry']['location']['lng']\n\n                details = self.get_place_details(place_id)\n\n                cuisine = self.infer_cuisine(name)\n\n                restaurant = Restaurant(\n                    name=name,\n                    rating=rating,\n                    address=address,\n                    latitude=lat,\n                    longitude=lng,\n                    phone=details.get('formatted_phone_number'),\n                    opening_hours=details.get('opening_hours', {}).get('weekday_text'),\n                    menu=details.get('menu'),\n                    website=details.get('website'),\n                    cuisine=cuisine,\n                    gmaps_client=self.gmaps\n                )\n                restaurants.append(restaurant)\n            return restaurants\n\n        except googlemaps.exceptions.ApiError as e:\n            print(f\"API error occurred: {e}\")\n            return []\n\n    def get_place_details(self, place_id):\n        try:\n            details = self.gmaps.place(place_id=place_id, fields=[\n                'name', 'formatted_phone_number', 'opening_hours', 'menu', 'website'\n            ])\n            return details.get('result', {})\n        except googlemaps.exceptions.ApiError as e:\n            print(f\"API error occurred while fetching details: {e}\")\n            return {}\n\n    def infer_cuisine(self, name):\n        cuisine_keywords = {\n            'Sushi': 'Japanese',\n            'Pizza': 'Italian',\n            'Burger': 'American',\n            'Tacos': 'Mexican',\n            'Pasta': 'Italian',\n            'Curry': 'Indian',\n            'BBQ': 'Barbecue',\n            'Dim Sum': 'Chinese',\n            'Kebab': 'Middle Eastern'\n        }\n\n        for keyword, cuisine in cuisine_keywords.items():\n            if keyword.lower() in name.lower():\n                return cuisine\n        return 'Unknown'\n
+===================================================================
+diff --git a/AtlantaFoodFinder/google_maps_api.py b/AtlantaFoodFinder/google_maps_api.py
+--- a/AtlantaFoodFinder/google_maps_api.py	(revision 7ece350cc3c682c38d36d0ecdfdbbd1fcf119fe9)
++++ b/AtlantaFoodFinder/google_maps_api.py	(date 1727049417419)
+@@ -58,7 +58,7 @@
+             'Sushi': 'Japanese',
+             'Pizza': 'Italian',
+             'Burger': 'American',
+-            'Tacos': 'Mexican',
++            'Taco': 'Mexican',
+             'Pasta': 'Italian',
+             'Curry': 'Indian',
+             'BBQ': 'Barbecue',
