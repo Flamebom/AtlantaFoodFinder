@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
-
+{% load static %}
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="create-account.css" />
+    <link rel="stylesheet" href="../AtlantaFoodFinder/static/globals.css" />
+    <link rel="stylesheet" href="../AtlantaFoodFinder/static/create-account.css" />
 </head>
 
 <body>
     <div class="element">
         <div class="overlap-group-wrapper">
-            <div class="overlap-group"> <img class="components-for-page" src="img/components-for-page-1.png" />
+            <div class="overlap-group"> <img class="components-for-page" src="../AtlantaFoodFinder/static/img/components-for-page-1.png" />
                 <div class="sign-up">
                     <div class="frame">
                         <div class="text-wrapper">Become a User</div>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="illustration-and">
-                    <div class="frame-4"> <img class="moneyverse-home" src="img/Hot_dog_with_mustard.png" />
+                    <div class="frame-4"> <img class="moneyverse-home" src="../AtlantaFoodFinder/static/img/Hot_dog_with_mustard.png" />
                         <div class="frame-5">
                             <div class="text-wrapper-4">Atlanta Food Finder</div>
                             <div class="frame-6">
@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-    <script src="create-account.js"></script>
+       <script src="{% static '/create-account.js' %}"></script>
 </body>
 
 </html>

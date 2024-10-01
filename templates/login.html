@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 
+{% load static %}
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="{% static 'globals.css' %}" />
+    <link rel="stylesheet" href="{% static 'login.css' %}" />
 </head>
 
 <body>
@@ -54,7 +55,7 @@
             </div>
 
             <div class="illustration-and">
-                <div class="frame-5"> <img class="moneyverse-home" src="img/Hot_dog_with_mustard.png" />
+                <div class="frame-5"> <img class="moneyverse-home" src="../AtlantaFoodFinder/static/img/Hot_dog_with_mustard.png" />
                     <div class="frame-6">
                         <div class="text-wrapper-2">Atlanta Food Finder</div>
                         <div class="frame-7">
@@ -80,8 +81,7 @@
             </div>
         </div>
     </div>
-
-    <script src="login.js"></script>
+    <script src="{% static '/login.js' %}"></script>
 </body>
 
 </html>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
+{% load static %}
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="globals.css" />
-  <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../AtlantaFoodFinder/static/globals.css" />
+  <link rel="stylesheet" href="../AtlantaFoodFinder/static/styleguide.css" />
+  <link rel="stylesheet" href="../AtlantaFoodFinder/static/style.css" />
   <title></title>
 </head>
 
@@ -36,7 +36,7 @@
       <div class="div">
         <header class="header">
           <div class="frame">
-            <div class="group"><img class="union" src="img/union.svg" /></div>
+            <div class="group"><img class="union" src="../AtlantaFoodFinder/static/img/union.svg" /></div>
             <div class="search-selected">
               <div class="overlap">
                 <div class="fields">
@@ -52,7 +52,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="button"><img class="search" src="img/search-1.svg" /> <a class="account"></a>
+                <div class="button"><img class="search" src="../AtlantaFoodFinder/static/img/search-1.svg" /> <a class="account"></a>
                   <!-- The account element --></div>
               </div>
             </div>
@@ -67,7 +67,7 @@
                       <div class="badge-primary">
                         <div class="best-price">BEST PRICE</div>
                       </div>
-                    </div> <img class="image" src="img/image-2.png" />
+                    </div> <img class="image" src="../AtlantaFoodFinder/static/img/image-2.png" />
                   </div>
                 </div>
                 <div class="frame-3">
@@ -103,7 +103,7 @@
                   <div class="text-wrapper2">Folder 1</div>
                   <div class="type-2 delete-folder">Delete</div>
                   <img class="img" src="img/generalline-2.svg" />
-                  <img class="sky-blue" src="img/sky-blue.svg" />
+                  <img class="sky-blue" src="../AtlantaFoodFinder/static/img/sky-blue.svg" />
                 </div>
               </div>
 
@@ -111,7 +111,7 @@
               <div class="div create-folder-section">
                 <input type="text" class="new-folder-input" placeholder="New Folder" />
                 <img class="img" src="img/image.svg" />
-                <img class="sky-blue" src="img/sky-blue.svg" />
+                <img class="sky-blue" src="../AtlantaFoodFinder/static/img/sky-blue.svg" />
               </div>
             </div>
             <!-- Distance Slider -->
@@ -141,7 +141,7 @@
         </div>
         <div class="overlap-3">
           <div class="ellipse"></div>
-          <img class="filter-icon" src="img/filter-icon.svg" />
+          <img class="filter-icon" src="../AtlantaFoodFinder/static/img/filter-icon.svg" />
         </div>
 
 
@@ -164,7 +164,7 @@
               <div class="text-wrapper">Folder 1</div>
               <div class="type-2 delete-folder">Delete</div>
               <img class="img" src="img/generalline-2.svg" />
-              <img class="sky-blue" src="img/sky-blue.svg" />
+              <img class="sky-blue" src="../AtlantaFoodFinder/static/img/sky-blue.svg" />
             </div>
           </div>
         </div>
@@ -174,13 +174,13 @@
 
 
       </div>
-      <div class="map-zoom"> <img class="plus" src="img/plus-1.svg" /> <img class="minus" src="img/minus-1.svg" />
+      <div class="map-zoom"> <img class="plus" src="../AtlantaFoodFinder/static/img/plus-1.svg" /> <img class="minus" src="../AtlantaFoodFinder/static/img/minus-1.svg" />
         <div class="seperator"></div>
       </div>
 
     </div>
   </div>
 </body>
-<script src="main.js"></script>
+    <script src="{% static '/main.js' %}"></script>
 
 </html>
