@@ -12,8 +12,8 @@ from .views import (
 )
 
 urlpatterns = [
-    path('', home_view, name='home'),
-    path('signup/', signup, name='signup'),
+    path('', home_view, name='index'),
+    path('login/create-account.html', signup, name='create-account'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('favorites/', favorite_list, name='favorite_list'),
     path('favorites/add/<str:restaurant_name>/<str:restaurant_address>/', favorite_restaurant, name='favorite_restaurant'),

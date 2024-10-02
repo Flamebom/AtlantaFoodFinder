@@ -10,7 +10,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 
 def home_view(request):
-    return render(request, 'home.html')  # Need to make home.html template
+    return render(request, 'index.html')  # Need to make home.html template
 # User registration view
 def is_valid_email(email):
     try:
