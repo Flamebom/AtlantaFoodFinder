@@ -1,6 +1,8 @@
 // Initialize and add the map
 let map;
 
+console.log('main.js is loaded');
+
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
@@ -8,25 +10,25 @@ async function initMap() {
   // Creates map centered around GT
   map = new Map(document.getElementById("map"), {
     zoom: 15,
-    center: { lat:33.7749, lng:84.3964 },
+    center: { lat: 33.7749, lng: 84.3964 },
     mapId: "YOUR_MAP_ID",
   });
 
   // Checks if user has enabled location services
   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          }
-          const marker = new AdvancedMarkerElement({
-            map: map,
-            position: pos,
-          })
-          map.setCenter(pos);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
         }
-      );
+        const marker = new AdvancedMarkerElement({
+          map: map,
+          position: pos,
+        })
+        map.setCenter(pos);
+      }
+    );
   }
 }
 
@@ -210,12 +212,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
   const folderContainer = document.querySelector('.selection-card'); // Where favorite folder is shown
   const folderIcon = document.querySelector('.selection-card2');  // The folder icon in the Big Card
   let currentBigCardData = null;  // Store the current opened big card data here
   let isFavorite = false;  // Track if the Big Card is in Favorite
+
+  console.log('DOM fully loaded');  // Debugging to ensure DOMContentLoaded is working
 
   // Add event listener to the Folder icon to directly add or remove BigCard to/from "Favorite"
   if (folderIcon) {
@@ -229,15 +232,20 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       isFavorite = !isFavorite;  // Toggle favorite status
     });
+  } else {
+    console.log('Folder icon not found');  // Debugging: Check if folderIcon exists
   }
 
   // Render only the "Favorite" folder in the folder container
   function renderFavoriteFolder() {
+    console.log('Rendering favorite folder');  // Debugging: Log when rendering starts
+
     // Clear any previous rendered folders
     document.querySelectorAll('.folder-item').forEach(item => item.remove());
 
     // Render "Favorite" folder if not already rendered
     if (!document.querySelector('.favoriteframe-rendered')) {
+      console.log('Rendering new Favorite folder');  // Debugging: Ensure the folder is being rendered
       const favoriteFolderHTML = `
         <div class="favoriteframe favoriteframe-rendered" data-folder="Favorite">
           <div class="type">Favorite</div>
@@ -249,55 +257,55 @@ document.addEventListener("DOMContentLoaded", function () {
       // Insert "Favorite" into the folderContainer
       folderContainer.insertAdjacentHTML('afterbegin', favoriteFolderHTML);
 
-      // Handle clicks on the "Favorite" folder
-      document.querySelectorAll('.favoriteframe').forEach(favorite => {
-        favorite.addEventListener('click', function () {
-          const folderName = favorite.getAttribute('data-folder');
+      // Check if Favorite element is present
+      const favoriteElement = document.querySelector('.favoriteframe');
+      if (favoriteElement) {
+        console.log('Favorite folder element found, adding click event listener');  // Debugging: Ensure the favorite folder exists
+
+        // Handle clicks on the "Favorite" folder
+        favoriteElement.addEventListener('click', function () {
+          const folderName = favoriteElement.getAttribute('data-folder');
+          console.log(`Favorite folder clicked: ${folderName}`);  // Debugging: Log click events
           loadFavoriteData(folderName);  // Load the "Favorite" folder data
         });
-      });
+      } else {
+        console.log('Favorite folder element not found after rendering');  // Debugging: Ensure the favorite folder is rendered
+      }
     }
-  }
-
-  // Function to add the current Big Card to "Favorite"
-  function addBigCardToFavorite(bigCardData) {
-    if (!bigCardData) {
-      console.error('No big card data available.');
-      return;
-    }
-    console.log(`Adding big card to Favorite`);
-    console.log(`Big card data:`, bigCardData);
-
-    // Implement your logic here to save the Big Card data to "Favorite"
-  }
-
-  // Function to remove the current Big Card from "Favorite"
-  function removeBigCardFromFavorite(bigCardData) {
-    if (!bigCardData) {
-      console.error('No big card data available.');
-      return;
-    }
-    console.log(`Removing big card from Favorite`);
-    console.log(`Big card data:`, bigCardData);
-
-    // Implement your logic here to remove the Big Card from "Favorite"
   }
 
   // Function to load "Favorite" folder data
   function loadFavoriteData(folderName) {
     if (folderName === 'Favorite') {
-      console.log(`Loading data for folder: ${folderName}`);
-      // Add logic for loading data specific to "Favorite" folder here
+      console.log(`Loading data for folder: ${folderName} hiii can you seeee mee`);
+      fetch('http://127.0.0.1:8000/favorites/')
+        .then(response => {
+          console.log('Fetch response received. Status:', response.status);  // This should show up
+          return response.json();
+        })
+        .then(data => {
+          console.log('Fetched data:', data);  // This will show the favorites object
+
+          const favorites = data.favorites;
+
+          if (favorites.length === 0) {
+            console.log('No favorite items found');  // This will show if the favorites array is empty
+          } else {
+            console.log('Favorite items array:', favorites);
+
+            favorites.forEach(favorite => {
+              console.log('Favorite item:', favorite);  // Log each favorite item
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Error loading favorites:', error);  // Catch and log any errors
+        });
+    } else {
+      console.log('Folder is not Favorite. Skipping data load.');
     }
   }
 
-  // Function to update the text of the "Favorite" or "Delete from Favorite" button
-  function updateFavoriteText(text) {
-    const favoriteText = document.querySelector('.selection-card2 .type');
-    if (favoriteText) {
-      favoriteText.textContent = text;
-    }
-  }
 
   // Initial render to show only "Favorite" folder
   renderFavoriteFolder();
@@ -309,7 +317,17 @@ document.addEventListener("DOMContentLoaded", function () {
     isFavorite = false;
     updateFavoriteText("Favorite");
   };
+
+  // Function to update the text of the "Favorite" or "Delete from Favorite" button
+  function updateFavoriteText(text) {
+    const favoriteText = document.querySelector('.selection-card2 .type');
+    if (favoriteText) {
+      favoriteText.textContent = text;
+    }
+  }
+
 });
+
 
 // Toggle the 'active' class and show/hide the slider
 document.querySelector('.ellipse').addEventListener('click', function () {

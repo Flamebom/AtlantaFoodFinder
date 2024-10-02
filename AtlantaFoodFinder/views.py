@@ -165,11 +165,16 @@ def remove_favorite_restaurant(request, restaurant_name):
     message = user.remove_favorite(restaurant_name)
     return redirect('favorite_list')
 
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+
 @login_required
 def favorite_list(request):
     user = request.user  # Get the logged-in user
-    favorites = user.get_favorites()
-    return render(request, 'favorite_list.html', {'favorites': favorites})
+    favorites = user.get_favorites()  # Assuming this returns a list of favorites
+    favorite_list = [str(favorite) for favorite in favorites]  # Convert to strings if needed
+    return JsonResponse({'favorites': favorite_list})  # Return as JSON
+
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = 'passwordreset.html'  # HTML page for resetting password
