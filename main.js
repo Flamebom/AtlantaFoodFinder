@@ -39,6 +39,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchButton = document.querySelector('.button');
 
   searchButton.addEventListener('click', function () {
+    const distanceSlider = document.getElementById('distance-slider');
+    const ratingSlider = document.getElementById('rating-slider');
+
+    let distance = distanceSlider.value;
+    let ratings = ratingSlider.value;
+
+    distanceSlider.addEventListener('input', function () {
+      distance = this.value; // Update the distance value
+      console.log(`Selected distance: ${distance} miles`);
+    });
+
+    ratingSlider.addEventListener('input', function () {
+      ratings = this.value; // Update the ratings value
+      console.log(`Selected minimum rating: ${ratings}`);
+    });
+
     const selectedCategory = searchCategory.value;
     const searchTerm = searchInput.value;
 
@@ -82,106 +98,112 @@ document.addEventListener("DOMContentLoaded", function () {
       return result;
     }
 
-    fetch('http://127.0.0.1:5000/search-restaurants', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        latitude: 33.749, // Replace with actual data
-        longitude: -84.388, // Replace with actual data
-        name_or_cuisine: searchTerm // Use the search term
+    console.log(distance),
+      console.log(ratings),
+
+      fetch('http://127.0.0.1:5000/search-restaurants', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+
+        body: JSON.stringify({
+          latitude: 33.749, // Replace with actual data
+          longitude: -84.388, // Replace with actual data
+          name_or_cuisine: searchTerm, // Use the search term
+          distance: distance,
+          ratings: ratings
+        })
       })
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Response from Flask:', data);
+        .then(response => response.json())
+        .then(data => {
+          console.log('Response from Flask:', data);
 
-        if (data) {
-          Object.keys(data).forEach(key => {
-            const restaurantStr = data[key];
-            console.log('Restaurant String:', restaurantStr);
+          if (data) {
+            Object.keys(data).forEach(key => {
+              const restaurantStr = data[key];
+              console.log('Restaurant String:', restaurantStr);
 
-            // Parse the restaurant string to extract information
-            const restaurant = parseRestaurantStr(restaurantStr);
+              // Parse the restaurant string to extract information
+              const restaurant = parseRestaurantStr(restaurantStr);
 
-            // Handle the restaurant image (if available)
-            let restaurantImage = 'img/placeholder.png'; // Default placeholder image
-            if (restaurant.photoUri) {
-              restaurantImage = restaurant.photoUri;
-            }
-
-            // Construct propertyDetails object
-            const propertyDetails = {
-              image1: restaurantImage,
-              image2: restaurantImage,
-              heartIcon1: 'img/sky-blue.svg',
-              heartIcon2: 'img/Vector.svg',
-              name: restaurant.name || 'Unknown',
-              rating: restaurant.rating || 'N/A',
-              starImage: 'img/star-2.svg',
-              distance: '2.3 miles away', // Placeholder distance
-              address: restaurant.address || 'Address not available',
-              info: `${restaurant.cuisine || 'Restaurant'} | Open`,
-              phoneNumber: restaurant['phone number'] || 'Not Available'
-            };
-
-            // Parse the reviews
-            var reviews = [];
-            if (restaurant.reviews) {
-              try {
-                // Prepare the reviews string
-                let reviewsStr = restaurant.reviews.trim();
-
-                // Replace Python None, True, False with JavaScript null, true, false
-                reviewsStr = reviewsStr.replace(/\bNone\b/g, 'null')
-                  .replace(/\bTrue\b/g, 'true')
-                  .replace(/\bFalse\b/g, 'false');
-
-                // Replace single quotes with double quotes, but carefully
-                reviewsStr = reviewsStr.replace(/'/g, '"');
-
-                // Now, we can attempt to parse it as JSON
-                const reviewsData = JSON.parse(reviewsStr);
-
-                reviews = reviewsData.map(review => ({
-                  title: review.authorAttribution.displayName || 'Anonymous',
-                  rating: review.rating.toString(),
-                  date: new Date(review.publishTime).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  }),
-                  text: review.text?.text || 'No review text available.',
-                  starImage: 'img/star-2.svg',
-                  reviewerImage: review.authorAttribution.photoUri || 'img/default-user.png'
-                }));
-              } catch (e) {
-                console.error('Failed to parse reviews for restaurant:', restaurant.name);
-                console.error('Reviews String:', restaurant.reviews);
-                console.error('Parsing Error:', e);
+              // Handle the restaurant image (if available)
+              let restaurantImage = 'img/placeholder.png'; // Default placeholder image
+              if (restaurant.photoUri) {
+                restaurantImage = restaurant.photoUri;
               }
-            }
 
-            // Call the createPropertyCard function
-            createPropertyCard(
-              restaurantImage,                             // Image source for the restaurant
-              restaurant.name || 'Unknown',                // Restaurant name
-              restaurant.rating || 'N/A',                  // Rating
-              '2.3 miles away',                            // Distance (placeholder)
-              '',                                    // Price range (placeholder)
-              restaurant.cuisine || 'Restaurant',          // Restaurant type
-              'Open',                                      // Status (adjust if available)
-              restaurant.address || 'Address not available', // Address
-              propertyDetails,                             // Property details for description card
-              reviews                                      // Reviews for description card
-            );
-          });
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching or processing data:', error);
-      });
+              // Construct propertyDetails object
+              const propertyDetails = {
+                image1: restaurantImage,
+                image2: restaurantImage,
+                heartIcon1: 'img/sky-blue.svg',
+                heartIcon2: 'img/Vector.svg',
+                name: restaurant.name || 'Unknown',
+                rating: restaurant.rating || 'N/A',
+                starImage: 'img/star-2.svg',
+                distance: '2.3 miles away', // Placeholder distance
+                address: restaurant.address || 'Address not available',
+                info: `${restaurant.cuisine || 'Restaurant'} | Open`,
+                phoneNumber: restaurant['phone number'] || 'Not Available'
+              };
+
+              // Parse the reviews
+              var reviews = [];
+              if (restaurant.reviews) {
+                try {
+                  // Prepare the reviews string
+                  let reviewsStr = restaurant.reviews.trim();
+
+                  // Replace Python None, True, False with JavaScript null, true, false
+                  reviewsStr = reviewsStr.replace(/\bNone\b/g, 'null')
+                    .replace(/\bTrue\b/g, 'true')
+                    .replace(/\bFalse\b/g, 'false');
+
+                  // Replace single quotes with double quotes, but carefully
+                  reviewsStr = reviewsStr.replace(/'/g, '"');
+
+                  // Now, we can attempt to parse it as JSON
+                  const reviewsData = JSON.parse(reviewsStr);
+
+                  reviews = reviewsData.map(review => ({
+                    title: review.authorAttribution.displayName || 'Anonymous',
+                    rating: review.rating.toString(),
+                    date: new Date(review.publishTime).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    }),
+                    text: review.text?.text || 'No review text available.',
+                    starImage: 'img/star-2.svg',
+                    reviewerImage: review.authorAttribution.photoUri || 'img/default-user.png'
+                  }));
+                } catch (e) {
+                  console.error('Failed to parse reviews for restaurant:', restaurant.name);
+                  console.error('Reviews String:', restaurant.reviews);
+                  console.error('Parsing Error:', e);
+                }
+              }
+
+              // Call the createPropertyCard function
+              createPropertyCard(
+                restaurantImage,                             // Image source for the restaurant
+                restaurant.name || 'Unknown',                // Restaurant name
+                restaurant.rating || 'N/A',                  // Rating
+                '2.3 miles away',                            // Distance (placeholder)
+                '',                                    // Price range (placeholder)
+                restaurant.cuisine || 'Restaurant',          // Restaurant type
+                'Open',                                      // Status (adjust if available)
+                restaurant.address || 'Address not available', // Address
+                propertyDetails,                             // Property details for description card
+                reviews                                      // Reviews for description card
+              );
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching or processing data:', error);
+        });
 
   });
 
@@ -189,40 +211,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
 document.addEventListener("DOMContentLoaded", function () {
-  const folderList = [{ name: 'Favorite', deletable: false }, { name: 'Folder 1', deletable: true }];
-  const folderContainer = document.querySelector('.selection-card');
-  const folderContainer2 = document.querySelector('.selection-card2');
-  const createFolderInput = document.querySelector('.new-folder-input');
-  const folderIcon = document.querySelector('.BigCard-sky-blue');  // Folder icon in the Big Card
+  const folderContainer = document.querySelector('.selection-card'); // Where favorite folder is shown
+  const folderIcon = document.querySelector('.selection-card2');  // The folder icon in the Big Card
   let currentBigCardData = null;  // Store the current opened big card data here
+  let isFavorite = false;  // Track if the Big Card is in Favorite
 
-  // Fix: Prevent "null" from appearing by ensuring valid folder names
-  const addFolder = (name) => {
-    if (!name || name.trim() === '') {
-      console.error('Invalid folder name.'); // Ensure folder name is valid
-      return;
-    }
-    folderList.push({ name, deletable: true });
-    renderFolders();
-  };
-
-
-  // Add event listener to folder icon to toggle selection-card2 visibility
+  // Add event listener to the Folder icon to directly add or remove BigCard to/from "Favorite"
   if (folderIcon) {
     folderIcon.addEventListener('click', function () {
-      toggleSelectionCard2();  // Toggle visibility
+      if (!isFavorite) {
+        addBigCardToFavorite(currentBigCardData);  // Add to Favorite
+        updateFavoriteText("Delete from Favorite");  // Change text to "Delete from Favorite"
+      } else {
+        removeBigCardFromFavorite(currentBigCardData);  // Remove from Favorite
+        updateFavoriteText("Favorite");  // Change text back to "Favorite"
+      }
+      isFavorite = !isFavorite;  // Toggle favorite status
     });
   }
 
-  // Render folders for both selection-card and selection-card2
-  function renderFolders() {
-    // Clear all folder items except the Favorite and input section
+  // Render only the "Favorite" folder in the folder container
+  function renderFavoriteFolder() {
+    // Clear any previous rendered folders
     document.querySelectorAll('.folder-item').forEach(item => item.remove());
 
-    // Render "Favorite" folder only once
+    // Render "Favorite" folder if not already rendered
     if (!document.querySelector('.favoriteframe-rendered')) {
       const favoriteFolderHTML = `
         <div class="favoriteframe favoriteframe-rendered" data-folder="Favorite">
@@ -232,109 +246,101 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       `;
 
-      // Insert Favorite into selection-card and selection-card2, but only once
+      // Insert "Favorite" into the folderContainer
       folderContainer.insertAdjacentHTML('afterbegin', favoriteFolderHTML);
-      folderContainer2.insertAdjacentHTML('afterbegin', favoriteFolderHTML);
 
-      // Handle "Favorite" folder clicks for both containers
+      // Handle clicks on the "Favorite" folder
       document.querySelectorAll('.favoriteframe').forEach(favorite => {
         favorite.addEventListener('click', function () {
           const folderName = favorite.getAttribute('data-folder');
-          loadFolderData(folderName);  // Handle loading data for "Favorite"
-          addBigCardToFolder(folderName, currentBigCardData);  // Handle adding to folder
+          loadFavoriteData(folderName);  // Load the "Favorite" folder data
         });
       });
     }
-
-    // Render all deletable folders in selection-card and selection-card2
-    folderList.forEach(folder => {
-      if (folder.deletable) {
-        // Render in selection-card
-        const folderItem = document.createElement('div');
-        folderItem.classList.add('folder-item');
-        folderItem.setAttribute('data-folder', folder.name);
-
-        folderItem.innerHTML = `
-          <div class="div">
-            <div class="text-wrapper">${folder.name}</div>
-            <div class="type-2 delete-folder">Delete</div>
-            <img class="img" src="img/generalline-2.svg" />
-            <img class="sky-blue" src="img/sky-blue.svg" />
-          </div>
-        `;
-
-        // Add delete functionality for deletable folders
-        folderItem.querySelector('.delete-folder').addEventListener('click', function () {
-          const folderName = folderItem.getAttribute('data-folder');
-          deleteFolder(folderName);
-        });
-
-        // Add click functionality to load folder data
-        folderItem.addEventListener('click', function () {
-          const folderName = folderItem.getAttribute('data-folder');
-          loadFolderData(folderName);
-        });
-
-        // Insert the folder into selection-card
-        folderContainer.insertBefore(folderItem, document.querySelector('.create-folder-section'));
-
-        // Clone the folder for selection-card2 and remove delete button
-        const folderItem2 = folderItem.cloneNode(true);
-        folderItem2.querySelector('.delete-folder').remove();
-        folderItem2.addEventListener('click', function () {
-          const folderName = folderItem2.getAttribute('data-folder');
-          addBigCardToFolder(folderName, currentBigCardData);
-        });
-
-        // Insert into selection-card2
-        folderContainer2.appendChild(folderItem2);
-      }
-    });
   }
 
-  // Function to delete folder if the name is valid
-  function deleteFolder(name) {
-    const index = folderList.findIndex(folder => folder.name === name);
-    if (index !== -1) {
-      folderList.splice(index, 1);
-      renderFolders(); // Re-render folders after deletion
-    }
-  }
-
-  // Function to add a Big Card to a folder
-  function addBigCardToFolder(folderName, bigCardData) {
+  // Function to add the current Big Card to "Favorite"
+  function addBigCardToFavorite(bigCardData) {
     if (!bigCardData) {
       console.error('No big card data available.');
       return;
     }
-    console.log(`Adding big card to folder: ${folderName}`);
+    console.log(`Adding big card to Favorite`);
     console.log(`Big card data:`, bigCardData);
 
-    // Implement your logic here to save the Big Card data to the selected folder
+    // Implement your logic here to save the Big Card data to "Favorite"
   }
 
-  // Function to load folder data
-  function loadFolderData(folderName) {
-    console.log(`Loading data for folder: ${folderName}`);
-    // Add logic for loading folder data here
-  }
-
-  // Event listener to handle folder creation on pressing Enter key
-  createFolderInput.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' && createFolderInput.value.trim() !== '') {
-      addFolder(createFolderInput.value.trim());
-      createFolderInput.value = '';  // Clear the input
+  // Function to remove the current Big Card from "Favorite"
+  function removeBigCardFromFavorite(bigCardData) {
+    if (!bigCardData) {
+      console.error('No big card data available.');
+      return;
     }
-  });
+    console.log(`Removing big card from Favorite`);
+    console.log(`Big card data:`, bigCardData);
 
-  // Initial render
-  renderFolders();
+    // Implement your logic here to remove the Big Card from "Favorite"
+  }
+
+  // Function to load "Favorite" folder data
+  function loadFavoriteData(folderName) {
+    if (folderName === 'Favorite') {
+      console.log(`Loading data for folder: ${folderName}`);
+      // Add logic for loading data specific to "Favorite" folder here
+    }
+  }
+
+  // Function to update the text of the "Favorite" or "Delete from Favorite" button
+  function updateFavoriteText(text) {
+    const favoriteText = document.querySelector('.selection-card2 .type');
+    if (favoriteText) {
+      favoriteText.textContent = text;
+    }
+  }
+
+  // Initial render to show only "Favorite" folder
+  renderFavoriteFolder();
 
   // Expose current Big Card data setter globally
   window.setCurrentBigCardData = function (bigCardData) {
     currentBigCardData = bigCardData;
+    // Reset the state of the button when a new Big Card is opened
+    isFavorite = false;
+    updateFavoriteText("Favorite");
   };
 });
+
+// Toggle the 'active' class and show/hide the slider
+document.querySelector('.ellipse').addEventListener('click', function () {
+  // Toggle the 'active' class on click
+  this.classList.toggle('active');
+
+  // Select the slider element and toggle its visibility
+  const slider = document.querySelector('.secondary-menu'); // Assuming secondary-menu contains the sliders
+  if (this.classList.contains('active')) {
+    slider.style.display = 'flex';  // Use 'flex' to ensure correct alignment inside the box
+  } else {
+    slider.style.display = 'none';  // Hide the slider when not active
+  }
+});
+
+
+// Toggle the 'active' class and show/hide the slider
+document.querySelector('.ellipse').addEventListener('click', function () {
+  // Toggle the 'active' class on click
+  this.classList.toggle('active');
+
+  // Select the slider element and toggle its visibility
+  const slider = document.querySelector('.secondary-menu'); // Assuming secondary-menu contains the sliders
+  if (this.classList.contains('active')) {
+    slider.style.display = 'flex';  // Use 'flex' to ensure correct alignment inside the box
+  } else {
+    slider.style.display = 'none';  // Hide the slider when not active
+  }
+});
+
+
 
 
 
@@ -365,7 +371,7 @@ const distanceValue = document.getElementById('distance-value');
 
 distanceSlider.addEventListener('input', function () {
   distanceValue.textContent = `${this.value} Miles`;
-
+  const distance = this.value;
   // Change background gradient to fill the bar based on the slider value
   const percentage = (this.value - this.min) / (this.max - this.min) * 100;
   this.style.background = `linear-gradient(to right, #000000 ${percentage}%, #d9d9d980 ${percentage}%)`;
@@ -379,6 +385,7 @@ const ratingValue = document.getElementById('rating-value');
 
 ratingSlider.addEventListener('input', function () {
   ratingValue.textContent = `${this.value} Stars`;
+  const ratings = this.value
 
   // Change background gradient to fill the bar based on the slider value
   const percentage = (this.value - this.min) / (this.max - this.min) * 100;
@@ -519,12 +526,7 @@ function createBigCard(propertyDetails, reviews) {
   heartImg1.classList.add('BigCard-sky-blue');
   heartImg1.src = propertyDetails.heartIcon1;
 
-  const heartImg2 = document.createElement('img');
-  heartImg2.classList.add('BigCard-vector');
-  heartImg2.src = propertyDetails.heartIcon2;
-
   iconHeart.appendChild(heartImg1);
-  iconHeart.appendChild(heartImg2);
   overlapGroup.appendChild(iconHeart);
 
   const frame2 = document.createElement('div');

@@ -30,9 +30,14 @@ def search_restaurants():
     latitude = data.get('latitude')
     longitude = data.get('longitude')
     name_or_cuisine = data.get('name_or_cuisine', 'restaurants')
+    distance = data.get('distance')
+    ratings = data.get('ratings')
+
+    distance = float(distance)
+    ratings = float(ratings)
 
     # Call your function
-    results = get_google_restaurants(latitude, longitude, name_or_cuisine)
+    results = get_google_restaurants(latitude, longitude, name_or_cuisine, distance*1000, ratings)
 
     # Return the results as JSON
 
