@@ -40,13 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': csrftoken,
+                    'X-Requested-With': 'XMLHttpRequest',  // Add this header to indicate an AJAX request
                 },
                 body: formData,
             })
                 .then(response => {
                     console.log("Response status:", response.status);  // Log response status
                     if (response.ok) {
-                        window.location.href = 'signup/';  // Redirect to homepage
+                        window.location.href = 'index/';  // Redirect to homepage
                         console.log("Login successful");
                     } else {
                         response.json().then(data => {

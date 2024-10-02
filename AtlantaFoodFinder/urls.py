@@ -6,6 +6,7 @@ from django.contrib.auth import views as auth_views
 from AtlantaFoodFinder import views
 
 urlpatterns = [
+    path('index/', views.index, name='index'),
     path('favorite/<str:restaurant_name>/<str:restaurant_address>/', views.favorite_restaurant, name='favorite_restaurant'),
     path('remove_favorite/<str:restaurant_name>/', views.remove_favorite_restaurant, name='remove_favorite_restaurant'),
     path('favorites/', views.favorite_list, name='favorite_list'),

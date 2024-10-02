@@ -116,7 +116,7 @@ def login_view(request):
                 return JsonResponse({'success': True})
             else:
                 print("Non-AJAX request, redirecting to home.")
-                return redirect('home')
+                return redirect('/index')
         else:
             print("Login form is invalid.")
             # Log form errors to see why validation failed
@@ -148,6 +148,10 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
 # Custom login view using the built-in LoginView
 class CustomLoginView(LoginView):
     template_name = 'login.html'  # Login interface
+
+@login_required
+def index(request):
+    return render(request, 'index.html')
 
 @login_required
 def favorite_restaurant(request, restaurant_name):
