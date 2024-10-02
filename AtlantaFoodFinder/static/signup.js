@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(response => {
                     if (response.ok) {
                         // Registration successful
-                        window.location.href = '/';  // Redirect to homepage
+                        window.location.href = 'index/';  // Redirect to homepage
                     } else {
                         // Handle errors
                         response.json().then(data => {

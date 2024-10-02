@@ -27,7 +27,7 @@
       <div class="div">
         <header class="header">
           <div class="frame">
-            <div class="group"><img class="union" src="../AtlantaFoodFinder/static/img/union.svg" /></div>
+            <div class="group"><img class="union" src="{% static 'img/union.svg' %}" /></div>
             <div class="search-selected">
               <div class="overlap">
                 <div class="fields">
@@ -43,8 +43,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="button"><img class="search" src="../AtlantaFoodFinder/static/img/search-1.svg" /> <a
-                    class="account"></a>
+                <div class="button"><img class="search" src="{% static 'img/search-1.svg' %}" /> <a class="account"></a>
                   <!-- The account element --></div>
               </div>
             </div>
@@ -60,7 +59,7 @@
                       <div class="badge-primary">
                         <div class="best-price">BEST PRICE</div>
                       </div>
-                    </div> <img class="image" src="../AtlantaFoodFinder/static/img/image-2.png" />
+                    </div> <img class="image" src="{% static 'img/image-2.png' %}" />
                   </div>
                 </div>
                 <div class="frame-3">
@@ -91,7 +90,7 @@
                   <div class="text-wrapper2">Folder 1</div>
                   <div class="type-2 delete-folder">Delete</div>
                   <img class="img" src="img/generalline-2.svg" />
-                  <img class="sky-blue" src="../AtlantaFoodFinder/static/img/sky-blue.svg" />
+                  <img class="sky-blue" src="{% static 'img/sky-blue.svg' %}" />
                 </div>
               </div>
             </div>
@@ -112,12 +111,12 @@
             </div>
           </div>
         </div>
-        <div class="text-wrapper-5">Food Near You</div>
-        <div class="element-stays">430 + restaurants</div>
+        <div class="text-wrapper-5">Restaurants Near You</div>
+        <div class="element-stays">Found</div>
       </div>
       <div class="overlap-3">
         <div class="ellipse"></div>
-        <img class="filter-icon" src="../AtlantaFoodFinder/static/img/filter-icon.svg" />
+        <img class="filter-icon" src="{% static 'img/filter-icon.svg' %}" />
       </div>
 
 
@@ -130,8 +129,8 @@
         <!-- Favorite Frame - cannot be deleted -->
         <div class="favoriteframe">
           <div class="type">Favorite</div>
-          <img class="generalline" src="img/generalline.svg" />
-          <img class="vector" src="img/vector.svg" />
+          <img class="generalline" src=src="{% static 'img/generalline.svg' %}" />
+          <img class="vector" src="{% static 'img/Vector.svg' %}" />
         </div>
 
         <!-- Folder 1 (initially present) -->
@@ -140,7 +139,7 @@
             <div class="text-wrapper">Folder 1</div>
             <div class="type-2 delete-folder">Delete</div>
             <img class="img" src="img/generalline-2.svg" />
-            <img class="sky-blue" src="../AtlantaFoodFinder/static/img/sky-blue.svg" />
+            <img class="sky-blue" src="{% static 'img/sky-blue.svg' %}" />
           </div>
         </div>
       </div>
@@ -154,6 +153,17 @@
   </div>
   </div>
 </body>
+<!-- Define static URLs for use in JavaScript -->
+<script>
+  const photoURL = {
+    starImage: "{% static 'img/star-2.svg' %}",
+    skyBlueImage: "{% static 'img/sky-blue.svg' %}",
+    vectorImage: "{% static 'img/Vector.svg' %}",
+    placeholderImage: "{% static 'img/rectangle-12-2.png' %}",
+    lineImage: "{% static 'img/line1.svg' %}",
+    // Add other static URLs as needed
+  };
+</script>
 <script src="{% static 'main.js' %}"> window.CSRF_TOKEN = "{{ csrf_token }}";</script>
 
 

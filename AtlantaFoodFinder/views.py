@@ -67,7 +67,7 @@ def signup(request):
                 if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                     return JsonResponse({'success': True})
                 else:
-                    return redirect('home')
+                    return redirect('/index')
         else:
             print("Invalid email or password")
 

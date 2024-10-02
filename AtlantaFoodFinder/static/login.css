@@ -87,7 +87,7 @@
 
 .element .label-2 {
     position: absolute;
-    top: -1px;
+    top: 20px;
     left: 0;
     font-family: "Poppins-Regular", Helvetica;
     font-weight: 400;
@@ -106,6 +106,7 @@
     background-color: #5e81f4;
     border-radius: 40px;
     overflow: hidden;
+    top: 20px;
 }
 
 .element .frame-4 {
@@ -241,7 +242,6 @@
 
 .element .label {
     position: relative;
-    top: 0;
     left: 0;
     font-family: "Poppins-Regular", Helvetica;
     font-weight: 400;
@@ -252,6 +252,7 @@
     background: transparent;
     border: none;
     padding: 0;
+    margin-bottom: 20px;
 }
 
 .element .input-field {
@@ -273,4 +274,38 @@
 .element .input-field::placeholder {
     color: #999;
     /* Style for placeholder text */
+}
+
+#id_username {
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    height: 56px;
+    border-radius: 12px;
+    border: 1px solid #00000059;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#id_username {
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    height: 56px;
+    border-radius: 12px;
+    border: 1px solid #00000059;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+#id_password {
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    height: 56px;
+    border-radius: 12px;
+    border: 1px solid #00000059;
+    padding: 10px;
+    box-sizing: border-box;
 }

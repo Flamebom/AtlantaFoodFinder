@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
               const restaurant = parseRestaurantStr(restaurantStr);
 
               // Handle the restaurant image (if available)
-              let restaurantImage = 'img/placeholder.png'; // Default placeholder image
+              let restaurantImage = photoURL.placeholderImage; // Default placeholder image
               if (restaurant.photoUri) {
                 restaurantImage = restaurant.photoUri;
               }
@@ -141,10 +141,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 image1: restaurantImage,
                 image2: restaurantImage,
                 heartIcon1: 'img/sky-blue.svg',
-                heartIcon2: 'img/Vector.svg',
+                heartIcon2: photoURL.vectorImage,
                 name: restaurant.name || 'Unknown',
                 rating: restaurant.rating || 'N/A',
-                starImage: 'img/star-2.svg',
+                starImage: photoURL.starImage,
                 distance: '2.3 miles away', // Placeholder distance
                 address: restaurant.address || 'Address not available',
                 info: `${restaurant.cuisine || 'Restaurant'} | Open`,
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       day: 'numeric'
                     }),
                     text: review.text?.text || 'No review text available.',
-                    starImage: 'img/star-2.svg',
+                    starImage: photoURL.starImage,
                     reviewerImage: review.authorAttribution.photoUri || 'img/default-user.png'
                   }));
                 } catch (e) {
@@ -320,8 +320,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const favoriteFolderHTML = `
         <div class="favoriteframe favoriteframe-rendered" data-folder="Favorite">
           <div class="type">Favorite</div>
-          <img class="generalline" src="img/generalline.svg" />
-          <img class="vector" src="img/vector.svg" />
+          <img class="generalline" "{% static 'img/generalline.svg' %}" />
+          <img class="vector" "{% static 'img/sky-blue.svg' %}" />
         </div>
       `;
 
@@ -463,7 +463,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Parse the restaurant string to extract information
           const restaurant = parseRestaurantStr(restaurantStr);
 
-          let restaurantImage = 'img/placeholder.png';  // Default placeholder image
+          let restaurantImage = photoURL.placeholderImage;  // Default placeholder image
           if (restaurant.photoUri) {
             restaurantImage = restaurant.photoUri;
           }
@@ -472,10 +472,10 @@ document.addEventListener("DOMContentLoaded", function () {
             image1: restaurantImage,
             image2: restaurantImage,
             heartIcon1: 'img/sky-blue.svg',
-            heartIcon2: 'img/Vector.svg',
+            heartIcon2: photoURL.vectorImage,
             name: restaurant.name || 'Unknown',
             rating: restaurant.rating || 'N/A',
-            starImage: 'img/star-2.svg',
+            starImage: photoURL.starImage,
             distance: '2.3 miles away',  // Placeholder distance
             address: restaurant.address || 'Address not available',
             info: `${restaurant.cuisine || 'Restaurant'} | Open`,
@@ -501,7 +501,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   day: 'numeric'
                 }),
                 text: review.text?.text || 'No review text available.',
-                starImage: 'img/star-2.svg',
+                starImage: photoURL.starImage,
                 reviewerImage: review.authorAttribution.photoUri || 'img/default-user.png'
               }));
             } catch (e) {
@@ -623,7 +623,7 @@ function updateAccountStatus() {
     accountElement.href = "/personal-account.html";  // Redirect to personal account page
   } else {
     accountElement.textContent = "Login";
-    accountElement.href = "login.html";  // Redirect to login page
+    accountElement.href = "/login";  // Redirect to login page
   }
 }
 
@@ -660,7 +660,7 @@ function createPropertyCard(imageSrc, restaurantName, rating, distance, priceRan
           <div class="driver-name">${restaurantName}</div>
           <div class="frame-5">
             <div class="frame-6">
-              <div class="star-wrapper"><img class="star" src="img/star-2.svg" /></div>
+              <div class="star-wrapper"><img class="star" src="{% static photoURL.starImage %}" /></div>
               <div class="text">${rating}</div>
             </div>
             <div class="text-2">${distance}</div>
@@ -926,7 +926,7 @@ const propertyDetails = {
   heartIcon2: 'img/Vector.svg',
   name: 'Clasic Studio Apartment',
   rating: '4.0',
-  starImage: 'img/star-2.svg',
+  starImage: photoURL.starImage,
   distance: '2.3 miles away',
   address: '60 11th St NE, Atlanta, GA',
   info: '$30-50 | Spanish restaurant | Open',
@@ -939,13 +939,13 @@ const reviews = [
     rating: "4.0",
     date: "September 16th 2024",
     text: "This place was amazing! Great food and ambiance.",
-    starImage: 'img/star-2.svg'
+    starImage: photoURL.starImage
   },
   {
     title: "Saltwood Charcuteri",
     rating: "4.0",
     date: "August 4th 2023",
     text: "Lovely restaurant, would definitely come again.",
-    starImage: 'img/star-2.svg'
+    starImage: photoURL.starImage
   }
 ];
