@@ -1,3 +1,39 @@
+// Initialize and add the map
+let map;
+
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+  // Creates map centered around GT
+  map = new Map(document.getElementById("map"), {
+    zoom: 15,
+    center: { lat:33.7749, lng:84.3964 },
+    mapId: "d923f0cd355b2a59",
+  });
+
+  // Checks if user has enabled location services
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          }
+          const marker = new AdvancedMarkerElement({
+            map: map,
+            position: pos,
+          })
+          map.setCenter(pos);
+        }
+      );
+  }
+}
+
+// Creates map
+initMap();
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const searchInput = document.querySelector('.search-input');
   const searchCategory = document.getElementById('search-category');
