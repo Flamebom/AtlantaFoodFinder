@@ -37,11 +37,11 @@ def signup(request):
             user.set_password(password1)  # Set hashed password
             user.save()  # Save the user
             login(request, user)  # Automatically log the user in
-            return redirect('home')  # Redirect to homepage or any other page
+            return redirect('index.html')  # Redirect to homepage or any other page
     else:
         form = CustomUserCreationForm()
 
-    return render(request, 'create-account.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
 
 
 # Use Django's LoginView
@@ -51,7 +51,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home')  # Redirect to homepage or any other page
+            return redirect('index.html')  # Redirect to homepage or any other page
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
