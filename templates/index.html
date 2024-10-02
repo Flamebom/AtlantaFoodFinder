@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 
 <html lang="en">
+{% load static %}
 
 <head>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="globals.css" />
-  <link rel="stylesheet" href="styleguide.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="{% static 'globals.css' %}" />
+  <link rel="stylesheet" href="{% static 'styleguide.css' %}" />
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
   <title></title>
 </head>
 
@@ -166,6 +167,6 @@
   </div>
   </div>
 </body>
-<script src="main.js"></script>
+<script src="{% static 'main.js' %}></script>
 
 </html>
