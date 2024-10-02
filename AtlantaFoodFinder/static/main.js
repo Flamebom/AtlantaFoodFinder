@@ -216,7 +216,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const folderIcon = document.querySelector('.selection-card2');
   let isFavorite = false;  // Track if the Big Card is in Favorite
   const folderContainer = document.querySelector('.selection-card'); // Where favorite folder is shown
+
   console.log('DOM fully loaded');
+
+  // Add event listener to the restaurant cards to set the currentRestaurantName
+  const restaurantCards = document.querySelectorAll('.property-card-big'); // Ensure your restaurant cards have this class
+  restaurantCards.forEach(card => {
+    card.addEventListener('click', function () {
+      const restaurantName = this.querySelector('.driver-name').textContent.trim();  // Assuming .driver-name contains the restaurant name
+      currentRestaurantName = restaurantName;
+      console.log("Restaurant selected:", currentRestaurantName);
+    });
+  });
 
   // Add event listener to the Folder icon to directly add or remove BigCard to/from "Favorite"
   if (folderIcon) {
@@ -336,7 +347,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function loadFavoriteData(folderName) {
     if (folderName === 'Favorite') {
       console.log(`Loading data for folder: ${folderName}`);
-      clearAllPropertyCards() // Clear existing Cards
+      clearAllPropertyCards();  // Clear existing Cards
 
       fetch('http://127.0.0.1:8000/favorites/')
         .then(response => {
@@ -355,6 +366,23 @@ document.addEventListener("DOMContentLoaded", function () {
               const cleanedFavorite = favorite.replace(/.*favorited\s*/, '');
               console.log('Cleaned favorite item:', cleanedFavorite);
               // Now you can display the cleanedFavorite in the UI as needed
+              fetchAndProcessRestaurants(cleanedFavorite, '10', '1', (propertyDetails, reviews) => {
+                console.log('Processed property details:', propertyDetails);
+                console.log('Processed reviews:', reviews);
+
+                createPropertyCard(
+                  propertyDetails.image1,
+                  propertyDetails.name,
+                  propertyDetails.rating,
+                  propertyDetails.distance,
+                  '',  // Placeholder for price range
+                  propertyDetails.info,
+                  'Open',  // Placeholder status
+                  propertyDetails.address,
+                  propertyDetails,  // Pass the whole details object
+                  reviews  // Reviews data
+                );
+              });
             });
           }
         })
@@ -366,22 +394,137 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-
   // Expose current Big Card data setter globally
   window.setCurrentBigCardData = function (bigCardData) {
     currentBigCardData = bigCardData;
-    // Reset the state of the button when a new Big Card is opened
     isFavorite = false;
     updateFavoriteText("Favorite");
   };
 
+  function parseRestaurantStr(restaurantStr) {
+    const result = {};
 
+    const reviewsIndex = restaurantStr.indexOf('reviews :');
+    let dataPart;
+    let reviewsPart;
 
+    if (reviewsIndex !== -1) {
+      dataPart = restaurantStr.substring(0, reviewsIndex).trim();
+      reviewsPart = restaurantStr.substring(reviewsIndex + 'reviews :'.length).trim();
+    } else {
+      dataPart = restaurantStr.trim();
+    }
+
+    // Parse the dataPart line by line
+    const lines = dataPart.split('\n');
+    for (const line of lines) {
+      const colonIndex = line.indexOf(':');
+      if (colonIndex !== -1) {
+        const key = line.substring(0, colonIndex).trim();
+        const value = line.substring(colonIndex + 1).trim();
+        result[key] = value;
+      }
+    }
+
+    // Set the reviews field
+    if (reviewsPart) {
+      result['reviews'] = reviewsPart;
+    }
+
+    return result;
+  }
+
+  function fetchAndProcessRestaurants(searchTerm, distance, ratings, callback) {
+    console.log(distance);
+    console.log(ratings);
+
+    fetch('http://127.0.0.1:5000/search-restaurants', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        latitude: 33.749,  // Replace with actual data
+        longitude: -84.388,  // Replace with actual data
+        name_or_cuisine: searchTerm,  // Use the search term
+        distance: distance,
+        ratings: ratings
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Response from Flask:', data);
+
+        const firstKey = Object.keys(data)[0];  // Get the first key
+        if (firstKey) {
+          const restaurantStr = data[firstKey];
+          console.log('First Restaurant String:', restaurantStr);
+
+          // Parse the restaurant string to extract information
+          const restaurant = parseRestaurantStr(restaurantStr);
+
+          let restaurantImage = 'img/placeholder.png';  // Default placeholder image
+          if (restaurant.photoUri) {
+            restaurantImage = restaurant.photoUri;
+          }
+
+          const propertyDetails = {
+            image1: restaurantImage,
+            image2: restaurantImage,
+            heartIcon1: 'img/sky-blue.svg',
+            heartIcon2: 'img/Vector.svg',
+            name: restaurant.name || 'Unknown',
+            rating: restaurant.rating || 'N/A',
+            starImage: 'img/star-2.svg',
+            distance: '2.3 miles away',  // Placeholder distance
+            address: restaurant.address || 'Address not available',
+            info: `${restaurant.cuisine || 'Restaurant'} | Open`,
+            phoneNumber: restaurant['phone number'] || 'Not Available'
+          };
+
+          var reviews = [];
+          if (restaurant.reviews) {
+            try {
+              let reviewsStr = restaurant.reviews.trim();
+              reviewsStr = reviewsStr.replace(/\bNone\b/g, 'null')
+                .replace(/\bTrue\b/g, 'true')
+                .replace(/\bFalse\b/g, 'false');
+              reviewsStr = reviewsStr.replace(/'/g, '"');
+              const reviewsData = JSON.parse(reviewsStr);
+
+              reviews = reviewsData.map(review => ({
+                title: review.authorAttribution.displayName || 'Anonymous',
+                rating: review.rating.toString(),
+                date: new Date(review.publishTime).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                }),
+                text: review.text?.text || 'No review text available.',
+                starImage: 'img/star-2.svg',
+                reviewerImage: review.authorAttribution.photoUri || 'img/default-user.png'
+              }));
+            } catch (e) {
+              console.error('Failed to parse reviews for restaurant:', restaurant.name);
+              console.error('Parsing Error:', e);
+            }
+          }
+
+          if (callback) {
+            callback(propertyDetails, reviews);
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching or processing data:', error);
+      });
+  }
 
 
   // Initial render to show only "Favorite" folder
   renderFavoriteFolder();
 });
+
 
 
 
