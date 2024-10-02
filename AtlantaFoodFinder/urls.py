@@ -15,8 +15,8 @@ urlpatterns = [
 
     path('index.html/', views.index, name='index'),
     path('admin/', admin.site.urls),
-    path('create-account.html/', views.signup, name='create-account'),
-    path('create-account.html/', views.signup, name='create-account'),
+    path('create-account.html/', views.signup, name='signup'),
+    path('create-account/', views.signup, name='signup'),
 
     # Login and logout URLs using Django's built-in views
     path('login', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
@@ -43,6 +43,3 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
          name='password_reset_complete'),
 ]
-
-
-
