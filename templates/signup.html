@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{% static 'globals.css' %}" />
+    <link rel="stylesheet" href="{% static 'signup.css' %}" />
+</head>
+
+<body>
+    <div class="element">
+        <div class="overlap-group-wrapper">
+            <div class="overlap-group">
+                <img class="components-for-page" src="{% static 'img/components-for-page-1.png' %}" />
+                <div class="sign-up">
+                    <div class="frame">
+                        <div class="text-wrapper">Become a User</div>
+                        <div class="div">
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="text-field">
+                                    <div class="label-222">Email</div>
+                                    {{ form.email_address }} <!-- Django form field -->
+                                </div>
+
+                                <div class="text-field">
+                                    <div class="frame-2">
+                                        <div class="label-2">Password</div>
+                                    </div>
+                                    {{ form.password1 }} <!-- Django form password1 -->
+                                </div>
+
+                                <div class="text-field">
+                                    <div class="frame-2">
+                                        <div class="label-2">Confirm Password</div>
+                                    </div>
+                                    {{ form.password2 }} <!-- Django form password2 -->
+                                </div>
+
+                                <button class="button" type="submit">
+                                    <div class="frame-3">
+                                        <div class="sign-up-2">Register</div>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="have-an-account">
+                            <p class="already-have-an">
+                                Already have an account? <a href="{% url 'login' %}">Login</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="illustration-and">
+                    <div class="frame-4">
+                        <img class="moneyverse-home" src="{% static 'img/Hot_dog_with_mustard.png' %}" />
+                        <div class="frame-5">
+                            <div class="text-wrapper-4">Atlanta Food Finder</div>
+                            <div class="frame-6">
+                                <div class="bullet-point">
+                                    <div class="ellipse"></div>
+                                    <div class="one-lowercase">Interactive Map</div>
+                                </div>
+                                <div class="bullet-point">
+                                    <div class="ellipse"></div>
+                                    <div class="one-lowercase">Saving Starred Locations</div>
+                                </div>
+                                <div class="bullet-point">
+                                    <div class="ellipse"></div>
+                                    <div class="one-lowercase">Password Reset</div>
+                                </div>
+                                <div class="bullet-point">
+                                    <div class="ellipse"></div>
+                                    <div class="one-lowercase">Detailed Descriptions</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static '/create-account.js' %}"></script>
+</body>
+
+</html>

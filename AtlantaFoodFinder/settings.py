@@ -129,5 +129,8 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'AtlantaFoodFinder.CustomUser'
+AUTH_USER_MODEL = 'AtlantaFoodFinder.CustomUser'  # Use the app name where CustomUser is located
+
+
+
 
