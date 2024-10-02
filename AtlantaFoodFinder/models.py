@@ -1,21 +1,37 @@
-from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
-from django.conf import settings  # Import settings to reference AUTH_USER_MODEL
+from django.conf import settings
 
-# Extends existing user model to add new fields for favorites specifically associated to the account
-class CustomUser(AbstractUser):
-    email_address = models.EmailField(unique=True, blank=False, null=False)
-    password = models.CharField(max_length=128, blank=False, null=False)
-    favorite_restaurant = models.CharField(max_length=255, blank=True, null=True)
-    # creates table for favorite_restaurants associated with "CustomUser" object
-    def reset_password(self):
-        pass
-    def add_favorite(self, restaurant_name, restaurant_address, cuisine):
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError("The Email field must be set")
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)  # Set hashed password
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        return self.create_user(email, password, **extra_fields)
+
+class CustomUser(AbstractBaseUser):
+    email = models.EmailField(unique=True, blank=False, null=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []  # No username required
+
+    def add_favorite(self, restaurant_name):
         favorite, created = Favorite.objects.get_or_create(
             user=self,
             restaurant_name=restaurant_name,
-            cuisine=cuisine,
-            defaults={'restaurant_address': restaurant_address}
         )
         if created:
             return favorite, "Favorite added"
@@ -33,15 +49,12 @@ class CustomUser(AbstractUser):
         return Favorite.objects.filter(user=self)
 
 class Favorite(models.Model):
-    # Reference the CustomUser model via AUTH_USER_MODEL
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    restaurant_name = models.CharField(max_length=255)
-    restaurant_address = models.CharField(max_length=255)
-    cuisine = models.CharField(max_length=50)
+    restaurant_name = models.CharField(max_length=255)  # Only this field is present
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('user', 'restaurant_name')
+        unique_together = ('user', 'restaurant_name')  # Ensures no duplicates per user
 
     def __str__(self):
-        return f"{self.user.email_address} favorited {self.restaurant_name}"
+        return f"{self.user.email} favorited {self.restaurant_name}"

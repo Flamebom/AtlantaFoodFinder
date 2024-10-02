@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="../AtlantaFoodFinder/static/globals.css" />
+  <link rel="stylesheet" href="../AtlantaFoodFinder/static/styleguide.css" />
+  <link rel="stylesheet" href="../AtlantaFoodFinder/static/style.css" />
+  <title></title>
+</head>
+
+<style>
+  #iframe {
+    overflow: hidden;
+  }
+
+  #contentframe {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    top: 200px;
+    left: 750px;
+    z-index: 9999;
+  }
+</style>
+
+<body>
+  <div class="main-page">
+    <div id="iframe" style="object-position: right 300px bottom 10px;">
+      <iframe src="https://www.google.com/maps/embed/v1/search?key=YOUR_API_KEY&q=restaurants+in+Atlanta"
+        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        id="contentframe"></iframe>
+    </div>
+    <div class="listing-screen">
+      <div class="div">
+        <header class="header">
+          <div class="frame">
+            <div class="group"><img class="union" src="../AtlantaFoodFinder/static/img/union.svg" /></div>
+            <div class="search-selected">
+              <div class="overlap">
+                <div class="fields">
+                  <div class="overlap-group">
+                    <div class="scope-box"></div>
+                    <select class="label" id="search-category">
+                      <option value="restaurant-name">Name</option>
+                      <option value="cuisine-type">Dish Type</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <div class="input">
+                      <input type="text" class="search-input" placeholder="Type your search..." />
+                    </div>
+                  </div>
+                </div>
+                <div class="button"><img class="search" src="../AtlantaFoodFinder/static/img/search-1.svg" /> <a class="account"></a>
+                  <!-- The account element --></div>
+              </div>
+            </div>
+        </header>
+        <div class="overlap-2">
+          <div class="property-card">
+            <div class="frame-wrapper">
+              <div class="frame-2">
+                <div class="image-header">
+                  <div class="overlap-group-2">
+                    <div class="badge-primary-wrapper">
+                      <div class="badge-primary">
+                        <div class="best-price">BEST PRICE</div>
+                      </div>
+                    </div> <img class="image" src="../AtlantaFoodFinder/static/img/image-2.png" />
+                  </div>
+                </div>
+                <div class="frame-3">
+                  <div class="text-wrapper-2">2 Miles Away</div>
+                  <div class="text-wrapper-3">Clasic Studio Apartment</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="map-pin">
+            <div class="default">
+              <div class="element-wrapper">
+                <div class="element">2.7 miles</div>
+              </div>
+            </div>
+          </div>
+          <div class="map-pin-2">
+            <div class="default">
+              <div class="element-k-wrapper">
+                <div class="element">2.7 miles</div>
+              </div>
+            </div>
+          </div>
+          <div class="secondary-menu">
+            <div class="selection-card">
+              <div class="new-select">Select From:</div>
+
+              <!-- Favorite Frame - cannot be deleted -->
+
+              <!-- Folder 1 (initially present) -->
+              <div class="folder-item" data-folder="Folder 1">
+                <div class="div">
+                  <div class="text-wrapper2">Folder 1</div>
+                  <div class="type-2 delete-folder">Delete</div>
+                  <img class="img" src="img/generalline-2.svg" />
+                  <img class="sky-blue" src="../AtlantaFoodFinder/static/img/sky-blue.svg" />
+                </div>
+              </div>
+
+              <!-- New Folder Creation Input -->
+              <div class="div create-folder-section">
+                <input type="text" class="new-folder-input" placeholder="New Folder" />
+                <img class="img" src="img/image.svg" />
+                <img class="sky-blue" src="../AtlantaFoodFinder/static/img/sky-blue.svg" />
+              </div>
+            </div>
+            <!-- Distance Slider -->
+            <div class="slidercontext">
+              <div class="ratings-text">Distance</div>
+              <div class="slider">
+                <input id="distance-slider" type="range" min="0" max="10" value="1.8" step="0.1" class="slider-range" />
+                <div class="text-wrapper-4" id="distance-value">1.8 Miles</div>
+              </div>
+
+              <!-- Ratings Slider -->
+              <div class="ratings-text-2">Ratings</div>
+              <div class="slider">
+                <input id="rating-slider" type="range" min="0" max="5" value="2" step="0.5" class="slider-range" />
+                <div class="text-wrapper-4" id="rating-value">2 Stars</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-wrapper-5">Food Near You</div>
+        <div class="element-stays">430 + restaurants</div>
+        <div class="free-cancellation">
+          <div class="text-wrapper-6">Closest Distance</div>
+        </div>
+        <div class="price">
+          <div class="text-wrapper-7">Highest Ratings</div>
+        </div>
+        <div class="overlap-3">
+          <div class="ellipse"></div>
+          <img class="filter-icon" src="../AtlantaFoodFinder/static/img/filter-icon.svg" />
+        </div>
+
+
+        <div class="property-card-container">
+          <p id="no-restaurants-message">No restaurants found</p>
+        </div>
+        <div class="selection-card2">
+          <div class="new-select">Add to:</div>
+
+          <!-- Favorite Frame - cannot be deleted -->
+          <div class="favoriteframe">
+            <div class="type">Favorite</div>
+            <img class="generalline" src="img/generalline.svg" />
+            <img class="vector" src="img/vector.svg" />
+          </div>
+
+          <!-- Folder 1 (initially present) -->
+          <div class="folder-item" data-folder="Folder 1">
+            <div class="div">
+              <div class="text-wrapper">Folder 1</div>
+              <div class="type-2 delete-folder">Delete</div>
+              <img class="img" src="img/generalline-2.svg" />
+              <img class="sky-blue" src="../AtlantaFoodFinder/static/img/sky-blue.svg" />
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+      <div class="map-zoom"> <img class="plus" src="../AtlantaFoodFinder/static/img/plus-1.svg" /> <img class="minus" src="../AtlantaFoodFinder/static/img/minus-1.svg" />
+        <div class="seperator"></div>
+      </div>
+
+    </div>
+  </div>
+</body>
+    <script src="{% static '/main.js' %}"></script>
+
+</html>

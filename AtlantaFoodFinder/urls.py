@@ -1,8 +1,15 @@
-# myproject/urls.py
-from django.contrib import admin
-from django.contrib.auth import views as auth_views
+# urls.py
+
 from django.urls import path
-from . import views
+from .views import (
+    signup,
+    CustomLoginView,
+    favorite_list,
+    favorite_restaurant,
+    remove_favorite_restaurant,
+    ResetPasswordView,
+    home_view,
+)
 
 urlpatterns = [
     path('favorite/<str:restaurant_name>/<str:restaurant_address>/', views.favorite_restaurant, name='favorite_restaurant'),
@@ -21,8 +28,4 @@ urlpatterns = [
     path('password-reset-complete/',
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
          name='password_reset_complete'),
-
 ]
-
-
-
