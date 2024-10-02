@@ -2,10 +2,19 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from .models import Favorite
+from django.core import mail
 
 # Import CustomUser model dynamically using get_user_model()
 CustomUser = get_user_model()
+from django.core.mail import send_mail
 
+send_mail(
+    'Test Subject',
+    'Test message body.',
+    'atlantarestaurantfinder@gmail.com',  # From email
+    ['testuser@example.com'],  # To email
+    fail_silently=False,
+)
 class CustomUserTestCase(TestCase):
     def setUp(self):
         # Create a sample user using CustomUser model
@@ -73,3 +82,16 @@ class CustomUserTestCase(TestCase):
 
         # Verify the appropriate message is returned
         self.assertEqual(message, "Favorite not found")
+
+    def test_password_reset_email_sent(self):
+        response = self.client.post(reverse('password_reset'), {'email': 'testuser@example.com'})
+        self.assertEqual(len(mail.outbox), 1)  # Check if one email has been sent
+        self.assertEqual(mail.outbox[0].subject, 'Password Reset Link for Atlanta Food Finder')
+        self.assertEqual(mail.outbox[0].to, ['testuser@example.com'])
+    def test_password_reset_email_not_sent_for_invalid_user(self):
+        # Request a password reset for an email that doesn't exist
+        response = self.client.post(reverse('password_reset'), {'email': 'invalid@example.com'})
+
+        # Check that no email was sent
+        self.assertEqual(response.status_code, 302)  # Assuming it redirects after form submission
+        self.assertEqual(len(mail.outbox), 0)  # No email should be sent for an invalid email

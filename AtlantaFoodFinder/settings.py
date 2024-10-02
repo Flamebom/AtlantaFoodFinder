@@ -70,8 +70,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'atlanta_restaurant_finder@gmail.com'  # Your email
-EMAIL_HOST_PASSWORD = 'CS2340Project1'  # Your email password
+EMAIL_HOST_USER = 'atlantarestaurantfinder@gmail.com'  # Your email
+EMAIL_HOST_PASSWORD = 'cukg leqw uciw yfrk'  # Your email password
+DEFAULT_FROM_EMAIL = 'EMAIL_HOST_USER'  # Email sender address
+
 
 WSGI_APPLICATION = 'AtlantaFoodFinder.wsgi.application'
 
@@ -132,5 +134,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'AtlantaFoodFinder.CustomUser'  # Use the app name where CustomUser is located
 
 
+# In settings.py
+LOGIN_REDIRECT_URL = 'index/'  # or wherever you want to redirect
 
 
+DEBUG = True
