@@ -28,11 +28,10 @@ class CustomUser(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []  # No username required
 
-    def add_favorite(self, restaurant_name, restaurant_address):
+    def add_favorite(self, restaurant_name):
         favorite, created = Favorite.objects.get_or_create(
             user=self,
             restaurant_name=restaurant_name,
-            defaults={'restaurant_address': restaurant_address}
         )
         if created:
             return favorite, "Favorite added"
@@ -51,12 +50,11 @@ class CustomUser(AbstractBaseUser):
 
 class Favorite(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    restaurant_name = models.CharField(max_length=255)
-    restaurant_address = models.CharField(max_length=255)
+    restaurant_name = models.CharField(max_length=255)  # Only this field is present
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('user', 'restaurant_name')
+        unique_together = ('user', 'restaurant_name')  # Ensures no duplicates per user
 
     def __str__(self):
         return f"{self.user.email} favorited {self.restaurant_name}"

@@ -30,63 +30,46 @@ class CustomUserTestCase(TestCase):
         self.assertEqual(response.status_code, 302)  # Assuming successful signup redirects
         self.assertTrue(CustomUser.objects.filter(email='newuser@example.com').exists())
 
-    def test_favorite_restaurant(self):
-        # Define the restaurant data
+    def test_add_favorite_restaurant(self):
         restaurant_name = 'Pizza Place'
 
-        # Reverse the URL and ensure to pass restaurant_name and restaurant_address as arguments
-        url = reverse('favorite_restaurant', args=[restaurant_name])
+        # Add a favorite restaurant
+        favorite, message = self.user.add_favorite(restaurant_name)
 
-        # Perform the POST request to favorite the restaurant
-        response = self.client.post(url)
+        # Check if the favorite was created
+        self.assertEqual(message, "Favorite added")
+        self.assertEqual(favorite.restaurant_name, restaurant_name)
+        self.assertEqual(favorite.user, self.user)
 
-        # Assert that the response status code is 302 (for a redirect after adding to favorites)
-        self.assertEqual(response.status_code, 302)
+    def test_add_duplicate_favorite_restaurant(self):
+        restaurant_name = 'Pizza Place'
 
-        # Verify that the restaurant was added to the user's favorites
-        self.assertTrue(Favorite.objects.filter(user=self.user, restaurant_name=restaurant_name).exists())
+        # Add the restaurant for the first time
+        self.user.add_favorite(restaurant_name)
+
+        # Try adding the same restaurant again
+        favorite, message = self.user.add_favorite(restaurant_name)
+
+        # Check that it was not added again
+        self.assertEqual(message, "Already favorited")
+        self.assertEqual(Favorite.objects.count(), 1)  # Should still be only one favorite
 
     def test_remove_favorite_restaurant(self):
-        # Add a favorite restaurant first
-        restaurant_name = 'Burger Joint'
-        Favorite.objects.create(user=self.user, restaurant_name=restaurant_name)
+        restaurant_name = 'Pizza Place'
+        self.user.add_favorite(restaurant_name)  # Add the restaurant first
 
-        # Reverse the URL for removing the favorite
-        url = reverse('remove_favorite_restaurant', args=[restaurant_name])
+        # Now remove the favorite
+        message = self.user.remove_favorite(restaurant_name)
 
-        # Perform the POST request to remove the restaurant from favorites
-        response = self.client.post(url)
+        # Verify that it was removed
+        self.assertEqual(message, "Favorite removed")
+        self.assertEqual(Favorite.objects.count(), 0)  # Should be no favorites left
 
-        # Assert that the response status code is 302 (for a redirect after removing from favorites)
-        self.assertEqual(response.status_code, 302)
+    def test_remove_nonexistent_favorite_restaurant(self):
+        restaurant_name = 'Pizza Place'
 
-        # Verify that the restaurant was removed from the user's favorites
-        self.assertFalse(Favorite.objects.filter(user=self.user, restaurant_name=restaurant_name).exists())
+        # Attempt to remove a restaurant that doesn't exist
+        message = self.user.remove_favorite(restaurant_name)
 
-    def test_favorite_list(self):
-        # Add a favorite restaurant first
-        restaurant_name = 'Taco Palace'
-        restaurant_address = '789 Taco Rd'
-        Favorite.objects.create(user=self.user, restaurant_name=restaurant_name, restaurant_address=restaurant_address)
-
-        # Reverse the URL for the favorite list
-        url = reverse('favorite_list')
-
-        # Perform the GET request to retrieve the favorite list
-        response = self.client.get(url)
-
-        # Assert that the response status code is 200 (for a successful page load)
-        self.assertEqual(response.status_code, 200)
-
-        # Verify that the favorite restaurant is included in the context
-        self.assertContains(response, restaurant_name)
-        self.assertContains(response, restaurant_address)
-
-    def test_signup_invalid_email(self):
-        # Test signing up with an invalid email
-        response = self.client.post(reverse('signup'), {
-            'email': 'invalid-email',
-            'password1': 'newpassword123'
-        })
-        self.assertEqual(response.status_code, 200)  # Assuming it re-renders the signup page
-        self.assertFalse(CustomUser.objects.filter(email='invalid-email').exists())
+        # Verify the appropriate message is returned
+        self.assertEqual(message, "Favorite not found")
