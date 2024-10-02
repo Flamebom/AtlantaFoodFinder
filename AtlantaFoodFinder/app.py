@@ -15,7 +15,8 @@ def loop_through_results(results):
     return stringFolder
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:8000"}})
+
 
 @app.route('/')
 def index():
