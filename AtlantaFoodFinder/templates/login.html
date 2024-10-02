@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+{% load static %}
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{% static 'globals.css' %}" />
+    <link rel="stylesheet" href="{% static 'login.css' %}" />
+</head>
+
+<body>
+    <div class="element">
+        <div class="div">
+            <div class="sign-up">
+                <div class="frame">
+                    <div class="text-wrapper">Welcome Back</div>
+                    <div class="frame-2">
+                        <!-- Email label and input field -->
+                        <div class="text-field">
+                            <div class="frame-3">
+                                <div class="label">Email</div> <!-- Label stays as text -->
+                            </div>
+                            <div class="text-field-2">
+                                <input class="input-field" id="email" placeholder="Enter your email" type="email" />
+                                <!-- Input below the label -->
+                            </div>
+                        </div>
+
+                        <!-- Password label and input field -->
+                        <div class="text-field">
+                            <div class="frame-3">
+                                <div class="label">Password</div> <!-- Label stays as text -->
+                            </div>
+                            <div class="text-field-2">
+                                <input class="input-field" id="password" placeholder="Enter your password"
+                                    type="password" /> <!-- Input below the label -->
+                            </div>
+                        </div>
+
+                        <!-- Login Button -->
+                        <button class="button" id="login-btn">
+                            <div class="frame-4">
+                                <div class="sign-up-2">Login</div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="have-an-account">
+                        <p class="already-have-an">New Here? Create an Account</p>
+                    </div>
+                    <div class="have-an-account">
+                        <div class="already-have-an">Forgot your Password?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="illustration-and">
+                <div class="frame-5"> <img class="moneyverse-home" src="../AtlantaFoodFinder/static/img/Hot_dog_with_mustard.png" />
+                    <div class="frame-6">
+                        <div class="text-wrapper-2">Atlanta Food Finder</div>
+                        <div class="frame-7">
+                            <div class="bullet-point">
+                                <div class="ellipse"></div>
+                                <div class="one-lowercase">Interactive Map</div>
+                            </div>
+                            <div class="bullet-point">
+                                <div class="ellipse"></div>
+                                <div class="one-lowercase">Saving Starred Locations</div>
+                            </div>
+                            <div class="bullet-point">
+                                <div class="ellipse"></div>
+                                <div class="one-lowercase">Password Reset</div>
+                            </div>
+                            <div class="bullet-point">
+                                <div class="ellipse"></div>
+                                <div class="one-lowercase">Detailed Descriptions</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static '/login.js' %}"></script>
+</body>
+
+</html>
