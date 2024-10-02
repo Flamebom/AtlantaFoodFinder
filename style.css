@@ -1,3 +1,12 @@
+#map {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: 150px;
+  right: 150px;
+  z-index: 900;
+}
+
 .main-page {
   background-color: #ffffff;
   display: flex;
