@@ -125,6 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data) {
             Object.keys(data).forEach(key => {
               const restaurantStr = data[key];
+              restaurantStr.latitude
+              restaurantStr.longitude
               console.log('Restaurant String:', restaurantStr);
 
               // Parse the restaurant string to extract information
