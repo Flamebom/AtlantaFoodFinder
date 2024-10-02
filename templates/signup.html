@@ -6,36 +6,32 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="{% static 'globals.css' %}" />
     <link rel="stylesheet" href="{% static 'signup.css' %}" />
+    <title>Sign Up</title>
 </head>
 
 <body>
     <div class="element">
         <div class="overlap-group-wrapper">
             <div class="overlap-group">
-                <img class="components-for-page" src="{% static 'img/components-for-page-1.png' %}" />
+                <!-- Correct image path and ensure the image exists in the static folder -->
+                <img class="components-for-page" src="{% static 'img/components-for-page-1.png' %}"
+                    alt="Signup Components" />
                 <div class="sign-up">
                     <div class="frame">
                         <div class="text-wrapper">Become a User</div>
                         <div class="div">
-                            <form method="post">
+                            <form method="post" action="{% url 'signup' %}">
                                 {% csrf_token %}
                                 <div class="text-field">
                                     <div class="label-222">Email</div>
-                                    {{ form.email_address }} <!-- Django form field -->
+                                    {{ form.email }} <!-- Use the correct form field -->
                                 </div>
 
                                 <div class="text-field">
                                     <div class="frame-2">
                                         <div class="label-2">Password</div>
                                     </div>
-                                    {{ form.password1 }} <!-- Django form password1 -->
-                                </div>
-
-                                <div class="text-field">
-                                    <div class="frame-2">
-                                        <div class="label-2">Confirm Password</div>
-                                    </div>
-                                    {{ form.password2 }} <!-- Django form password2 -->
+                                    {{ form.password1 }} <!-- Use the correct form field -->
                                 </div>
 
                                 <button class="button" type="submit">
@@ -55,7 +51,9 @@
 
                 <div class="illustration-and">
                     <div class="frame-4">
-                        <img class="moneyverse-home" src="{% static 'img/Hot_dog_with_mustard.png' %}" />
+                        <!-- Correct image path and ensure the image exists in the static folder -->
+                        <img class="moneyverse-home" src="{% static 'img/Hot_dog_with_mustard.png' %}"
+                            alt="Illustration" />
                         <div class="frame-5">
                             <div class="text-wrapper-4">Atlanta Food Finder</div>
                             <div class="frame-6">
@@ -82,7 +80,8 @@
             </div>
         </div>
     </div>
-    <script src="{% static '/create-account.js' %}"></script>
+    <!-- Fix the path for the static JS file -->
+    <script src="{% static 'create-account.js' %}"></script>
 </body>
 
 </html>

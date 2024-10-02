@@ -7,6 +7,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="{% static 'globals.css' %}" />
     <link rel="stylesheet" href="{% static 'login.css' %}" />
+    <title>Login</title>
 </head>
 
 <body>
@@ -17,7 +18,7 @@
                     <div class="text-wrapper">Welcome Back</div>
                     <div class="frame-2">
                         <!-- Django Authentication Form -->
-                        <form method="post">
+                        <form method="post" action="{% url 'login' %}">
                             {% csrf_token %}
 
                             <!-- Email field -->
@@ -26,7 +27,7 @@
                                     <div class="label">Email</div>
                                 </div>
                                 <div class="text-field-2">
-                                    {{ form.username }} <!-- Django form field -->
+                                    {{ form.username }} <!-- Django form field for email -->
                                 </div>
                             </div>
 
@@ -36,7 +37,7 @@
                                     <div class="label">Password</div>
                                 </div>
                                 <div class="text-field-2">
-                                    {{ form.password }} <!-- Django form field -->
+                                    {{ form.password }} <!-- Django form field for password -->
                                 </div>
                             </div>
 
@@ -51,18 +52,21 @@
                     </div>
 
                     <div class="have-an-account">
-                        <p class="already-have-an"><a href="{% url 'signup' %}">New Here? Create an Account</a></p>
+                        <p class="already-have-an">
+                            <a href="{% url 'signup' %}">New Here? Create an Account</a>
+                        </p>
                     </div>
                     <div class="have-an-account">
-                        <div class="already-have-an"><a href="{% url 'password_reset' %}">Forgot your Password?</a>
-                        </div>
+                        <p class="already-have-an">
+                            <a href="{% url 'password_reset' %}">Forgot your Password?</a>
+                        </p>
                     </div>
                 </div>
             </div>
 
             <div class="illustration-and">
                 <div class="frame-5">
-                    <img class="moneyverse-home" src="{% static 'img/Hot_dog_with_mustard.png' %}" />
+                    <img class="moneyverse-home" src="{% static 'img/Hot_dog_with_mustard.png' %}" alt="Illustration" />
                     <div class="frame-6">
                         <div class="text-wrapper-2">Atlanta Food Finder</div>
                         <div class="frame-7">

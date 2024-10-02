@@ -18,6 +18,8 @@ from django.contrib.auth import login
 
 from django.shortcuts import render
 
+from django.http import JsonResponse
+
 def home_view(request):
     return render(request, 'index.html')  # Need to make home.html template
 # User registration view
@@ -27,34 +29,111 @@ def is_valid_email(email):
         return True
     except ValidationError:
         return False
+    
+
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from .models import CustomUser
+from .forms import CustomUserCreationForm
 def signup(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
 
+        # Print received POST data
+        print(f"Received POST request with email: {email}")
+
+        # Validate email and password
         if email and password1 and is_valid_email(email):
-            user = CustomUser(email=email)
-            user.set_password(password1)  # Set hashed password
-            user.save()  # Save the user
-            login(request, user)  # Automatically log the user in
-            return redirect('home')  # Redirect to homepage or any other page
+            print(f"Email {email} is valid and password is provided.")
+
+            # Check if the user already exists
+            if CustomUser.objects.filter(email=email).exists():
+                print(f"Email {email} already exists.")
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({'success': False, 'error': 'Email already exists.'}, status=400)
+            else:
+                # Create a new user
+                user = CustomUser(email=email)
+                user.set_password(password1)
+                user.save()
+                print(f"Created new user with email: {email}")
+
+                # Log in the user
+                login(request, user)
+                print(f"Logged in user: {email}")
+
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({'success': True})
+                else:
+                    return redirect('home')
+        else:
+            print("Invalid email or password")
+
+            # If this is an AJAX request, return JSON error
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'success': False, 'error': 'Invalid email or password.'}, status=400)
+
+        # Initialize form in case of POST request failure
+        print("Form initialization after POST request failure")
+        form = CustomUserCreationForm()
     else:
+        # Initialize form for GET request
+        print("Form initialization for GET request")
         form = CustomUserCreationForm()
 
+    # Always render the form (for both GET and POST)
+    print("Rendering signup form")
     return render(request, 'signup.html', {'form': form})
 
 
-# Use Django's LoginView
+from django.contrib.auth import login
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from .forms import EmailAuthenticationForm  # Import the custom form
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        print("Received POST request for login.")
+        form = EmailAuthenticationForm(request, data=request.POST)
+
+        # Check if the form is valid
         if form.is_valid():
+            print("Login form is valid.")
             user = form.get_user()
+
+            # Log the user's information
+            print(f"Logging in user: {user.email}")
             login(request, user)
-            return redirect('home')  # Redirect to homepage or any other page
+
+            # Check if the request is AJAX
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                print("AJAX request detected, sending JSON success response.")
+                return JsonResponse({'success': True})
+            else:
+                print("Non-AJAX request, redirecting to home.")
+                return redirect('home')
+        else:
+            print("Login form is invalid.")
+            # Log form errors to see why validation failed
+            print(f"Form errors: {form.errors}")
+
+            # Handle AJAX request with JSON response if the form is invalid
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                errors = form.errors.get_json_data()
+                print(f"Sending JSON response with errors: {errors}")
+                return JsonResponse({'success': False, 'error': errors}, status=400)
     else:
-        form = AuthenticationForm()
+        print("Rendering login form (GET request).")
+        form = EmailAuthenticationForm()  # Use custom form
+
+    print("Rendering login template with form.")
     return render(request, 'login.html', {'form': form})
+
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = 'password_reset.html' #html page for resetting password
