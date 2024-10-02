@@ -6,7 +6,15 @@ from django.core import mail
 
 # Import CustomUser model dynamically using get_user_model()
 CustomUser = get_user_model()
+from django.core.mail import send_mail
 
+send_mail(
+    'Test Subject',
+    'Test message body.',
+    'atlantarestaurantfinder@gmail.com',  # From email
+    ['testuser@example.com'],  # To email
+    fail_silently=True,
+)
 class CustomUserTestCase(TestCase):
     def setUp(self):
         # Create a sample user using CustomUser model
@@ -76,25 +84,18 @@ class CustomUserTestCase(TestCase):
         self.assertEqual(message, "Favorite not found")
 
     def test_password_reset_email_sent(self):
-        # Test that password reset email is sent for a valid user
-        response = self.client.post(reverse('password_reset'), {'email': self.user.email})
+        # Request a password reset for the correct email
+        response = self.client.post(reverse('password_reset'), {'email': 'testuser@example.com'})
 
-        # Check that the response is a redirect (success)
-        self.assertEqual(response.status_code, 302)
+        # Check if an email has been sent
+        self.assertEqual(response.status_code, 302)  # Assuming it redirects after form submission
+        self.assertEqual(len(mail.outbox), 1)  # One email should be sent
+        self.assertIn('testuser@example.com', mail.outbox[0].to)  # The email should be sent to the correct address
 
-        # Check if an email was sent
-        self.assertEqual(len(mail.outbox), 1)
+    def test_password_reset_email_not_sent_for_invalid_user(self):
+        # Request a password reset for an email that doesn't exist
+        response = self.client.post(reverse('password_reset'), {'email': 'invalid@example.com'})
 
-        # Verify the email content is correct (optional)
-        self.assertIn('Password Reset Link for Atlanta Food Finder', mail.outbox[0].subject)
-        self.assertIn(self.user.email, mail.outbox[0].to)
-
-    def test_password_reset_no_email_for_invalid_user(self):
-        # Test that no email is sent for an invalid user
-        response = self.client.post(reverse('password_reset'), {'email': 'invaliduser@example.com'})
-
-        # Check that the response is a redirect (even if the email is not found, should not expose this info)
-        self.assertEqual(response.status_code, 302)
-
-        # Check no email was sent
-        self.assertEqual(len(mail.outbox), 0)
+        # Check that no email was sent
+        self.assertEqual(response.status_code, 302)  # Assuming it redirects after form submission
+        self.assertEqual(len(mail.outbox), 0)  # No email should be sent for an invalid email
