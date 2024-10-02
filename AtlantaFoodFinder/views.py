@@ -1,18 +1,25 @@
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import send_mail
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+
+from . import settings
 from .models import CustomUser
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.views import LoginView, PasswordResetView
-from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm  # Import the form
-from django.contrib.auth import login
-
-from django.shortcuts import render
-
-from django.http import JsonResponse
+from django.contrib import messages
+from django.contrib.auth.views import PasswordResetView
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+from django.urls import reverse_lazy
 
 def home_view(request):
     return render(request, 'index.html')  # Need to make home.html template
@@ -129,29 +136,37 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 
-class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'passwordreset.html'  # HTML page for resetting password
-    email_template_name = 'password_reset_email.html'
-    subject_template_name = 'password_reset_subject.txt'
-    success_message = (
-        "We've emailed you instructions for setting your password, "
-        "if an account exists with the email you entered. You should receive them shortly. "
-        "If you don't receive an email, please make sure you've entered the address you registered with, and check your spam folder."
-    )
-    success_url = reverse_lazy('index')
+class ResetPasswordView(PasswordResetView):
+    template_name = 'passwordreset.html'  # Your template for the password reset form
+    email_template_name = 'password_reset_email.html'  # Your email template
+    subject_template_name = 'password_reset_subject.txt'  # Your email subject template
+    success_url = reverse_lazy('index')  # Redirect after sending email
 
-    def get_email_context(self, user):
-        """Override to add any additional context for the email template."""
-        return {
-            'email': user.email,
-            'domain': self.request.META['HTTP_HOST'],
-            'uid': user.pk,
-            'token': user.tokens()  # Add token generation logic if necessary
-        }
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        user = CustomUser.objects.filter(email=email).first()
 
-    def send_mail(self, subject, message, from_email, recipient_list, **kwargs):
-        """Override the send_mail method to customize email sending."""
-        super().send_mail(subject, message, from_email, recipient_list, **kwargs)
+        if user:
+            # Generate the password reset token and uid
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            token = default_token_generator.make_token(user)
+
+            # Build the reset link
+            reset_link = self.request.build_absolute_uri(
+                reverse('password_reset_confirm', kwargs={'uidb64': uid, 'token': token})
+            )
+
+            # Send the password reset email
+            send_mail(
+                subject='Password Reset Request',
+                message=f'You requested a password reset. Click the link below to reset your password:\n\n{reset_link}',
+                from_email='atlantafoodfinder@gmail.com',  # Replace with your default email
+                recipient_list=[email],
+                fail_silently=False,
+            )
+
+        # Call the parent form_valid to handle the rest
+        return super().form_valid(form)
 # Custom login view using the built-in LoginView
 class CustomLoginView(LoginView):
     template_name = 'login.html'  # Login interface
@@ -193,12 +208,3 @@ def favorite_list(request):
     return JsonResponse({'favorites': favorite_list})  # Return as JSON
 
 
-class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'passwordreset.html'  # HTML page for resetting password
-    email_template_name = 'password_reset_email.html'
-    subject_template_name = 'password_reset_subject.txt'
-    success_message = "We've emailed you instructions for setting your password, " \
-                      "if an account exists with the email you entered. You should receive them shortly." \
-                      " If you don't receive an email, " \
-                      "please make sure you've entered the address you registered with, and check your spam folder."
-    success_url = reverse_lazy('users-home')

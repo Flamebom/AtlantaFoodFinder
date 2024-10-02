@@ -12,7 +12,7 @@ send_mail(
     'Test Subject',
     'Test message body.',
     'atlantarestaurantfinder@gmail.com',  # From email
-    ['testuser@example.com'],  # To email
+    ['arnavketineni3@gmail.com'],  # To email
     fail_silently=False,
 )
 class CustomUserTestCase(TestCase):

@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from . import views
+from .views import ResetPasswordView
 
 urlpatterns = [
     path('index/', views.index, name='index'),
@@ -23,7 +24,8 @@ urlpatterns = [
     #login interface
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('logout.html/', auth_views.LogoutView.as_view(), name='logout'),
-
+path('reset_password/', ResetPasswordView.as_view(), name='password_reset'),  # URL for password reset form
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='login.html'), name='password_reset_confirm'),  # Confirm reset link
     path('password_reset/', views.ResetPasswordView.as_view(), name='password_reset'),
     path('password_reset.html/', views.ResetPasswordView.as_view(), name='password_reset'),
 
