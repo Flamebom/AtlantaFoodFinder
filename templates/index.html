@@ -154,7 +154,7 @@
   </div>
   </div>
 </body>
-<script src="{% static 'main.js' %}"></script>
+<script src="{% static 'main.js' %}"> window.CSRF_TOKEN = "{{ csrf_token }}";</script>
 
 
 </html>

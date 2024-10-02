@@ -1,5 +1,6 @@
 // Initialize and add the map
 let map;
+let currentRestaurantName = null;  // Global variable to store the current restaurant name
 
 console.log('main.js is loaded');
 
@@ -211,41 +212,100 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
-  const folderContainer = document.querySelector('.selection-card'); // Where favorite folder is shown
-  const folderIcon = document.querySelector('.selection-card2');  // The folder icon in the Big Card
-  let currentBigCardData = null;  // Store the current opened big card data here
+  const folderIcon = document.querySelector('.selection-card2');
   let isFavorite = false;  // Track if the Big Card is in Favorite
-
-  console.log('DOM fully loaded');  // Debugging to ensure DOMContentLoaded is working
+  const folderContainer = document.querySelector('.selection-card'); // Where favorite folder is shown
+  console.log('DOM fully loaded');
 
   // Add event listener to the Folder icon to directly add or remove BigCard to/from "Favorite"
   if (folderIcon) {
     folderIcon.addEventListener('click', function () {
-      if (!isFavorite) {
-        addBigCardToFavorite(currentBigCardData);  // Add to Favorite
-        updateFavoriteText("Delete from Favorite");  // Change text to "Delete from Favorite"
-      } else {
-        removeBigCardFromFavorite(currentBigCardData);  // Remove from Favorite
-        updateFavoriteText("Favorite");  // Change text back to "Favorite"
+      console.log("Current Restaurant Name:", currentRestaurantName);  // Ensure we have the right name
+
+      if (currentRestaurantName && !isFavorite) {
+        addBigCardToFavorite(currentRestaurantName);  // Add to Favorite
+        updateFavoriteText("Delete from Favorite");
+      } else if (currentRestaurantName) {
+        removeBigCardFromFavorite(currentRestaurantName);  // Remove from Favorite
+        updateFavoriteText("Favorite");
       }
+
       isFavorite = !isFavorite;  // Toggle favorite status
     });
   } else {
-    console.log('Folder icon not found');  // Debugging: Check if folderIcon exists
+    console.log('Folder icon not found');
+  }
+
+  function addBigCardToFavorite(restaurantName) {
+    console.log(`Adding ${restaurantName} to favorites...`);
+
+    fetch(`/favorite/${restaurantName}/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCSRFToken(),
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Added to favorites:', data);
+      })
+      .catch(error => {
+        console.error('Error adding to favorites:', error);
+      });
+  }
+
+  function removeBigCardFromFavorite(restaurantName) {
+    fetch(`/remove_favorite/${restaurantName}/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCSRFToken(),
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Removed from favorites:', data);
+      })
+      .catch(error => {
+        console.error('Error removing from favorites:', error);
+      });
+  }
+
+  function getCSRFToken() {
+    const name = 'csrftoken';
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  function updateFavoriteText(text) {
+    const favoriteText = document.querySelector('.selection-card2 .type');
+    if (favoriteText) {
+      favoriteText.textContent = text;
+    }
   }
 
   // Render only the "Favorite" folder in the folder container
   function renderFavoriteFolder() {
-    console.log('Rendering favorite folder');  // Debugging: Log when rendering starts
+    console.log('Rendering favorite folder');
 
     // Clear any previous rendered folders
     document.querySelectorAll('.folder-item').forEach(item => item.remove());
 
     // Render "Favorite" folder if not already rendered
     if (!document.querySelector('.favoriteframe-rendered')) {
-      console.log('Rendering new Favorite folder');  // Debugging: Ensure the folder is being rendered
+      console.log('Rendering new Favorite folder');
       const favoriteFolderHTML = `
         <div class="favoriteframe favoriteframe-rendered" data-folder="Favorite">
           <div class="type">Favorite</div>
@@ -260,16 +320,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // Check if Favorite element is present
       const favoriteElement = document.querySelector('.favoriteframe');
       if (favoriteElement) {
-        console.log('Favorite folder element found, adding click event listener');  // Debugging: Ensure the favorite folder exists
-
-        // Handle clicks on the "Favorite" folder
+        console.log('Favorite folder element found, adding click event listener');
         favoriteElement.addEventListener('click', function () {
           const folderName = favoriteElement.getAttribute('data-folder');
-          console.log(`Favorite folder clicked: ${folderName}`);  // Debugging: Log click events
-          loadFavoriteData(folderName);  // Load the "Favorite" folder data
+          console.log(`Favorite folder clicked: ${folderName}`);
+          loadFavoriteData(folderName);
         });
       } else {
-        console.log('Favorite folder element not found after rendering');  // Debugging: Ensure the favorite folder is rendered
+        console.log('Favorite folder element not found after rendering');
       }
     }
   }
@@ -277,38 +335,37 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to load "Favorite" folder data
   function loadFavoriteData(folderName) {
     if (folderName === 'Favorite') {
-      console.log(`Loading data for folder: ${folderName} hiii can you seeee mee`);
+      console.log(`Loading data for folder: ${folderName}`);
+      clearAllPropertyCards() // Clear existing Cards
+
       fetch('http://127.0.0.1:8000/favorites/')
         .then(response => {
-          console.log('Fetch response received. Status:', response.status);  // This should show up
+          console.log('Fetch response received. Status:', response.status);
           return response.json();
         })
         .then(data => {
-          console.log('Fetched data:', data);  // This will show the favorites object
-
+          console.log('Fetched data:', data);
           const favorites = data.favorites;
-
           if (favorites.length === 0) {
-            console.log('No favorite items found');  // This will show if the favorites array is empty
+            console.log('No favorite items found');
           } else {
             console.log('Favorite items array:', favorites);
-
             favorites.forEach(favorite => {
-              console.log('Favorite item:', favorite);  // Log each favorite item
+              // Remove everything before and including 'favorited'
+              const cleanedFavorite = favorite.replace(/.*favorited\s*/, '');
+              console.log('Cleaned favorite item:', cleanedFavorite);
+              // Now you can display the cleanedFavorite in the UI as needed
             });
           }
         })
         .catch(error => {
-          console.error('Error loading favorites:', error);  // Catch and log any errors
+          console.error('Error loading favorites:', error);
         });
     } else {
       console.log('Folder is not Favorite. Skipping data load.');
     }
   }
 
-
-  // Initial render to show only "Favorite" folder
-  renderFavoriteFolder();
 
   // Expose current Big Card data setter globally
   window.setCurrentBigCardData = function (bigCardData) {
@@ -318,15 +375,14 @@ document.addEventListener("DOMContentLoaded", function () {
     updateFavoriteText("Favorite");
   };
 
-  // Function to update the text of the "Favorite" or "Delete from Favorite" button
-  function updateFavoriteText(text) {
-    const favoriteText = document.querySelector('.selection-card2 .type');
-    if (favoriteText) {
-      favoriteText.textContent = text;
-    }
-  }
 
+
+
+
+  // Initial render to show only "Favorite" folder
+  renderFavoriteFolder();
 });
+
 
 
 // Toggle the 'active' class and show/hide the slider
@@ -483,6 +539,10 @@ function createPropertyCard(imageSrc, restaurantName, rating, distance, priceRan
 
   // Event listener to show description card
   propertyCard.addEventListener('click', function () {
+    // Update the global variable when this card is clicked
+    currentRestaurantName = restaurantName;  // Update global variable with the clicked restaurant name
+    console.log('Current Restaurant Name:', currentRestaurantName);  // Debugging to ensure it's updated
+
     console.log('Property card clicked!');
     const propertyDetails = JSON.parse(this.getAttribute('data-property-details'));
     const reviews = JSON.parse(this.getAttribute('data-reviews'));

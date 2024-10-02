@@ -153,17 +153,27 @@ class CustomLoginView(LoginView):
 def index(request):
     return render(request, 'index.html')
 
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+
 @login_required
 def favorite_restaurant(request, restaurant_name):
     user = request.user  # Get the logged-in user
-    favorite, message = user.add_favorite(restaurant_name)
-    return redirect('favorite_list')
+    favorite, created = user.add_favorite(restaurant_name)  # Assuming user model has this method
+    if created:
+        return JsonResponse({"message": "Restaurant added to favorites"}, status=201)
+    else:
+        return JsonResponse({"message": "Restaurant already in favorites"}, status=200)
 
 @login_required
 def remove_favorite_restaurant(request, restaurant_name):
     user = request.user  # Get the logged-in user
-    message = user.remove_favorite(restaurant_name)
-    return redirect('favorite_list')
+    success = user.remove_favorite(restaurant_name)  # Assuming user model has this method
+    if success:
+        return JsonResponse({"message": "Restaurant removed from favorites"}, status=200)
+    else:
+        return JsonResponse({"message": "Restaurant not in favorites"}, status=404)
+
 
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
