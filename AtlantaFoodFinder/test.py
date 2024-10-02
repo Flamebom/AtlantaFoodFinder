@@ -13,7 +13,7 @@ send_mail(
     'Test message body.',
     'atlantarestaurantfinder@gmail.com',  # From email
     ['testuser@example.com'],  # To email
-    fail_silently=True,
+    fail_silently=False,
 )
 class CustomUserTestCase(TestCase):
     def setUp(self):
@@ -84,14 +84,10 @@ class CustomUserTestCase(TestCase):
         self.assertEqual(message, "Favorite not found")
 
     def test_password_reset_email_sent(self):
-        # Request a password reset for the correct email
         response = self.client.post(reverse('password_reset'), {'email': 'testuser@example.com'})
-
-        # Check if an email has been sent
-        self.assertEqual(response.status_code, 302)  # Assuming it redirects after form submission
-        self.assertEqual(len(mail.outbox), 1)  # One email should be sent
-        self.assertIn('testuser@example.com', mail.outbox[0].to)  # The email should be sent to the correct address
-
+        self.assertEqual(len(mail.outbox), 1)  # Check if one email has been sent
+        self.assertEqual(mail.outbox[0].subject, 'Password Reset Link for Atlanta Food Finder')
+        self.assertEqual(mail.outbox[0].to, ['testuser@example.com'])
     def test_password_reset_email_not_sent_for_invalid_user(self):
         # Request a password reset for an email that doesn't exist
         response = self.client.post(reverse('password_reset'), {'email': 'invalid@example.com'})
