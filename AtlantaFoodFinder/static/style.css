@@ -897,6 +897,8 @@
 
 
 
+
+
 #no-restaurants-message {
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
@@ -1523,4 +1525,20 @@
   width: 110%;
   z-index: 9999;
   border-radius: 8px;
+}
+
+
+.BigCard-main .BigCard-open-maps {
+  top: 20px;
+  position: absolute;
+  z-index: 999999;
+  font-family: "Open Sans-Light", Helvetica;
+
+}
+
+.BigCard-main .BigCard-go-back {
+  top: 20px;
+  position: absolute;
+  z-index: 999999;
+  font-family: "Open Sans-Light", Helvetica;
 }

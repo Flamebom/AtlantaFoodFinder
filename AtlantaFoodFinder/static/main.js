@@ -720,6 +720,24 @@ function createBigCard(propertyDetails, reviews) {
   goBackBtn.innerText = "Go Back";
   bigCardMain.appendChild(goBackBtn);
 
+  // Add OpenMaps text next to the BigCard-sky-blue image
+  const openMapsContainer = document.createElement('div');
+  openMapsContainer.classList.add('BigCard-open-maps-container');
+
+  const openMapsText = document.createElement('span');
+  openMapsText.classList.add('BigCard-open-maps');
+  openMapsText.innerText = "OpenMaps";
+
+  openMapsContainer.appendChild(openMapsText);
+  bigCardMain.appendChild(openMapsContainer);
+
+  // Add event listener to OpenMaps text
+  openMapsText.addEventListener('click', function () {
+    console.log('OpenMaps clicked! Opening Google Maps...');
+    window.open(`https://www.google.com/maps?q=${propertyDetails.address}`, '_blank'); // Opens the address in Google Maps
+  });
+
+
   // Frame container for the images
   const frame = document.createElement('div');
   frame.classList.add('BigCard-frame');
@@ -742,6 +760,8 @@ function createBigCard(propertyDetails, reviews) {
 
   const iconHeart = document.createElement('div');
   iconHeart.classList.add('BigCard-icon-heart');
+
+
 
   const heartImg1 = document.createElement('img');
   heartImg1.classList.add('BigCard-sky-blue');
