@@ -23,6 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event listener for "New Here? Create an Account"
     document.querySelector('.already-have-an').addEventListener('click', function () {
         // Redirect to the account creation page
-        window.location.href = 'create-account.html';  // Adjust the URL to your actual account creation page
+        window.location.href = '/';  // Adjust the URL to your actual account creation page
     });
 });
