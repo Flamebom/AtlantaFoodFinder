@@ -1,12 +1,6 @@
-
-from django.contrib.auth import login, authenticate
-from .forms import CustomUserCreationForm  # The form we defined earlier
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import views as auth_views
-from django.contrib.auth import login
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-from django.shortcuts import render, redirect
 from .models import CustomUser
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
@@ -57,15 +51,28 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'passwordreset.html' #html page for resetting password
+    template_name = 'passwordreset.html'  # HTML page for resetting password
     email_template_name = 'password_reset_email.html'
     subject_template_name = 'password_reset_subject.txt'
-    success_message = "We've emailed you instructions for setting your password, " \
-                      "if an account exists with the email you entered. You should receive them shortly." \
-                      " If you don't receive an email, " \
-                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_message = (
+        "We've emailed you instructions for setting your password, "
+        "if an account exists with the email you entered. You should receive them shortly. "
+        "If you don't receive an email, please make sure you've entered the address you registered with, and check your spam folder."
+    )
     success_url = reverse_lazy('index')
 
+    def get_email_context(self, user):
+        """Override to add any additional context for the email template."""
+        return {
+            'email': user.email,
+            'domain': self.request.META['HTTP_HOST'],
+            'uid': user.pk,
+            'token': user.tokens()  # Add token generation logic if necessary
+        }
+
+    def send_mail(self, subject, message, from_email, recipient_list, **kwargs):
+        """Override the send_mail method to customize email sending."""
+        super().send_mail(subject, message, from_email, recipient_list, **kwargs)
 # Custom login view using the built-in LoginView
 class CustomLoginView(LoginView):
     template_name = 'login.html'  # Login interface
