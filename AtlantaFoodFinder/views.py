@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate
 from .forms import CustomUserCreationForm  # The form we defined earlier
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import views as auth_views
 from django.shortcuts import render, redirect
 from .models import CustomUser, Favorite
@@ -7,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import render, redirect
 
 
 # User registration view
@@ -21,9 +23,19 @@ def signup(request):
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
     #registration interface is signup.html
+
+# Use Django's LoginView
 def login_view(request):
-    return auth_views.LoginView.as_view(template_name='login.html')(request)
-    #login.html is the interface for logging in
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')  # Redirect to homepage or any other page
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = 'password_reset.html' #html page for resetting password
     email_template_name = 'password_reset_email.html'
