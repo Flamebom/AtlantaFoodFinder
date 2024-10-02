@@ -18,7 +18,7 @@ from django.contrib.auth import login
 
 from django.shortcuts import render
 
-def home_view(request):
+def index(request):
     return render(request, 'index.html')  # Need to make home.html template
 # User registration view
 def is_valid_email(email):
@@ -41,7 +41,7 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
 
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'create-account.html', {'form': form})
 
 
 # Use Django's LoginView
@@ -57,7 +57,7 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
-    template_name = 'password_reset.html' #html page for resetting password
+    template_name = 'passwordreset.html' #html page for resetting password
     email_template_name = 'password_reset_email.html'
     subject_template_name = 'password_reset_subject.txt'
     success_message = "We've emailed you instructions for setting your password, " \
