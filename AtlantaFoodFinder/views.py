@@ -9,20 +9,21 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect
+from .forms import CustomUserCreationForm  # Import the form
+from django.contrib.auth import login
 
-
-# User registration view
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()  # Save the user
             login(request, user)  # Automatically log the user in
-            return redirect('home')  # Redirect to homepage or another page
+            return redirect('home')  # Redirect to homepage or any other page
     else:
         form = CustomUserCreationForm()
+
     return render(request, 'signup.html', {'form': form})
-    #registration interface is signup.html
+
 
 # Use Django's LoginView
 def login_view(request):
