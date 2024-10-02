@@ -16,7 +16,6 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm  # Import the form
 from django.contrib.auth import login
 
-=======
 from django.shortcuts import render
 
 def home_view(request):
@@ -66,8 +65,6 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       " If you don't receive an email, " \
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('users-home')
-            return redirect('home')  # Redirect to homepage or another page
-    return render(request, 'create-account.html')  # Re-render the form for GET or invalid input
 
 # Custom login view using the built-in LoginView
 class CustomLoginView(LoginView):

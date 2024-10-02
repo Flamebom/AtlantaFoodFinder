@@ -1,16 +1,8 @@
 # urls.py
 
 from django.urls import path
-from .views import (
-    signup,
-    CustomLoginView,
-    favorite_list,
-    favorite_restaurant,
-    remove_favorite_restaurant,
-    ResetPasswordView,
-    home_view,
-)
-
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('favorite/<str:restaurant_name>/<str:restaurant_address>/', views.favorite_restaurant, name='favorite_restaurant'),
     path('remove_favorite/<str:restaurant_name>/', views.remove_favorite_restaurant, name='remove_favorite_restaurant'),
